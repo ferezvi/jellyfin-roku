@@ -13,16 +13,28 @@ sub init()
     m.serverUrlContainer = m.top.findNode("serverUrlContainer")
     m.serverPickerContainer = m.top.findNode("serverPickerContainer")
     m.serverUrlOutline = m.top.findNode("serverUrlOutline")
-    m.serverUrlOutline.blendColor = ColorPalette.HIGHLIGHT
+    m.serverUrlOutline.blendColor = ColorPalette.WHITE
 
-    m.serverPickerContainer.color = ColorPalette.ELEMENTBACKGROUND
-    m.serverUrlContainer.color = ColorPalette.BLACK77
+    m.serverPickerContainer.color = ColorPalette.OCELOTL_BG
 
     m.submit = m.top.findNode("submit")
-    m.submit.background = ColorPalette.LIGHTBLUE
-    m.submit.color = ColorPalette.DARKGREY
-    m.submit.focusBackground = ColorPalette.HIGHLIGHT
+    m.submit.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
+    m.submit.background = ColorPalette.OCELOTL_CARD_BG
+    m.submit.color = ColorPalette.WHITE
+    m.submit.focusBackground = ColorPalette.OCELOTL_ACCENT_FOCUS
     m.submit.focusColor = ColorPalette.WHITE
+
+    m.submitFocus = m.top.findNode("submit_focus")
+    m.submitFocus.visible = false
+
+    m.errorMessage = m.top.findNode("errorMessage")
+    m.errorMessage.color = ColorPalette.RED
+
+    m.serverUrlContainer.color = ColorPalette.TRANSPARENT
+    m.serverUrlTextbox.hintTextColor = ColorPalette.HINT
+
+    m.serverUrlBackground = m.top.findNode("serverUrlBackground")
+    m.serverUrlBackground.blendColor = ColorPalette.OCELOTL_CARD_BG
 
     m.top.observeField("serverUrl", "clearErrorMessage")
 
@@ -64,6 +76,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             m.top.serverUrl = selectedServer.baseUrl
             m.submit.setFocus(true)
             m.submit.focus = true
+            m.submitFocus.visible = true
             return true
         end if
 
@@ -91,6 +104,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             m.serverUrlOutline.visible = false
             m.submit.setFocus(true)
             m.submit.focus = true
+            m.submitFocus.visible = true
             return true
         end if
 
@@ -114,6 +128,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             m.serverUrlContainer.setFocus(true)
             m.serverUrlOutline.visible = true
             m.submit.focus = false
+            m.submitFocus.visible = false
             return true
         end if
 
@@ -128,11 +143,15 @@ function onKeyEvent(key as string, press as boolean) as boolean
         end if
 
         if m.submit.hasFocus() and isValidAndNotEmpty(m.servers)
+            m.submit.focus = false
+            m.submitFocus.visible = false
             m.serverPicker.setFocus(true)
             return true
         end if
 
         if m.submit.hasFocus() and m.servers.Count() = 0
+            m.submit.focus = false
+            m.submitFocus.visible = false
             m.serverUrlOutline.visible = true
             m.serverUrlContainer.setFocus(true)
             return true
@@ -214,7 +233,7 @@ sub ShowKeyboard()
     dialog.text = m.serverUrlTextbox.text
 
     palette = createObject("roSGNode", "RSGPalette")
-    palette.colors = { DialogBackgroundColor: ColorPalette.ELEMENTBACKGROUND }
+    palette.colors = { DialogBackgroundColor: ColorPalette.OCELOTL_CARD_BG }
     dialog.palette = palette
 
     m.top.getscene().dialog = dialog
@@ -229,6 +248,10 @@ function onDialogButton()
 
     if button_text = tr("OK")
         m.serverUrlTextbox.text = d.text
+        m.serverUrlOutline.visible = false
+        m.submit.setFocus(true)
+        m.submit.focus = true
+        m.submitFocus.visible = true
         m.dialog.close = true
         return true
     else if button_text = tr("Cancel")

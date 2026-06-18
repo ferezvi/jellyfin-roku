@@ -8,8 +8,11 @@
 
   <children>
     <Rectangle id="background" translation="[0,0]" width="1460" height="100" />
-
-    <Poster id="poster" translation="[20,5]" width="90" height="90" />
+    <Poster id="serverCard" translation="[0,0]" width="1460" height="100" uri="pkg:/images/card.9.png" />
+    <Poster id="focusIndicator" translation="[0,0]" width="1460" height="100" uri="pkg:/images/card_focus.9.png" visible="false" />
+    <MaskGroup maskUri="pkg:/images/$$RES$$/smallMask.png" translation="[25,20]">
+      <Poster id="poster" width="60" height="60" />
+    </MaskGroup>
     <Group id="labels" translation="[120,0]">
       <Text text="Name:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,5]" />
       <Text text="URL:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,55]" />
@@ -19,7 +22,10 @@
     </Group>
 
     <Rectangle id="trashContainer" translation="[1480,0]" width="100" height="100">
+      <Poster id="trashBackground" width="100" height="100" uri="pkg:/images/icons/circle.png" />
       <Poster id="trash" width="50" height="50" uri="pkg:/images/icons/trash.png" translation="[25,25]" />
+      <Poster id="trashFocus" width="100" height="100" uri="pkg:/images/circle_focus.png" visible="true" />
+
     </Rectangle>
   </children>
 

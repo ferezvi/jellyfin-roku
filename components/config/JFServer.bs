@@ -5,24 +5,46 @@ sub init()
     m.poster = m.top.findNode("poster")
     m.background = m.top.findNode("background")
     m.name = m.top.findNode("name")
-    m.trashContainer = m.top.findNode("trashContainer")
     m.baseUrl = m.top.findNode("baseUrl")
     m.labels = m.top.findNode("labels")
-    m.background.color = m.top.itemHasFocus ? ColorPalette.HIGHLIGHT : ColorPalette.ELEMENTBACKGROUND
+
+    m.serverCard = m.top.findNode("serverCard")
+    m.serverCard.blendColor = ColorPalette.OCELOTL_CARD_BG
+
+    m.trashContainer = m.top.findNode("trashContainer")
+    m.trashContainer.color = ColorPalette.TRANSPARENT
+
+    m.trashBackground = m.top.findNode("trashBackground")
+    m.trashBackground.blendColor = ColorPalette.OCELOTL_CARD_BG
+
+    m.trash = m.top.findNode("trash")
+    m.trashFocus = m.top.findNode("trashFocus")
+
+    m.focusIndicator = m.top.findNode("focusIndicator")
+    m.focusIndicator.visible = m.top.itemHasFocus
+
+    m.background.color = ColorPalette.TRANSPARENT
 
     setTextColor()
 end sub
-
 sub itemContentChanged()
     server = m.top.itemContent
+
+    if isValid(server)
+        server.observeField("itemHasDeleteFocus", "onDeleteFocusChanged")
+    end if
+
     m.poster.uri = server.iconUrl
     m.name.text = server.name
     m.baseUrl.text = server.baseUrl
 
     setTrashIconVisibility()
-
-    setBackground()
     setDeleteFocus()
+end sub
+
+sub onDeleteFocusChanged()
+    setDeleteFocus()
+    setFocusIndicator()
 end sub
 
 sub setTrashIconVisibility()
@@ -37,37 +59,29 @@ sub onItemHasFocusChange()
         m.top.itemContent.itemHasDeleteFocus = false
     end if
 
-    setBackground()
     setDeleteFocus()
-end sub
-
-sub setBackground()
-    if not isValid(m.top.itemContent) then return
-    if not isValid(m.top.itemContent.itemHasDeleteFocus) then return
-
-    if m.top.itemContent.itemHasDeleteFocus
-        m.background.color = ColorPalette.MIDGREY
-        return
-    end if
-
-    m.background.color = m.top.itemHasFocus ? ColorPalette.HIGHLIGHT : ColorPalette.ELEMENTBACKGROUND
+    setFocusIndicator()
 end sub
 
 sub setDeleteFocus()
+    if not isValid(m.trashFocus) then return
     if not isValid(m.top.itemContent) then return
-    if not isValid(m.top.itemContent.itemHasDeleteFocus) then return
 
-    if m.top.itemHasFocus
-        if m.top.itemContent.itemHasDeleteFocus
-            trashContainerColor = ColorPalette.HIGHLIGHT
-        else
-            trashContainerColor = ColorPalette.BLACK77
+    hasDeleteFocus = chainLookupReturn(m.top.itemContent, "itemHasDeleteFocus", false)
+
+    m.trashFocus.visible = hasDeleteFocus
+end sub
+
+sub setFocusIndicator()
+    if isValid(m.focusIndicator)
+        hasDeleteFocus = false
+
+        if isValid(m.top.itemContent)
+            hasDeleteFocus = chainLookupReturn(m.top.itemContent, "itemHasDeleteFocus", false)
         end if
-    else
-        trashContainerColor = ColorPalette.BLACK77
-    end if
 
-    m.trashContainer.color = trashContainerColor
+        m.focusIndicator.visible = m.top.itemHasFocus and not hasDeleteFocus
+    end if
 end sub
 
 sub setTextColor()

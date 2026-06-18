@@ -9,12 +9,19 @@ enum ColorPalette
     LIGHTGREY = "#aaaaaa"
     LIGHTHIGHLIGHT = "#ff9a99"
     MIDGREY = "#777777"
+    OCELOTL_ACCENT = "#C96A3A"
+    OCELOTL_ACCENT_FOCUS = "#F2884B"
+    OCELOTL_BG = "#0d0d0d"
+    OCELOTL_CARD_BG = "#282828"
     OFFWHITE = "#cccccc"
     RED = "#FF0000"
     SMOKE = "#303030"
     TRANSPARENT = "0x00000000"
     TRIADBLUE = "#6867ff"
     TRIADGREEN = "#67ff68"
-    VIEWBACKGROUND = "#000018"
+    'app default background color
+    VIEWBACKGROUND = "#0d0d0d"
     WHITE = "#ffffff"
+    HINT = "#888888"
+
 end enum

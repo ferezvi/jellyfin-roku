@@ -475,7 +475,7 @@
                 "description": "The base background color. Background images are layered on top of this color.",
                 "settingName": "colorBackground",
                 "type": "colorgrid",
-                "default": "#000018"
+                "default": "#0d0d0d"
               },
               {
                 "title": "Cursor",
