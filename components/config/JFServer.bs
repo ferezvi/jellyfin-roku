@@ -22,6 +22,7 @@ sub init()
 
     m.focusIndicator = m.top.findNode("focusIndicator")
     m.focusIndicator.visible = m.top.itemHasFocus
+    m.focusIndicator.blendColor = ColorPalette.OCELOTL_FOCUS_OUTLINE
 
     m.background.color = ColorPalette.TRANSPARENT
 
@@ -85,10 +86,6 @@ sub setFocusIndicator()
 end sub
 
 sub setTextColor()
-    textColor = ColorPalette.WHITE
-
-    children = m.labels.getChildren(-1, 0)
-    for each child in children
-        child.color = textColor
-    end for
+    m.name.color = ColorPalette.WHITE
+    m.baseUrl.color = colorPalette.OCELOTL_TEXT_MUTED
 end sub

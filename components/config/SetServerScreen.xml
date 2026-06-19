@@ -19,8 +19,7 @@
           vertFocusAnimationStyle="fixedFocus" />
       </Rectangle>
 
-      <Text text="...or enter server URL manually:" translation="[0, 690]" />
-
+      <Text id="manualEntryHint" text="...or enter server URL manually:" font="font:SmallSystemFont" translation="[0, 690]" />
       <Rectangle id="serverUrlContainer">
         <Poster id="serverUrlBackground" visible="true" uri="pkg:/images/card.9.png" width="1460" height="60" />
         <TextEditBox id="serverUrlTextbox" translation="[24, 0]" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" backgroundUri="pkg:/transparent.png" />

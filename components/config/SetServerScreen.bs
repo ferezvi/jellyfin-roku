@@ -13,25 +13,29 @@ sub init()
     m.serverUrlContainer = m.top.findNode("serverUrlContainer")
     m.serverPickerContainer = m.top.findNode("serverPickerContainer")
     m.serverUrlOutline = m.top.findNode("serverUrlOutline")
-    m.serverUrlOutline.blendColor = ColorPalette.WHITE
+    m.serverUrlOutline.blendColor = ColorPalette.OCELOTL_FOCUS_OUTLINE
 
     m.serverPickerContainer.color = ColorPalette.OCELOTL_BG
 
     m.submit = m.top.findNode("submit")
     m.submit.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
-    m.submit.background = ColorPalette.OCELOTL_CARD_BG
-    m.submit.color = ColorPalette.WHITE
+    m.submit.background = ColorPalette.WHITE
+    m.submit.color = ColorPalette.DARKGREY
     m.submit.focusBackground = ColorPalette.OCELOTL_ACCENT_FOCUS
     m.submit.focusColor = ColorPalette.WHITE
 
     m.submitFocus = m.top.findNode("submit_focus")
     m.submitFocus.visible = false
+    m.submitFocus.blendColor = ColorPalette.OCELOTL_FOCUS_OUTLINE
 
     m.errorMessage = m.top.findNode("errorMessage")
     m.errorMessage.color = ColorPalette.RED
 
     m.serverUrlContainer.color = ColorPalette.TRANSPARENT
-    m.serverUrlTextbox.hintTextColor = ColorPalette.HINT
+    m.serverUrlTextbox.hintTextColor = ColorPalette.OCELOTL_TEXT_MUTED
+
+    m.manualEntryHint = m.top.findNode("manualEntryHint")
+    m.manualEntryHint.color = ColorPalette.OCELOTL_TEXT_MUTED
 
     m.serverUrlBackground = m.top.findNode("serverUrlBackground")
     m.serverUrlBackground.blendColor = ColorPalette.OCELOTL_CARD_BG

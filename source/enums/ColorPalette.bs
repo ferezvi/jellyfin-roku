@@ -9,10 +9,6 @@ enum ColorPalette
     LIGHTGREY = "#aaaaaa"
     LIGHTHIGHLIGHT = "#ff9a99"
     MIDGREY = "#777777"
-    OCELOTL_ACCENT = "#C96A3A"
-    OCELOTL_ACCENT_FOCUS = "#F2884B"
-    OCELOTL_BG = "#0d0d0d"
-    OCELOTL_CARD_BG = "#282828"
     OFFWHITE = "#cccccc"
     RED = "#FF0000"
     SMOKE = "#303030"
@@ -22,6 +18,13 @@ enum ColorPalette
     'app default background color
     VIEWBACKGROUND = "#0d0d0d"
     WHITE = "#ffffff"
-    HINT = "#888888"
+
+    ' Ocelotl theme
+    OCELOTL_ACCENT = "#C96A3A"
+    OCELOTL_ACCENT_FOCUS = "#F2884B"
+    OCELOTL_BG = "#0d0d0d"
+    OCELOTL_CARD_BG = "#282828"
+    OCELOTL_TEXT_MUTED = "0x999999FF"
+    OCELOTL_FOCUS_OUTLINE = "#ffffff"
 
 end enum

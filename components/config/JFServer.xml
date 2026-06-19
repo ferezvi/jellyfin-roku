@@ -14,11 +14,8 @@
       <Poster id="poster" width="60" height="60" />
     </MaskGroup>
     <Group id="labels" translation="[120,0]">
-      <Text text="Name:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,5]" />
-      <Text text="URL:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,55]" />
-
-      <Text id="name" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[145,5]" />
-      <Text id="baseUrl" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[145,55]" />
+      <Text id="name" horizAlign="left" font="font:MediumBoldSystemFont" width="1300" height="38" translation="[0,14]" />
+      <Text id="baseUrl" horizAlign="left" font="font:SmallSystemFont" width="1300" height="30" translation="[0,54]" />
     </Group>
 
     <Rectangle id="trashContainer" translation="[1480,0]" width="100" height="100">
