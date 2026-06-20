@@ -9,7 +9,10 @@
       width="1920"
       translation="[0, 100]" />
 
-    <Poster uri="pkg:/images/baseline_person_white_48dp.png" id="overlayCurrentUserProfileImage" width="256" height="256" loadDisplayMode="scaleToZoom" translation="[832, 190]" />
+    <Group translation="[832, 190]">
+      <Poster id="person_background" uri="pkg:/images/icons/circle.png" width="256" height="256" loadDisplayMode="scaleToZoom" translation="[0, 0]" />
+      <Poster id="overlayCurrentUserProfileImage" uri="pkg:/images/baseline_person_white_48dp.png" width="256" height="256" loadDisplayMode="scaleToZoom" translation="[0, 0]" />
+    </Group>
 
     <Rectangle id="errorContainer" visible="false" width="600" height="60" translation="[660, 386]">
       <Text id="errorMessage" text="" wrap="true" width="600" font="font:MediumSystemFont" horizAlign="center" translation="[10, 15]" />

@@ -35,17 +35,22 @@ sub init()
     m.profileImage = m.top.findNode("overlayCurrentUserProfileImage")
     m.profileImage.observeField("loadStatus", "onPosterLoadStatusChanged")
 
+    m.profileImageBackground = m.top.findNode("person_background")
+    m.profileImageBackground.blendColor = ColorPalette.OCELOTL_CARD_BG
+
     m.submit = m.top.findNode("submit")
-    m.submit.background = ColorPalette.LIGHTBLUE
-    m.submit.color = ColorPalette.DARKGREY
-    m.submit.focusBackground = ColorPalette.HIGHLIGHT
-    m.submit.focusColor = ColorPalette.WHITE
+    m.submit.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
+    m.submit.background = ColorPalette.OCELOTL_BUTTON_BACKGROUND
+    m.submit.color = ColorPalette.OCELOTL_TEXT_MUTED
+    m.submit.focusBackground = ColorPalette.OCELOTL_ACCENT
+    m.submit.focusColor = ColorPalette.OCELOTL_TEXT
 
     m.quickConnect = m.top.findNode("quickConnect")
-    m.quickConnect.background = ColorPalette.LIGHTBLUE
-    m.quickConnect.color = ColorPalette.DARKGREY
-    m.quickConnect.focusBackground = ColorPalette.HIGHLIGHT
-    m.quickConnect.focusColor = ColorPalette.WHITE
+    m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
+    m.quickConnect.background = ColorPalette.OCELOTL_BUTTON_BACKGROUND
+    m.quickConnect.color = ColorPalette.OCELOTL_TEXT_MUTED
+    m.quickConnect.focusBackground = ColorPalette.OCELOTL_ACCENT
+    m.quickConnect.focusColor = ColorPalette.OCELOTL_TEXT
 
     m.errorContainer = m.top.findNode("errorContainer")
     m.errorContainer.color = "#CC0000"
