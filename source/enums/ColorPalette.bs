@@ -28,7 +28,7 @@ enum ColorPalette
     OCELOTL_TEXT_DIM = "#666666FF"
     OCELOTL_TEXT = "0xFFFFFF"
     OCELOTL_FOCUS_OUTLINE = "#ffffff"
-    OCELOTL_BUTTON_BG = "#ffffff"
+    OCELOTL_BUTTON_BG = "#1a1a1a"
     OCELOTL_CONTAINER_BG = "#00000000"
 
 

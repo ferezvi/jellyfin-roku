@@ -19,9 +19,9 @@ sub init()
 
     m.submit = m.top.findNode("submit")
     m.submit.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
-    m.submit.background = ColorPalette.OCELOTL_ACCENT
+    m.submit.background = ColorPalette.OCELOTL_BUTTON_BG
     m.submit.color = ColorPalette.OCELOTL_TEXT_DIM
-    m.submit.focusBackground = ColorPalette.OCELOTL_ACCENT_FOCUS
+    m.submit.focusBackground = ColorPalette.OCELOTL_BUTTON_BG
     m.submit.focusColor = ColorPalette.OCELOTL_TEXT
 
     m.submitFocus = m.top.findNode("submit_focus")

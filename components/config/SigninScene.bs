@@ -44,9 +44,9 @@ sub init()
 
     m.submit = m.top.findNode("submit")
     m.submit.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
-    m.submit.background = ColorPalette.OCELOTL_CARD_BG
+    m.submit.background = ColorPalette.OCELOTL_BUTTON_BG
     m.submit.color = ColorPalette.OCELOTL_TEXT_DIM
-    m.submit.focusBackground = ColorPalette.OCELOTL_CARD_BG
+    m.submit.focusBackground = ColorPalette.OCELOTL_BUTTON_BG
     m.submit.focusColor = ColorPalette.OCELOTL_TEXT
 
     m.submitOutline = m.top.findNode("submit_outline")
@@ -56,9 +56,9 @@ sub init()
 
     m.quickConnect = m.top.findNode("quickConnect")
     m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/pill_button.png"
-    m.quickConnect.background = ColorPalette.OCELOTL_CARD_BG
+    m.quickConnect.background = ColorPalette.OCELOTL_BUTTON_BG
     m.quickConnect.color = ColorPalette.OCELOTL_TEXT_DIM
-    m.quickConnect.focusBackground = ColorPalette.OCELOTL_CARD_BG
+    m.quickConnect.focusBackground = ColorPalette.OCELOTL_BUTTON_BG
     m.quickConnect.focusColor = ColorPalette.OCELOTL_TEXT
 
     m.quickConnectOutline = m.top.findNode("quickConnect_outline")
