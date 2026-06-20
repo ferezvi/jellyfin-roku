@@ -34,12 +34,12 @@
             id="submit"
             text="Submit"
             height="60"
-            width="200" />
+            width="240" />
           <Poster id="submit_focus"
             translation="[0,0]"
             visible="false"
             uri="pkg:/images/pill_button_focus.png"
-            width="200"
+            width="240"
             height="60" />
         </Group>
 

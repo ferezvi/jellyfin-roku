@@ -3,10 +3,11 @@ import "pkg:/source/utils/config.bs"
 sub init()
     m.top.itemComponentName = "FormElement"
 
-    m.top.drawFocusFeedback = True
+    m.top.drawFocusFeedback = false
     m.top.vertFocusAnimationStyle = "floatingFocus"
 
     m.top.observeField("itemSelected", "onItemSelected")
+    m.top.observeField("itemFocused", "onItemFocused")
 
     m.top.itemSize = [750, 75]
     m.top.itemSpacing = [0, 25]

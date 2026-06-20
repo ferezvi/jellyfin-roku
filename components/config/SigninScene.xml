@@ -9,20 +9,24 @@
       width="1920"
       translation="[0, 100]" />
 
-    <Poster uri="pkg:/images/baseline_person_white_48dp.png" id="overlayCurrentUserProfileImage" width="256" height="256" loadDisplayMode="scaleToZoom" translation="[832, 190]" />
+    <Group translation="[890, 190]">
+      <Poster uri="pkg:/images/icons/circle.png" id="userProfileBackground" width="140" height="140" loadDisplayMode="scaleToZoom" translation="[0, 0]" />
+      <Poster uri="pkg:/images/baseline_person_white_48dp.png" id="overlayCurrentUserProfileImage" width="140" height="140" loadDisplayMode="scaleToZoom" />
+      <Poster uri="pkg:/images/avatar_ring.png" id="avatarRing" width="148" height="148" translation="[-4, -4]" />
+    </Group>
 
     <Rectangle id="errorContainer" visible="false" width="600" height="60" translation="[660, 386]">
       <Text id="errorMessage" text="" wrap="true" width="600" font="font:MediumSystemFont" horizAlign="center" translation="[10, 15]" />
     </Rectangle>
 
-    <Rectangle id="signInFormContainer" color="#101420" width="870" height="280" translation="[525, 466]">
+    <Rectangle id="signInFormContainer" color="#101420" width="720" height="278" translation="[600, 340]">
       <FormList id="configOptions" translation="[60, 40]" itemSpacing="[0, 50]" />
     </Rectangle>
 
     <CheckList
       id="saveCredentials"
       checkedState="[true]"
-      translation="[560, 771]"
+      translation="[760, 655]"
       focusFootprintBitmapUri=""
       drawFocusFeedback="false">
       <ContentNode role="content">
@@ -30,19 +34,34 @@
       </ContentNode>
     </CheckList>
 
-    <StandardButton
-      id="submit"
-      text="Submit"
-      height="85"
-      width="350"
-      translation="[595,900]" />
-
-    <StandardButton
-      id="quickConnect"
-      text="Quick Connect"
-      height="85"
-      width="350"
-      translation="[975,900]" />
+    <Group>
+      <StandardButton
+        id="submit"
+        text="Submit"
+        height="90"
+        width="360"
+        translation="[595,784]" />
+      <Poster id="submit_outline"
+        translation="[595,784]"
+        visible="false"
+        uri="pkg:/images/pill_button_focus.png"
+        width="360"
+        height="90" />
+    </Group>
+    <Group>
+      <StandardButton
+        id="quickConnect"
+        text="Quick Connect"
+        height="90"
+        width="360"
+        translation="[975,784]" />
+      <Poster id="quickConnect_outline"
+        translation="[975,784]"
+        visible="false"
+        uri="pkg:/images/pill_button_focus.png"
+        width="360"
+        height="90" />
+    </Group>
 
     <Timer id="quickConnectTimer" duration="3" repeat="true" />
   </children>

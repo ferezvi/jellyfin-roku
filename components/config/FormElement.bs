@@ -4,20 +4,16 @@ import "pkg:/source/utils/misc.bs"
 
 sub init()
     m.name = m.top.findNode("label")
-
+    m.buttonBackground = m.top.findNode("buttonBackground")
+    m.valueFocusOutline = m.top.findNode("valueFocusOutline")
     m.value = m.top.findNode("value")
     m.value.backgroundUri = "pkg:/images/transparent.png"
-    m.value.width = 440
 
-    m.name.color = ColorPalette.WHITE
-    m.value.textColor = ColorPalette.DARKGREY
-    m.value.hintTextColor = ColorPalette.MIDGREY
-
-    m.name.width = 240
-    m.name.height = 75
-
-    m.name.vertAlign = "center"
-    m.name.horizAlign = "center"
+    m.name.color = ColorPalette.OCELOTL_TEXT_MUTED
+    m.value.textColor = ColorPalette.OCELOTL_TEXT
+    m.value.hintTextColor = ColorPalette.OCELOTL_TEXT_DIM
+    m.buttonBackground.blendColor = ColorPalette.OCELOTL_CARD_BG
+    m.valueFocusOutline.blendColor = ColorPalette.OCELOTL_FOCUS_OUTLINE
 
     m.value.hintText = tr("Enter a username")
     m.value.maxTextLength = 120
@@ -33,4 +29,8 @@ sub itemContentChanged()
     end if
 
     m.value.text = data.value
+end sub
+
+sub onItemHasFocusChange()
+    m.valueFocusOutline.visible = m.top.itemHasFocus
 end sub
