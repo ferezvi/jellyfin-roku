@@ -30,6 +30,7 @@ enum ColorPalette
     OCELOTL_FOCUS_OUTLINE = "#ffffff"
     OCELOTL_BUTTON_BG = "#1a1a1a"
     OCELOTL_CONTAINER_BG = "#00000000"
+    OCELOTL_PROGRESS_BAR = "#FFFFFFFF"
 
 
 end enum

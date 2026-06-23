@@ -28,6 +28,7 @@ sub init()
 
     m.homeRows = m.top.findNode("homeRows")
     m.homeRows.focusBitmapBlendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
+    m.homeRows.drawFocusFeedback = false
 
     m.buttons = m.top.findNode("buttons")
     m.toggleButtonsAnimation = m.top.findNode("toggleButtonsAnimation")
@@ -39,6 +40,7 @@ end sub
 
 sub refresh()
     m.homeRows.focusBitmapBlendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
+    m.homeRows.drawFocusFeedback = false
     m.homeRows.callFunc("updateHomeRows")
 end sub
 

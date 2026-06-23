@@ -829,8 +829,8 @@ sub updateOnNowItems()
         if (not isValid(item.thumbnailURL) or item.thumbnailURL = "") and isValid(item.json) and isValid(item.json.imageURL)
             item.thumbnailURL = item.json.imageURL
             row.usePoster = true
-            row.imageWidth = homeRowItemSizes.MOVIE_POSTER[0]
-            row.cursorSize = homeRowItemSizes.MOVIE_POSTER
+            row.imageWidth = homeRowItemSizes.WIDE_POSTER[0]
+            row.cursorSize = homeRowItemSizes.WIDE_POSTER
         end if
 
         item.usePoster = row.usePoster

@@ -120,10 +120,10 @@ function getPosterURL(itemData) as string
 
     ' Adjust image dimensions as needed
     posterURL = posterURL.replace("maxHeight=720", `maxHeight=${m.itemPoster.height}`)
-    posterURL = posterURL.replace("maxHeight=331", `maxHeight=${m.itemPoster.height}`)
+    posterURL = posterURL.replace("maxHeight=330", `maxHeight=${m.itemPoster.height}`)
 
     posterURL = posterURL.replace("maxWidth=1280", `maxWidth=${m.itemPoster.width}`)
-    posterURL = posterURL.replace("maxWidth=464", `maxWidth=${m.itemPoster.width}`)
+    posterURL = posterURL.replace("maxWidth=462", `maxWidth=${m.itemPoster.width}`)
 
     return posterURL
 end function

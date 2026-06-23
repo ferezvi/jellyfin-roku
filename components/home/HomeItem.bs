@@ -12,6 +12,9 @@ import "pkg:/source/utils/misc.bs"
 sub init()
     findNodes()
     m.itemPoster.observeField("loadStatus", "onPosterLoadStatusChanged")
+    m.itemPosterMask = m.top.findNode("itemPosterMask")
+    m.itemFocusOutline = m.top.findNode("itemFocusOutline")
+
     setColors()
 end sub
 
@@ -19,15 +22,15 @@ sub setColors()
     if not isAllValid([m.itemProgress, m.itemProgressBackground, m.backdrop]) then findNodes()
 
     if isValid(m.itemProgress)
-        m.itemProgress.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.TRIADBLUE)
+        m.itemProgress.color = ColorPalette.OCELOTL_PROGRESS_BAR
     end if
 
     if isValid(m.itemProgressBackground)
-        m.itemProgressBackground.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgressBackground", ColorPalette.BLACK90)
+        m.itemProgressBackground.color = ColorPalette.BLACK90
     end if
 
     if isValid(m.backdrop)
-        m.backdrop.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemBackground", ColorPalette.ELEMENTBACKGROUND)
+        m.backdrop.color = ColorPalette.ELEMENTBACKGROUND
     end if
 end sub
 
@@ -101,6 +104,22 @@ sub itemContentChanged()
     if not isValid(m.itemIcon) then initItemIcon()
 
     m.itemPoster.width = itemData.imageWidth
+
+    if isValid(m.itemPosterMask)
+
+        if itemData.imageWidth = 180
+            m.itemPosterMask.maskUri = "pkg:/images/$$RES$$/movie_poster_mask.png"
+        else if itemData.imageWidth = 264
+            m.itemPosterMask.maskUri = "pkg:/images/$$RES$$/music_album_mask.png"
+        else
+            m.itemPosterMask.maskUri = "pkg:/images/$$RES$$/wide_poster_mask.png"
+        end if
+    end if
+
+    if isValid(m.itemFocusOutline)
+        m.itemFocusOutline.width = itemData.imageWidth
+        m.itemFocusOutline.height = 264
+    end if
     m.itemPoster.loadDisplayMode = "scaleToZoom"
 
     m.itemTextExtra.width = itemData.imageWidth
@@ -430,9 +449,14 @@ end sub
 sub drawProgressBar(itemData)
     if not isValid(itemData.LookupCI("imageWidth")) then return
 
-    m.itemProgressBackground.width = itemData.LookupCI("imageWidth")
+    progressBarMargin = 21
+    fullWidth = itemData.LookupCI("imageWidth")
+    trimmedWidth = fullWidth - (progressBarMargin * 2)
+
+    m.itemProgressBackground.translation = [progressBarMargin, 253]
+    m.itemProgressBackground.width = trimmedWidth
     m.itemProgressBackground.visible = true
-    m.showProgressBarField.keyValue = [0, m.itemPoster.width * (itemData.PlayedPercentage / 100)]
+    m.showProgressBarField.keyValue = [0, trimmedWidth * (itemData.PlayedPercentage / 100)]
     m.showProgressBarAnimation.control = AnimationControl.START
 end sub
 
@@ -440,6 +464,9 @@ end sub
 ' Enable title scrolling based on item Focus
 sub focusChanged()
     m.itemText.repeatCount = m.top.itemHasFocus ? - 1 : 0
+    if isValid(m.itemFocusOutline)
+        m.itemFocusOutline.visible = m.top.itemHasFocus
+    end if
 end sub
 
 'Hide backdrop and icon when poster loaded
@@ -451,8 +478,8 @@ sub onPosterLoadStatusChanged()
         if isStringEqual(thisItemType, ItemType.MUSICALBUM)
             params = {
                 tag: m.top.itemContent.json.parentbackdropimagetags,
-                maxHeight: 261,
-                maxWidth: 261
+                maxHeight: 264,
+                maxWidth: 264
             }
             artistPrimaryImageURL = ImageURL(m.top.itemContent.json.parentbackdropitemid, "Primary", params)
 
@@ -467,8 +494,8 @@ sub onPosterLoadStatusChanged()
         if isStringEqual(thisItemType, ItemType.EPISODE)
             params = {
                 tag: m.top.itemContent.json.parentbackdropimagetags,
-                maxHeight: 261,
-                maxWidth: 261
+                maxHeight: 264,
+                maxWidth: 264
             }
             seriesPrimaryImageURL = ImageURL(m.top.itemContent.json.parentbackdropitemid, "Primary", params)
 
