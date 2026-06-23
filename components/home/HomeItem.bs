@@ -145,7 +145,7 @@ sub itemContentChanged()
     end if
 
     playedIndicatorLeftPosition = m.itemPoster.width - 60
-    m.playedIndicator.translation = [playedIndicatorLeftPosition, 0]
+    m.playedIndicator.translation = [playedIndicatorLeftPosition, 6]
 
     ' "Program" is from clicking on an "On Now" item on the Home Screen
     if itemDataType = ItemType.PROGRAM

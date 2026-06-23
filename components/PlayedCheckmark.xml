@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component name="PlayedCheckmark" extends="Rectangle">
+<component name="PlayedCheckmark" extends="Group">
   <children>
+    <Poster
+      id="badgeBackground"
+      width="54"
+      height="54"
+      uri="pkg:/images/$$RES$$/circleBadge.png" />
     <Label
       id="checkmark"
-      width="60"
-      height="50"
+      width="54"
+      height="54"
       font="font:MediumBoldSystemFont"
       horizAlign="center"
       vertAlign="center"
       text="✓"
       visible="false" />
-
     <Label
       id="unplayedNumber"
-      width="60"
-      height="50"
+      width="54"
+      height="54"
       font="font:MediumBoldSystemFont"
       horizAlign="center"
       vertAlign="center"

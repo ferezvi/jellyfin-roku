@@ -5,9 +5,7 @@
     <Poster id="itemIcon" width="100" height="100" translation="[190,85]" loadDisplayMode="scaleToFit" />
     <Group>
       <MaskGroup id="itemPosterMask" maskUri="pkg:/images/$$RES$$/wide_poster_mask.png">
-        <Poster id="itemPoster" width="462" height="264" loadDisplayMode="scaleToZoom">
-          <PlayedCheckmark id="playedIndicator" translation="[375, 0]" />
-        </Poster>
+        <Poster id="itemPoster" width="462" height="264" loadDisplayMode="scaleToZoom" />
       </MaskGroup>
       <Poster
         id="itemFocusOutline"
@@ -16,6 +14,7 @@
         height="264"
         visible="false"
         uri="pkg:/images/$$RES$$/home_item_focus.9.png" />
+      <PlayedCheckmark id="playedIndicator" translation="[402, 12]" />
     </Group>
 
     <Rectangle id="progressBackground" visible="false" width="450" height="8" translation="[0,253]">
