@@ -371,7 +371,7 @@ function loadLiveTVOnNow() as object
         tmp.json = {
             id: item.LookupCI("Id"),
             name: item.LookupCI("name"),
-            ImageURL: ImageURL(item.LookupCI("Id")),
+            ImageURL: ImageURL(item.LookupCI("Id"), "Primary", { maxWidth: 462, maxHeight: 264 }),
             Type: item.LookupCI("Type"),
             mediatype: item.LookupCI("mediatype"),
             CollectionType: item.LookupCI("CollectionType"),
@@ -395,9 +395,9 @@ function loadLiveTVOnNow() as object
             ParentBackdropImageTags: item.LookupCI("ParentBackdropImageTags"),
             ParentBackdropItemId: item.LookupCI("ParentBackdropItemId"),
             SeriesPrimaryImageTag: item.LookupCI("SeriesPrimaryImageTag"),
-            BackdropImageTags: item.LookupCI("BackdropImageTags")
+            BackdropImageTags: item.LookupCI("BackdropImageTags"),
+            PrimaryImageAspectRatio: item.LookupCI("PrimaryImageAspectRatio")
         }
-        results.push(tmp)
     end for
 
     return results
