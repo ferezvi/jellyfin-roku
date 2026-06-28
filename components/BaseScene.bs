@@ -5,6 +5,7 @@ import "pkg:/source/utils/misc.bs"
 sub init()
     m.top.backgroundURI = ""
     m.spinner = m.top.findNode("spinner")
+    m.top.findNode("sceneBackground").color = ColorPalette.ELEMENTBACKGROUND
 end sub
 
 ' Triggered when the isLoading boolean component field is changed

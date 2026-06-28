@@ -17,4 +17,10 @@ enum ColorPalette
     TRIADGREEN = "#67ff68"
     VIEWBACKGROUND = "#000018"
     WHITE = "#ffffff"
+    ' Ocelotl theme - card/element surface (darker than ELEMENTBACKGROUND)
+    OCELOTL_SURFACE = "#1E1B2E"
+    ' Ocelotl theme - primary accent (purple, gradient start)
+    OCELOTL_ACCENT = "#7C3AED"
+    ' Ocelotl theme - secondary accent (cyan, gradient end)
+    OCELOTL_ACCENT_END = "#06B6D4"
 end enum
