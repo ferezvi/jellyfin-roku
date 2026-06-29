@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="SetServerScreen" extends="JFScreen">
   <children>
-    <LayoutGroup translation="[150,150]" itemSpacings="40">
-      <LayoutGroup>
-        <Text text="Connect to Server" id="prompt" font="font:LargeBoldSystemFont" />
-      </LayoutGroup>
+    <!-- Header -->
+    <Poster id="appIcon" translation="[60,40]" width="64" height="64" uri="pkg:/images/ocelotl/icons/ui/jellyfin-logo.png" />
+    <Label id="jf" translation="[136,58]" text="Jellyfin" font="font:MediumBoldSystemFont" />
 
-      <Poster id="serverPickerContainer" width="1620" height="400">
-        <MarkupList
-          id="serverPicker"
-          translation="[20, 20]"
-          drawFocusFeedback="false"
-          itemComponentName="JFServer"
-          focusFootprintBitmapUri=""
-          itemSpacing="[0, 30]"
-          itemSize="[1580, 100]"
-          numRows="3"
-          vertFocusAnimationStyle="floatingFocus" />
-      </Poster>
+    <!-- Main content -->
+    <LayoutGroup id="content" translation="[160,160]" layoutDirection="vert" itemSpacings="18">
 
-      <Text text="...or enter server URL manually:" translation="[0, 690]" />
+      <Label id="prompt" text="Connect to Server" font="font:LargeBoldSystemFont" />
+      <Label id="subtitle" text="Enter the details of your Jellyfin server to get started." font="font:SmallestSystemFont" />
+
+      <!-- Placeholder to reserve the server list height -->
+      <Rectangle width="1" height="430" color="0x00000000" />
+
+      <Label text="If no server is listed above, you may also enter the server URL manually:" font="font:SmallestSystemFont" />
 
       <Group id="serverUrlContainer">
-        <Poster id="serverUrlBackground" width="1620" height="72" uri="pkg:/images/ocelotl/card-bg.9.png" />
-        <Poster id="globeIcon" translation="[20, 24]" width="24" height="24" uri="pkg:/images/ocelotl/icons/ui/icon-globe.png" />
-        <TextEditBox id="serverUrlTextbox" translation="[56, 36]" width="1540" backgroundUri="pkg:/images/transparent.png" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" />
-        <!-- <Poster id="serverUrlOutline" visible="false" uri="pkg:/images/hd_focus.9.png" /> -->
+        <Poster id="serverUrlBackground" width="1600" height="72" uri="pkg:/images/ocelotl/card-bg.9.png" />
+        <Poster id="globeIcon" translation="[20,24]" width="24" height="24" uri="pkg:/images/ocelotl/icons/ui/icon-globe.png" />
+        <TextEditBox id="serverUrlTextbox" translation="[56,36]" width="1520" backgroundUri="pkg:/images/transparent.png" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" />
       </Group>
 
-      <Text id="errorMessage" text="" font="font:MediumSystemFont" color="#ff0000FF" />
+      <Label id="errorMessage" text="" color="#ff0000FF" font="font:MediumSystemFont" />
 
-      <LayoutGroup horizAlignment="center">
-        <StandardButton
-          id="submit"
-          text="Submit"
-          height="85"
-          width="250" />
-
-        <!--add a known width invisibile element to allow the button to be centered-->
-        <Rectangle id="submitSizer" width="1620" height="0" color="0x00000000" />
-      </LayoutGroup>
     </LayoutGroup>
+
+    <!-- Server list -->
+    <Group id="serverSection" translation="[160,320]">
+      <Poster id="serverPickerContainer" width="1600" height="380" uri="pkg:/images/ocelotl/card-bg.9.png" />
+      <MarkupList id="serverPicker" translation="[20,20]" drawFocusFeedback="false" itemComponentName="JFServer" itemSize="[1560,100]" itemSpacing="[0,24]" numRows="3" vertFocusAnimationStyle="floatingFocus" />
+    </Group>
+
+    <!-- Button -->
+    <StandardButton id="submit" translation="[835,920]" width="250" height="85" text="Connect" />
+
   </children>
+
   <interface>
     <field id="forgetServer" type="string" />
     <field id="serverUrl" type="string" alias="serverUrlTextbox.text" />
-    <!-- <field id="serverWidth" alias="serverUrlOutline.width,serverUrlTextbox.width,serverUrlContainer.width,submitSizer.width" value="1620" />
-    <field id="serverHeight" alias="serverUrlOutline.height,serverUrlTextbox.height,serverUrlContainer.height" value="60" /> -->
     <field id="errorMessage" type="string" alias="errorMessage.text" />
   </interface>
 </component>

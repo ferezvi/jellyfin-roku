@@ -24,5 +24,7 @@ enum ColorPalette
     ' Ocelotl theme - secondary accent (cyan, gradient end)
     OCELOTL_ACCENT_END = "#06B6D4"
     ' Ocelotl theme - secondary text color
+    OCELOTL_TEXT_PRIMARY = "#FFFFFF"
+    ' Ocelotl theme - secondary text color
     OCELOTL_TEXT_SECONDARY = "#A1A1AA"
 end enum

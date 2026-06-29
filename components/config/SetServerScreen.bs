@@ -19,9 +19,9 @@ sub init()
 
     m.submit = m.top.findNode("submit")
     m.submit.background = ColorPalette.LIGHTBLUE
-    m.submit.color = ColorPalette.DARKGREY
+    m.submit.color = ColorPalette.OCELOTL_TEXT_PRIMARY
     m.submit.focusBackground = ColorPalette.HIGHLIGHT
-    m.submit.focusColor = ColorPalette.WHITE
+    m.submit.focusColor = ColorPalette.OCELOTL_TEXT_PRIMARY
 
     m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
 
