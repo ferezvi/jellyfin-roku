@@ -87,11 +87,11 @@ sub init()
     items = [username_field, password_field]
     m.config.configItems = items
 
-    saveCredentials.checkedIconUri = "pkg:/images/icons/checkboxChecked.png"
-    saveCredentials.focusedCheckedIconUri = "pkg:/images/icons/checkboxChecked.png"
-
-    saveCredentials.uncheckedIconUri = "pkg:/images/icons/checkboxUnchecked.png"
-    saveCredentials.focusedUncheckedIconUri = "pkg:/images/icons/checkboxUnchecked.png"
+    saveCredentials.checkedIconUri = "pkg:/images/ocelotl/icons/ui/checkbox-checked.png"
+    saveCredentials.focusedCheckedIconUri = "pkg:/images/ocelotl/icons/ui/checkbox-checked.png"
+    saveCredentials.uncheckedIconUri = "pkg:/images/ocelotl/icons/ui/checkbox-unchecked.png"
+    saveCredentials.focusedUncheckedIconUri = "pkg:/images/ocelotl/icons/ui/checkbox-unchecked.png"
+    saveCredentials.focusedColor = ColorPalette.OCELOTL_ACCENT
 end sub
 
 sub onAlertChange()
