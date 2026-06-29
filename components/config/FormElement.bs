@@ -3,34 +3,47 @@ import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
 
 sub init()
-    m.name = m.top.findNode("label")
+    m.hint = m.top.findNode("hint")
 
     m.value = m.top.findNode("value")
     m.value.backgroundUri = "pkg:/images/transparent.png"
     m.value.width = 440
 
-    m.name.color = ColorPalette.WHITE
-    m.value.textColor = ColorPalette.DARKGREY
-    m.value.hintTextColor = ColorPalette.MIDGREY
+    m.value.observeField("text", "onTextChanged")
 
-    m.name.width = 240
-    m.name.height = 75
+    m.value.textColor = ColorPalette.OCELOTL_TEXT_PRIMARY
+    m.hint.color = ColorPalette.OCELOTL_TEXT_SECONDARY
 
-    m.name.vertAlign = "center"
-    m.name.horizAlign = "center"
-
-    m.value.hintText = tr("Enter a username")
+    m.hint.text = tr("Enter a username")
     m.value.maxTextLength = 120
+
+    m.buttonBackground = m.top.findNode("buttonBackground")
+    m.buttonBackground.blendColor = ColorPalette.OCELOTL_CARD
 end sub
 
 sub itemContentChanged()
     data = m.top.itemContent
 
-    m.name.text = data.label
     if isStringEqual(data.type, "password")
-        m.value.hintText = tr("Enter a password")
+        m.hint.text = tr("Enter a password")
         m.value.secureMode = true
+    else
+        m.hint.text = tr("Enter a username")
+        m.value.secureMode = false
     end if
 
     m.value.text = data.value
+    onTextChanged()
+end sub
+
+sub onTextChanged()
+    m.hint.visible = (m.value.text = "")
+end sub
+
+sub onFocusChanged()
+    if m.top.itemHasFocus
+        m.buttonBackground.blendColor = ColorPalette.OCELOTL_ACCENT
+    else
+        m.buttonBackground.blendColor = ColorPalette.OCELOTL_CARD
+    end if
 end sub

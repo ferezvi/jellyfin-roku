@@ -19,6 +19,8 @@ enum ColorPalette
     WHITE = "#ffffff"
     ' Ocelotl theme - card/element surface (darker than ELEMENTBACKGROUND)
     OCELOTL_SURFACE = "#1E1B2E"
+    ' Ocelotl theme - darker card background for form fields
+    OCELOTL_CARD = "#12101EFF"
     ' Ocelotl theme - primary accent (purple, gradient start)
     OCELOTL_ACCENT = "#7C3AED"
     ' Ocelotl theme - secondary accent (cyan, gradient end)

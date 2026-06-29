@@ -4,7 +4,7 @@ import "pkg:/source/enums/PosterLoadStatus.bs"
 import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
 
-const blankUserAvatarUri = "pkg:/images/baseline_person_white_48dp.png"
+const blankUserAvatarUri = "pkg:/images/ocelotl/icons/ui/avatar-default.png"
 
 sub onProfileImageUriChange()
     if not isValid(m.top.profileImageUri)
@@ -36,23 +36,31 @@ sub init()
     m.profileImage.observeField("loadStatus", "onPosterLoadStatusChanged")
 
     m.submit = m.top.findNode("submit")
-    m.submit.background = ColorPalette.LIGHTBLUE
-    m.submit.color = ColorPalette.DARKGREY
-    m.submit.focusBackground = ColorPalette.HIGHLIGHT
+    m.quickConnect = m.top.findNode("quickConnect")
+
+    m.submit.color = ColorPalette.WHITE
     m.submit.focusColor = ColorPalette.WHITE
 
-    m.quickConnect = m.top.findNode("quickConnect")
-    m.quickConnect.background = ColorPalette.LIGHTBLUE
-    m.quickConnect.color = ColorPalette.DARKGREY
-    m.quickConnect.focusBackground = ColorPalette.HIGHLIGHT
+    m.quickConnect.color = ColorPalette.WHITE
     m.quickConnect.focusColor = ColorPalette.WHITE
 
+    m.submit.background = ColorPalette.WHITE
+    m.submit.focusBackground = ColorPalette.WHITE
+
+    m.quickConnect.background = ColorPalette.WHITE
+    m.quickConnect.focusBackground = ColorPalette.WHITE
+
+    m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
     m.errorContainer = m.top.findNode("errorContainer")
     m.errorContainer.color = "#CC0000"
 
     m.config = m.top.findNode("configOptions")
-    m.config.focusBitmapBlendColor = ColorPalette.HIGHLIGHT
+    m.config.focusBitmapBlendColor = ColorPalette.TRANSPARENT
     m.config.focusFootprintBlendColor = ColorPalette.TRANSPARENT
+
+    m.top.findNode("avatarCircle").blendColor = ColorPalette.OCELOTL_SURFACE
+    m.top.findNode("signInFormBg").blendColor = ColorPalette.OCELOTL_SURFACE
 
     username_field = CreateObject("roSGNode", "ConfigData")
     username_field.label = tr("Username")
@@ -109,7 +117,6 @@ sub onUserChange()
 end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean
-    ' Returns true if user navigates to a new focusable element
     if not press then return false
 
     list = m.top.findNode("configOptions")
@@ -122,7 +129,6 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.DOWN and list.isInFocusChain()
         limit = list.content.getChildren(-1, 0).count() - 1
-
         if limit = list.itemFocused
             saveCredentials.setFocus(true)
             group = m.global.sceneManager.callFunc("getActiveScene")
@@ -135,7 +141,8 @@ function onKeyEvent(key as string, press as boolean) as boolean
     if key = KeyCode.DOWN and saveCredentials.isInFocusChain()
         m.submit.setFocus(true)
         m.submit.focus = true
-
+        setSubmitFocus(true)
+        setQuickConnectFocus(false)
         group = m.global.sceneManager.callFunc("getActiveScene")
         group.lastFocus = m.submit
         return true
@@ -143,7 +150,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.UP and m.submit.hasFocus()
         m.submit.focus = false
-
+        setSubmitFocus(false)
         saveCredentials.setFocus(true)
         group = m.global.sceneManager.callFunc("getActiveScene")
         group.lastFocus = saveCredentials
@@ -152,7 +159,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.UP and m.quickConnect.hasFocus()
         m.quickConnect.focus = false
-
+        setQuickConnectFocus(false)
         saveCredentials.setFocus(true)
         group = m.global.sceneManager.callFunc("getActiveScene")
         group.lastFocus = saveCredentials
@@ -168,10 +175,10 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.RIGHT and m.submit.hasFocus()
         m.submit.focus = false
-
+        setSubmitFocus(false)
         m.quickConnect.setFocus(true)
         m.quickConnect.focus = true
-
+        setQuickConnectFocus(true)
         group = m.global.sceneManager.callFunc("getActiveScene")
         group.lastFocus = m.quickConnect
         return true
@@ -179,10 +186,10 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.LEFT and m.quickConnect.hasFocus()
         m.quickConnect.focus = false
-
+        setQuickConnectFocus(false)
         m.submit.setFocus(true)
         m.submit.focus = true
-
+        setSubmitFocus(true)
         group = m.global.sceneManager.callFunc("getActiveScene")
         group.lastFocus = m.submit
         return true
@@ -201,3 +208,19 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     return false
 end function
+
+sub setSubmitFocus(hasFocus as boolean)
+    if hasFocus
+        m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+    else
+        m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    end if
+end sub
+
+sub setQuickConnectFocus(hasFocus as boolean)
+    if hasFocus
+        m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+    else
+        m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    end if
+end sub
