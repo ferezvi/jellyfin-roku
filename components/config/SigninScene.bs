@@ -92,6 +92,16 @@ sub init()
     saveCredentials.uncheckedIconUri = "pkg:/images/ocelotl/icons/ui/checkbox-unchecked.png"
     saveCredentials.focusedUncheckedIconUri = "pkg:/images/ocelotl/icons/ui/checkbox-unchecked.png"
     saveCredentials.focusedColor = ColorPalette.OCELOTL_ACCENT
+
+    palette = createObject("roSGNode", "RSGPalette")
+    palette.colors = {
+        DialogBackgroundColor: ColorPalette.OCELOTL_SURFACE,
+        DialogFocusColor: ColorPalette.OCELOTL_ACCENT,
+        DialogFocusItemColor: ColorPalette.WHITE,
+        DialogItemColor: ColorPalette.WHITE,
+        DialogSecondaryItemColor: ColorPalette.OCELOTL_TEXT_SECONDARY
+    }
+    m.config.palette = palette
 end sub
 
 sub onAlertChange()

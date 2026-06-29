@@ -223,7 +223,13 @@ sub ShowKeyboard()
     dialog.text = m.serverUrlTextbox.text
 
     palette = createObject("roSGNode", "RSGPalette")
-    palette.colors = { DialogBackgroundColor: ColorPalette.ELEMENTBACKGROUND }
+    palette.colors = {
+        DialogBackgroundColor: ColorPalette.OCELOTL_SURFACE,
+        DialogFocusColor: ColorPalette.OCELOTL_ACCENT,
+        DialogFocusItemColor: ColorPalette.WHITE,
+        DialogItemColor: ColorPalette.WHITE,
+        DialogSecondaryItemColor: ColorPalette.OCELOTL_TEXT_SECONDARY
+    }
     dialog.palette = palette
 
     m.top.getscene().dialog = dialog

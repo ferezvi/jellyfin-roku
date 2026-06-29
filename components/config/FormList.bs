@@ -1,3 +1,4 @@
+import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/utils/config.bs"
 
 sub init()
@@ -52,7 +53,11 @@ sub formListShowDialog(configField)
     dialog.buttons = [tr("OK"), tr("Cancel")]
     m.greenPalette = createObject("roSGNode", "RSGPalette")
     m.greenPalette.colors = {
-        DialogBackgroundColor: "#2A2B2A"
+        DialogBackgroundColor: ColorPalette.OCELOTL_SURFACE,
+        DialogFocusColor: ColorPalette.OCELOTL_ACCENT,
+        DialogFocusItemColor: ColorPalette.WHITE,
+        DialogItemColor: ColorPalette.WHITE,
+        DialogSecondaryItemColor: ColorPalette.OCELOTL_TEXT_SECONDARY
     }
     dialog.palette = m.greenPalette
 
