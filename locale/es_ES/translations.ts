@@ -17,6 +17,22 @@
         <translation>Conectar al Servidor</translation>
     </message>
     <message>
+        <source>Enter the details of your Jellyfin server to get started.</source>
+        <translation>Ingresa los datos de tu servidor de Jellyfin para comenzar.</translation>
+    </message>
+    <message>
+        <source>If no server is listed above, you may also enter the server URL manually:</source>
+        <translation>Si no aparece ningún servidor arriba, también puedes ingresar la URL del servidor manualmente:</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.100:8096 or https://example.com/jellyfin</source>
+        <translation>ej. 192.168.1.100:8096 o https://example.com/jellyfin</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>Conectar</translation>
+    </message>
+    <message>
         <source>Ends at %1</source>
         <translation>Termina en %1</translation>
     </message>
@@ -173,8 +189,12 @@
         <translation>Audio</translation>
     </message>
     <message>
+	<source>Enter your credentials to continue.</source>
+	<translation>Ingresa tus credenciales para continuar.</translation>
+    </message>
+    <message>
         <source>Enter a username</source>
-        <translation>Ingresar nombre de usuario</translation>
+	<translation>Ingresar nombre de usuario</translation>
     </message>
     <message>
         <source>Enter a password</source>
@@ -1777,6 +1797,14 @@
     <message>
         <source>Public Profile</source>
         <translation>Perfil público</translation>
+    </message>
+    <message>
+	<source>Who's watching?</source>
+	<translation>¿Quién está viendo?</translation>
+    </message>
+    <message>
+	<source>Select your profile to continue</source>
+	<translation>Selecciona tu perfil para continuar</translation>
     </message>
     <message>
         <source>Saved Profile</source>

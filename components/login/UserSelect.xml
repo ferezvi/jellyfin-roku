@@ -48,10 +48,10 @@
 
       <StandardButton
         id="manualLogin"
-        text="Manual Login"
+        text="Add User"
         height="84"
-        width="252"
-        translation="[834,800]" />
+        width="351"
+        translation="[785,800]" />
 
       <Label
         id="manageHiddenUsers"

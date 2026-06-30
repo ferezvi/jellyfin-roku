@@ -34,8 +34,7 @@
     </Group>
 
     <!-- Button -->
-    <StandardButton id="submit" translation="[834,920]" width="252" height="84" text="Connect" />
-
+    <StandardButton id="submit" translation="[785,920]" width="351" height="84" text="Connect" />
   </children>
 
   <interface>

@@ -36,14 +36,14 @@
       id="submit"
       text="Submit"
       height="84"
-      width="252"
-      translation="[683,900]" />
+      width="351"
+      translation="[584,900]" />
 
     <StandardButton
       id="quickConnect"
       text="Quick Connect"
       height="84"
-      width="252"
+      width="351"
       translation="[985,900]" />
 
     <Timer id="quickConnectTimer" duration="3" repeat="true" />
