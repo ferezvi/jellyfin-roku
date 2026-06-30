@@ -4,8 +4,7 @@ import "pkg:/source/enums/PosterLoadStatus.bs"
 import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
 
-const blankUserAvatarUri = "pkg:/images/ocelotl/icons/ui/avatar-default.png"
-
+const blankUserAvatarUri = "pkg:/images/ocelotl/icons/ui/avatar-default-sm.png"
 sub onProfileImageUriChange()
     if not isValid(m.top.profileImageUri)
         m.top.profileImageUri = blankUserAvatarUri
@@ -38,20 +37,20 @@ sub init()
     m.submit = m.top.findNode("submit")
     m.quickConnect = m.top.findNode("quickConnect")
 
-    m.submit.color = ColorPalette.WHITE
-    m.submit.focusColor = ColorPalette.WHITE
-
     m.quickConnect.color = ColorPalette.WHITE
     m.quickConnect.focusColor = ColorPalette.WHITE
-
-    m.submit.background = ColorPalette.WHITE
-    m.submit.focusBackground = ColorPalette.WHITE
 
     m.quickConnect.background = ColorPalette.WHITE
     m.quickConnect.focusBackground = ColorPalette.WHITE
 
-    m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
-    m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.submitBtn = m.submit.findNode("buttonBackground")
+    m.submitBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.submitBtn.blendColor = ColorPalette.OCELOTL_SURFACE
+
+    m.quickConnectBtn = m.quickConnect.findNode("buttonBackground")
+    m.quickConnectBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.quickConnectBtn.blendColor = ColorPalette.OCELOTL_SURFACE
+
     m.errorContainer = m.top.findNode("errorContainer")
     m.errorContainer.color = "#CC0000"
 
@@ -221,16 +220,21 @@ end function
 
 sub setSubmitFocus(hasFocus as boolean)
     if hasFocus
-        m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.submitBtn.uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.submitBtn.blendColor = ColorPalette.WHITE
     else
-        m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.submitBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.submitBtn.blendColor = ColorPalette.OCELOTL_SURFACE
     end if
 end sub
 
 sub setQuickConnectFocus(hasFocus as boolean)
     if hasFocus
-        m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.quickConnectBtn.uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.quickConnectBtn.blendColor = ColorPalette.WHITE
     else
-        m.quickConnect.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.quickConnectBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.quickConnectBtn.blendColor = ColorPalette.OCELOTL_SURFACE
+
     end if
 end sub

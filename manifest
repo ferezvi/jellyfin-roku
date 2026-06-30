@@ -20,7 +20,8 @@ splash_screen_sd=pkg:/images/splash-screen_sd.png
 splash_min_time=1000
 
 ui_resolutions=fhd
-uri_resolution_autosub=fhd,hd
+### Automatic asset substitution
+uri_resolution_autosub=$$RES$$,SD,HD,FHD
 
 confirm_partner_button=1
 

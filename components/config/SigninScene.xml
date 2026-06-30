@@ -4,8 +4,8 @@
     <Poster id="appIcon" translation="[60,40]" width="64" height="64" uri="pkg:/images/ocelotl/icons/ui/jellyfin-logo.png" />
     <Label id="jf" translation="[136,58]" text="Jellyfin" font="font:MediumBoldSystemFont" />
 
-    <Poster id="avatarCircle" translation="[880,160]" width="200" height="200" uri="pkg:/images/ocelotl/icons/ui/avatar-circle.png" />
-    <Poster id="overlayCurrentUserProfileImage" translation="[880,160]" width="200" height="200" loadDisplayMode="scaleToZoom" uri="pkg:/images/ocelotl/icons/ui/avatar-default.png" />
+    <Poster id="avatarCircle" translation="[880,160]" width="200" height="200" uri="pkg:/images/ocelotl/icons/ui/avatar-circle-sm.png" />
+    <Poster id="overlayCurrentUserProfileImage" translation="[880,160]" width="200" height="200" loadDisplayMode="scaleToZoom" uri="pkg:/images/ocelotl/icons/ui/avatar-default-sm.png" />
     <LayoutGroup translation="[160,160]" layoutDirection="vert" itemSpacings="8">
       <Label id="prompt" text="Sign In" font="font:LargeBoldSystemFont" />
       <Label id="subtitle" text="Enter your credentials to continue." font="font:SmallestSystemFont" />
@@ -35,16 +35,16 @@
     <StandardButton
       id="submit"
       text="Submit"
-      height="85"
-      width="350"
-      translation="[595,900]" />
+      height="84"
+      width="252"
+      translation="[683,900]" />
 
     <StandardButton
       id="quickConnect"
       text="Quick Connect"
-      height="85"
-      width="350"
-      translation="[975,900]" />
+      height="84"
+      width="252"
+      translation="[985,900]" />
 
     <Timer id="quickConnectTimer" duration="3" repeat="true" />
   </children>

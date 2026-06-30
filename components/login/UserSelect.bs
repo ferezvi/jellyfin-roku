@@ -14,14 +14,20 @@ sub init()
     m.hiddenUsers = m.top.findNode("hiddenUsers")
     m.manageHiddenUsers = m.top.findNode("manageHiddenUsers")
 
-    m.hiddenUsers.focusBitmapBlendColor = ColorPalette.HIGHLIGHT
+    m.hiddenUsers.focusBitmapBlendColor = ColorPalette.OCELOTL_ACCENT
     m.hiddenUsers.focusedColor = ColorPalette.WHITE
 
     m.manualLogin = m.top.findNode("manualLogin")
-    m.manualLogin.background = ColorPalette.LIGHTBLUE
-    m.manualLogin.color = ColorPalette.DARKGREY
-    m.manualLogin.focusBackground = ColorPalette.HIGHLIGHT
+    m.manualLogin.color = ColorPalette.OCELOTL_TEXT_PRIMARY
     m.manualLogin.focusColor = ColorPalette.WHITE
+
+    m.manualLogin.background = ColorPalette.WHITE
+    m.manualLogin.focusBackground = ColorPalette.WHITE
+    m.manualLoginBtn = m.manualLogin.findNode("buttonBackground")
+    m.manualLoginBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.manualLoginBtn.blendColor = ColorPalette.OCELOTL_SURFACE
+
+
 
     m.hiddenUserAnimation = m.top.findNode("hiddenUserAnimation")
     m.hiddenUserSlider = m.top.findNode("hiddenUserSlider")
@@ -102,7 +108,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.RIGHT
         if m.hiddenUsers.hasFocus()
-            m.manageHiddenUsers.color = ColorPalette.HIGHLIGHT
+            m.manageHiddenUsers.color = ColorPalette.OCELOTL_ACCENT
             m.manageHiddenUsers.setFocus(true)
 
             m.viewContentSlider.reverse = true
@@ -160,6 +166,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             if m.top.itemContent.count() = 0 then return false
             m.top.findNode("UserRow").setFocus(true)
             m.manualLogin.focus = false
+            setManualLoginFocus(false)
             return true
         end if
 
@@ -177,6 +184,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
         if m.top.findNode("UserRow").isInFocusChain()
             m.manualLogin.setFocus(true)
             m.manualLogin.focus = true
+            setManualLoginFocus(true)
             return true
         end if
 
@@ -186,7 +194,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             end if
             m.manageHiddenUsers.setFocus(true)
             m.manualLogin.focus = false
-            m.manageHiddenUsers.color = ColorPalette.HIGHLIGHT
+            m.manageHiddenUsers.color = ColorPalette.OCELOTL_ACCENT
             return true
         end if
         return false
@@ -194,3 +202,13 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     return false
 end function
+
+sub setManualLoginFocus(hasFocus as boolean)
+    if hasFocus
+        m.manualLoginBtn.uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.manualLoginBtn.blendColor = ColorPalette.WHITE
+    else
+        m.manualLoginBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.manualLoginBtn.blendColor = ColorPalette.OCELOTL_SURFACE
+    end if
+end sub

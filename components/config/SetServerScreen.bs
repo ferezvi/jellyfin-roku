@@ -23,7 +23,9 @@ sub init()
 
     m.submit.background = ColorPalette.WHITE
     m.submit.focusBackground = ColorPalette.WHITE
-    m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.submitBtn = m.submit.findNode("buttonBackground")
+    m.submitBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+    m.submitBtn.blendColor = ColorPalette.OCELOTL_SURFACE
 
     m.serverUrlBackground.blendColor = ColorPalette.OCELOTL_SURFACE
 
@@ -268,8 +270,10 @@ end sub
 
 sub setConnectFocus(hasFocus as boolean)
     if hasFocus
-        m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.submitBtn.uri = "pkg:/images/ocelotl/buttons/btn-primary-bg.png"
+        m.submitBtn.blendColor = ColorPalette.WHITE
     else
-        m.submit.findNode("buttonBackground").uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.submitBtn.uri = "pkg:/images/ocelotl/buttons/btn-secondary-bg.png"
+        m.submitBtn.blendColor = ColorPalette.OCELOTL_SURFACE
     end if
 end sub

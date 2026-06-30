@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="UserSelect" extends="JFScreen">
+
   <children>
+    <!-- Header -->
+    <Poster id="appIcon" translation="[60,40]" width="64" height="64" uri="pkg:/images/ocelotl/icons/ui/jellyfin-logo.png" />
+    <Label id="jf" translation="[136,58]" text="Jellyfin" font="font:MediumBoldSystemFont" />
+
     <Rectangle id="unhideUsers" translation="[-600, 0]" width="600" height="1080">
-      <Text
+      <Label
         id="unhideUserHeader"
         text="Unhide Users"
         horizAlign="left"
@@ -21,24 +26,34 @@
     </Rectangle>
 
     <Rectangle id="viewContent" translation="[0, 0]">
-      <Text
-        text="Select User"
+      <Label
+        text="Who's watching?"
         horizAlign="center"
-        font="font:LargeSystemFont"
-        height="100"
+        font="font:LargeBoldSystemFont"
+        height="60"
         width="1920"
-        translation="[0, 150]" />
+        translation="[0, 120]" />
+
+      <Label
+        id="selectProfileSubtitle"
+        text="Select your profile to continue"
+        horizAlign="center"
+        font="font:SmallSystemFont"
+        color="0xA1A1AAFF"
+        height="40"
+        width="1920"
+        translation="[0, 185]" />
 
       <UserRow id="userRow" rowFocusAnimationStyle="fixedFocusWrap" translation="[130, 310]" />
 
       <StandardButton
         id="manualLogin"
         text="Manual Login"
-        height="85"
-        width="350"
-        translation="[785,800]" />
+        height="84"
+        width="252"
+        translation="[834,800]" />
 
-      <Text
+      <Label
         id="manageHiddenUsers"
         text="Manage Hidden Users"
         horizAlign="center"

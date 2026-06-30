@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="SetServerScreen" extends="JFScreen">
   <children>
+
     <!-- Header -->
     <Poster id="appIcon" translation="[60,40]" width="64" height="64" uri="pkg:/images/ocelotl/icons/ui/jellyfin-logo.png" />
     <Label id="jf" translation="[136,58]" text="Jellyfin" font="font:MediumBoldSystemFont" />
@@ -33,7 +34,7 @@
     </Group>
 
     <!-- Button -->
-    <StandardButton id="submit" translation="[835,920]" width="250" height="85" text="Connect" />
+    <StandardButton id="submit" translation="[834,920]" width="252" height="84" text="Connect" />
 
   </children>
 

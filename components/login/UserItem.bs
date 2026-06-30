@@ -3,9 +3,22 @@ import "pkg:/source/enums/PosterLoadStatus.bs"
 import "pkg:/source/utils/misc.bs"
 
 sub init()
-    m.top.findNode("profileType").color = ColorPalette.LIGHTGREY
-
     m.profileImage = m.top.findNode("profileImage")
+    m.avatarCircle = m.top.findNode("avatarCircle")
+    m.profileName = m.top.findNode("profileName")
+    m.profileType = m.top.findNode("profileType")
+
+    m.avatarCircle.blendColor = ColorPalette.OCELOTL_SURFACE
+    m.profileName.color = ColorPalette.WHITE
+    m.profileType.color = ColorPalette.OCELOTL_TEXT_SECONDARY
+
+    m.focusAnimation = m.top.findNode("focusAnimation")
+    m.scaleInterp = m.top.findNode("scaleInterp")
+
+    m.avatarRing = m.top.findNode("avatarRing")
+    m.avatarRing.blendColor = ColorPalette.OCELOTL_ACCENT
+    m.avatarRing.visible = false
+
     m.profileImage.observeField("loadStatus", "onPosterLoadStatusChanged")
 end sub
 
@@ -13,9 +26,8 @@ sub onPosterLoadStatusChanged()
     if m.profileImage.loadStatus <> PosterLoadStatus.LOADING
         m.profileImage.unobserveField("loadStatus")
     end if
-
     if isStringEqual(m.profileImage.loadStatus, PosterLoadStatus.FAILED)
-        m.profileImage.uri = "pkg:/images/baseline_person_white_48dp.png"
+        m.profileImage.uri = "pkg:/images/ocelotl/icons/ui/avatar-default.png"
     end if
 end sub
 
@@ -26,9 +38,17 @@ sub onFocusChanged()
     m.top.findNode("forgetUserIcon").visible = m.top.itemHasFocus
 
     if m.top.itemHasFocus
-        m.top.findNode("profileType").color = ColorPalette.WHITE
+        m.avatarCircle.blendColor = ColorPalette.OCELOTL_ACCENT
+        m.avatarRing.visible = true
+        m.profileType.color = ColorPalette.WHITE
+        m.scaleInterp.keyValue = [[1.0, 1.0], [1.08, 1.08]]
+        m.focusAnimation.control = "start"
     else
-        m.top.findNode("profileType").color = ColorPalette.LIGHTGREY
+        m.avatarCircle.blendColor = ColorPalette.OCELOTL_SURFACE
+        m.avatarRing.visible = false
+        m.profileType.color = ColorPalette.OCELOTL_TEXT_SECONDARY
+        m.scaleInterp.keyValue = [[1.08, 1.08], [1.0, 1.0]]
+        m.focusAnimation.control = "start"
     end if
 end sub
 
@@ -36,15 +56,13 @@ sub itemContentChanged()
     itemData = m.top.itemContent
     if not isValid(itemData) then return
 
-    profileName = m.top.findNode("profileName")
-
-    m.top.findNode("profileType").text = itemData.isPublic ? tr("Public Profile") : tr("Saved Profile")
+    m.profileType.text = itemData.isPublic ? tr("Public Profile") : tr("Saved Profile")
 
     if itemData.imageURL = ""
-        m.profileImage.uri = "pkg:/images/baseline_person_white_48dp.png"
+        m.profileImage.uri = "pkg:/images/ocelotl/icons/ui/avatar-default.png"
     else
         m.profileImage.uri = itemData.imageURL
     end if
 
-    profileName.text = itemData.name
+    m.profileName.text = itemData.name
 end sub

@@ -25,7 +25,7 @@ sub init()
 
     m.overlayCurrentUserSelection = m.top.findNode("overlayCurrentUserSelection")
     if isValid(m.overlayCurrentUserSelection)
-        m.overlayCurrentUserSelection.blendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
+        m.overlayCurrentUserSelection.blendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.OCELOTL_ACCENT)
     end if
 end sub
 

@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="UserItem" extends="Group">
   <children>
-    <LayoutGroup layoutDirection="vert">
-      <Poster id="profileImage" width="300" height="300" loadDisplayMode="scaleToZoom" />
-      <Text id="profileName" horizAlign="center" vertAlign="center" font="font:SmallBoldSystemFont" height="64" width="300" />
-      <Text id="profileType" horizAlign="center" vertAlign="top" font="font:SmallestboldSystemFont" height="44" width="300" />
+    <LayoutGroup
+      id="scaleAnim"
+      translation="[12,12]"
+      layoutDirection="vert"
+      itemSpacings="8"
+      scaleRotateCenter="[132,182]">
+      <Group>
+        <Poster id="avatarCircle" width="264" height="264" uri="pkg:/images/ocelotl/icons/ui/avatar-circle.png" />
+        <MaskGroup id="avatarMask" maskUri="pkg:/images/ocelotl/masks/$$RES$$/avatar-mask-264.png">
+          <Poster id="profileImage" width="264" height="264" loadDisplayMode="scaleToZoom" />
+        </MaskGroup>
+        <Poster id="avatarRing" visible="false" width="264" height="264" uri="pkg:/images/ocelotl/icons/ui/avatar-ring.png" />
+      </Group>
+
+      <Label id="profileName" horizAlign="center" vertAlign="center" font="font:SmallBoldSystemFont" height="48" width="264" />
+      <Label id="profileType" horizAlign="center" vertAlign="top" font="font:SmallestSystemFont" height="36" width="264" />
     </LayoutGroup>
+
     <Poster id="forgetUserIcon" visible="false" width="30" height="30" uri="pkg:/images/icons/cancel.png" translation="[265, 5]" />
+    <Animation id="focusAnimation" duration="0.15" repeat="false" easeFunction="outQuad">
+      <Vector2DFieldInterpolator
+        id="scaleInterp"
+        key="[0.0, 1.0]"
+        keyValue="[[1.0, 1.0], [1.08, 1.08]]"
+        fieldToInterp="scaleAnim.scale" />
+    </Animation>
   </children>
   <interface>
     <field id="itemHasFocus" type="boolean" onChange="onFocusChanged" alwaysNotify="true" />

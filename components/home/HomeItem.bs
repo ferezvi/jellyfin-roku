@@ -19,7 +19,7 @@ sub setColors()
     if not isAllValid([m.itemProgress, m.itemProgressBackground, m.backdrop]) then findNodes()
 
     if isValid(m.itemProgress)
-        m.itemProgress.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.TRIADBLUE)
+        m.itemProgress.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.OCELOTL_ACCENT)
     end if
 
     if isValid(m.itemProgressBackground)
@@ -27,7 +27,7 @@ sub setColors()
     end if
 
     if isValid(m.backdrop)
-        m.backdrop.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemBackground", ColorPalette.ELEMENTBACKGROUND)
+        m.backdrop.blendColor = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemBackground", ColorPalette.OCELOTL_SURFACE)
     end if
 end sub
 
@@ -42,12 +42,13 @@ sub findNodes()
     m.playedIndicator = m.top.findNode("playedIndicator")
     m.showProgressBarAnimation = m.top.findNode("showProgressBar")
     m.showProgressBarField = m.top.findNode("showProgressBarField")
+    m.itemPosterMask = m.top.findNode("itemPosterMask")
 end sub
 
 sub initItemText()
     m.itemText = m.top.findNode("itemText")
     if isValid(m.itemText)
-        m.itemText.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemTitle", ColorPalette.WHITE)
+        m.itemText.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemTitle", ColorPalette.OCELOTL_TEXT_PRIMARY)
     end if
 end sub
 
@@ -58,7 +59,7 @@ end sub
 sub initItemTextExtra()
     m.itemTextExtra = m.top.findNode("itemTextExtra")
     if isValid(m.itemTextExtra)
-        m.itemTextExtra.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemSubtitle", ColorPalette.MIDGREY)
+        m.itemTextExtra.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemSubtitle", ColorPalette.OCELOTL_TEXT_SECONDARY)
     end if
 end sub
 
@@ -70,7 +71,7 @@ sub initItemIcon()
     m.itemIcon = m.top.findNode("itemIcon")
     if not isValid(m.itemIcon) then return
 
-    m.itemIcon.blendcolor = chainLookupReturn(m.global.session, "user.settings.colorHomeMyListIcon", ColorPalette.WHITE)
+    m.itemIcon.blendcolor = chainLookupReturn(m.global.session, "user.settings.colorHomeMyListIcon", ColorPalette.OCELOTL_TEXT_PRIMARY)
 end sub
 
 sub itemContentChanged()
@@ -101,6 +102,16 @@ sub itemContentChanged()
     if not isValid(m.itemIcon) then initItemIcon()
 
     m.itemPoster.width = itemData.imageWidth
+
+    if isValid(m.itemPosterMask)
+        if itemData.imageWidth = 180
+            m.itemPosterMask.maskUri = "pkg:/images/ocelotl/masks/$$RES$$/movie_poster_mask.png"
+        else if itemData.imageWidth = 261
+            m.itemPosterMask.maskUri = "pkg:/images/ocelotl/masks/$$RES$$/music_album_mask.png"
+        else
+            m.itemPosterMask.maskUri = "pkg:/images/ocelotl/masks/$$RES$$/wide_poster_mask.png"
+        end if
+    end if
     m.itemPoster.loadDisplayMode = "scaleToZoom"
 
     m.showProgressBarAnimation.control = AnimationControl.STOP
