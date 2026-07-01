@@ -11,17 +11,17 @@
 
           <LayoutGroup id="topLevelDetails" layoutDirection="horiz" itemSpacings="[25]">
             <LayoutGroup id="numberofepisodesContainer" layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="numberofepisodesIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/tv.png" />
+              <Poster id="numberofepisodesIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/tv.png" />
               <Text id="numberofepisodes" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup id="releasedContainer" layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="releasedIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/calendar.png" />
+              <Poster id="releasedIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/calendar.png" />
               <Text id="released" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup id="ratingContainer" layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="ratingIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/rating.png" />
+              <Poster id="ratingIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/rating.png" />
               <Text id="rating" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
@@ -31,12 +31,12 @@
             </LayoutGroup>
 
             <LayoutGroup id="historyContainer" layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="historyIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/antenna.png" />
+              <Poster id="historyIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/antenna.png" />
               <ScrollingText id="history" vertAlign="center" font="font:MediumSystemFont" maxWidth="175" height="35" />
             </LayoutGroup>
 
             <LayoutGroup id="genresContainer" layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="genresIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/genre.png" />
+              <Poster id="genresIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/genre.png" />
               <ScrollingText id="genres" vertAlign="center" font="font:MediumSystemFont" maxWidth="250" height="35" />
             </LayoutGroup>
           </LayoutGroup>

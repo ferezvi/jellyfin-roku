@@ -13,22 +13,22 @@
 
           <LayoutGroup layoutDirection="horiz" itemSpacings="[25]">
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="runtimeIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/clock.png" />
+              <Poster id="runtimeIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/clock.png" />
               <Text id="runtime" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="numberofsongsIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/musicNote.png" />
+              <Poster id="numberofsongsIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/musicNote.png" />
               <Text id="numberofsongs" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="releasedIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/calendar.png" />
+              <Poster id="releasedIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/calendar.png" />
               <Text id="released" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="genresIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/genre.png" />
+              <Poster id="genresIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/genre.png" />
               <MultiStyleText id="genres" vertAlign="center" width="400" height="35" />
             </LayoutGroup>
           </LayoutGroup>

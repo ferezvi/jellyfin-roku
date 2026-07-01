@@ -8,12 +8,12 @@
 
           <LayoutGroup layoutDirection="horiz" itemSpacings="[25]">
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="runtimeIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/clock.png" />
+              <Poster id="runtimeIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/clock.png" />
               <Text id="runtime" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="numberofsongsIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/musicNote.png" />
+              <Poster id="numberofsongsIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/36px/musicNote.png" />
               <Text id="numberofsongs" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
           </LayoutGroup>
