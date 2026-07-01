@@ -15,7 +15,7 @@ sub init()
     m.voiceBox.observeFieldScoped("text", "onvoiceFilter")
 
     if not m.global.device.hasVoiceRemote
-        m.voiceBox.backgroundUri = "pkg:/images/transparent.png"
+        m.voiceBox.backgroundUri = "pkg:/images/ui/transparent.png"
         m.voiceBox.translation = "[15, 0]"
         m.voiceBox.width = m.voiceBox.width - 15
     else

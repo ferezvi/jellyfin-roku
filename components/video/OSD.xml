@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="OSD" extends="Group" initialFocus="chapterNext">
   <children>
-    <Poster uri="pkg:/images/osdBackground.png" width="1920" height="279" />
+    <Poster uri="pkg:/images/backgrounds/osdBackground.png" width="1920" height="279" />
 
     <LayoutGroup id="videoInfo" layoutDirection="vert" translation="[103,61]">
       <ScrollingText id="itemTitle" font="font:LargeBoldSystemFont" maxWidth="1400" />

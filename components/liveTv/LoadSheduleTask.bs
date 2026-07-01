@@ -35,7 +35,7 @@ sub loadSchedule()
         program.json = item
         ' Are we currently recording this program?
         if program.json.TimerId <> invalid and program.json.TimerId <> ""
-            program.hdSmallIconUrl = "pkg:/images/red.png"
+            program.hdSmallIconUrl = "pkg:/images/ui/red.png"
         else
             program.hdSmallIconUrl = invalid
         end if

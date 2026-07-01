@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="GridItem" extends="Group">
   <children>
-    <Poster id="backdrop" width="290" height="425" loadDisplayMode="scaleToZoom" uri="pkg:/images/white.9.png" />
+    <Poster id="backdrop" width="290" height="425" loadDisplayMode="scaleToZoom" uri="pkg:/images/ui/white.9.png" />
     <Poster id="itemPoster" width="290" height="425" loadDisplayMode="scaleToZoom">
       <Rectangle id="unplayedCount" visible="false" width="90" height="60" color="#00a4dcFF" opacity=".99" translation="[201, 0]">
         <Text id="unplayedEpisodeCount" width="90" height="60" font="font:MediumBoldSystemFont" horizAlign="center" vertAlign="center" />

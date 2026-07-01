@@ -3,7 +3,7 @@
   <children>
     <BackdropImage
       id="backdropImage"
-      maskUri="pkg:/images/backgroundmask.png"
+      maskUri="pkg:/images/backgrounds/backgroundmask.png"
       translation="[820, 0]"
       maskSize="[1220,700]" />
 

@@ -3,7 +3,7 @@
   <children>
     <Poster
       id="dialogBackground"
-      uri="pkg:/images/dialog.9.png"
+      uri="pkg:/images/ui/dialog.9.png"
       translation="[0, 0]"
     />
     <Text id="messageText" horizAlign="center" wrap="true" />

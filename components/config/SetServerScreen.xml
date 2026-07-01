@@ -20,7 +20,7 @@
       <Group id="serverUrlContainer">
         <Poster id="serverUrlBackground" width="1600" height="72" uri="pkg:/images/ocelotl/card-bg.9.png" />
         <Poster id="globeIcon" translation="[20,24]" width="24" height="24" uri="pkg:/images/ocelotl/icons/ui/icon-globe.png" />
-        <TextEditBox id="serverUrlTextbox" translation="[56,36]" width="1520" backgroundUri="pkg:/images/transparent.png" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" />
+        <TextEditBox id="serverUrlTextbox" translation="[56,36]" width="1520" backgroundUri="pkg:/images/ui/transparent.png" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" />
       </Group>
 
       <Label id="errorMessage" text="" color="#ff0000FF" font="font:MediumSystemFont" />

@@ -4,7 +4,7 @@
     <LayoutGroup id="dropdownOptions" layoutDirection="horiz" itemSpacings="[15]">
       <LayoutGroup layoutDirection="vert" itemSpacings="[10]">
         <Text font="font:SmallSystemFont" text="Search" />
-        <Poster id="voiceBoxBackground" uri="pkg:/images/white.9.png" blendColor="#FFFFFF" height="75" width="335">
+        <Poster id="voiceBoxBackground" uri="pkg:/images/ui/white.9.png" blendColor="#FFFFFF" height="75" width="335">
           <VoiceTextEditBox
             id="voiceBox"
             fontUri="font:SmallSystemFont"

@@ -6,7 +6,7 @@ sub init()
     m.hint = m.top.findNode("hint")
 
     m.value = m.top.findNode("value")
-    m.value.backgroundUri = "pkg:/images/transparent.png"
+    m.value.backgroundUri = "pkg:/images/ui/transparent.png"
     m.value.width = 440
 
     m.value.observeField("text", "onTextChanged")

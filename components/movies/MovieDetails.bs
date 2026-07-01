@@ -145,7 +145,7 @@ sub onMovieExtrasHasItems()
 end sub
 
 sub setButtonColors()
-    m.buttonGrp.focusBitmapUri = "pkg:/images/white.9.png"
+    m.buttonGrp.focusBitmapUri = "pkg:/images/ui/white.9.png"
     m.buttonGrp.focusBitmapBlendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
 end sub
 
@@ -442,9 +442,9 @@ sub itemContentChanged()
         if isValid(itemData.CriticRating)
             setFieldText("criticRatingLabel", itemData.criticRating)
             if itemData.CriticRating > 60
-                tomato = "pkg:/images/fresh.png"
+                tomato = "pkg:/images/ui/fresh.png"
             else
-                tomato = "pkg:/images/rotten.png"
+                tomato = "pkg:/images/ui/rotten.png"
             end if
             if isValid(criticRatingIcon) then criticRatingIcon.uri = tomato
         else

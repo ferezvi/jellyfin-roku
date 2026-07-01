@@ -35,7 +35,7 @@ sub RecordOrCancelProgram()
                 end if
                 resp = APIRequest(url)
                 postJson(resp, FormatJson(data))
-                m.top.programDetails.hdSmallIconUrl = "pkg:/images/red.png"
+                m.top.programDetails.hdSmallIconUrl = "pkg:/images/ui/red.png"
             else
                 ' Error msg to user?
                 print "Could not retrieve live TV Defaults from Server"
