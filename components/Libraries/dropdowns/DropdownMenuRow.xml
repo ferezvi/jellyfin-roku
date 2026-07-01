@@ -26,8 +26,8 @@
           iconSide="right"
           fontSize="28"
           padding="35"
-          icon="pkg:/images/icons/dropdown-dark.png"
-          focusIcon="pkg:/images/icons/dropdown-light.png"
+          icon="pkg:/images/jellyfin-icons/dropdown-dark.png"
+          focusIcon="pkg:/images/jellyfin-icons/dropdown-light.png"
           text=""
           height="75"
           width="335" />
@@ -39,8 +39,8 @@
           iconSide="right"
           fontSize="28"
           padding="35"
-          icon="pkg:/images/icons/dropdown-dark.png"
-          focusIcon="pkg:/images/icons/dropdown-light.png"
+          icon="pkg:/images/jellyfin-icons/dropdown-dark.png"
+          focusIcon="pkg:/images/jellyfin-icons/dropdown-light.png"
           text=""
           height="75"
           width="335" />
@@ -52,8 +52,8 @@
           iconSide="right"
           fontSize="28"
           padding="35"
-          icon="pkg:/images/icons/dropdown-dark.png"
-          focusIcon="pkg:/images/icons/dropdown-light.png"
+          icon="pkg:/images/jellyfin-icons/dropdown-dark.png"
+          focusIcon="pkg:/images/jellyfin-icons/dropdown-light.png"
           text=""
           height="75"
           width="335" />
@@ -65,8 +65,8 @@
           iconSide="right"
           fontSize="28"
           padding="35"
-          icon="pkg:/images/icons/dropdown-dark.png"
-          focusIcon="pkg:/images/icons/dropdown-light.png"
+          icon="pkg:/images/jellyfin-icons/dropdown-dark.png"
+          focusIcon="pkg:/images/jellyfin-icons/dropdown-light.png"
           text=""
           height="75"
           width="335" />

@@ -228,7 +228,7 @@ sub createAddToQueueButton()
     m.addToQueue.id = "addToQueue"
     m.addToQueue.background = "#070707"
     m.addToQueue.padding = "35"
-    m.addToQueue.icon = "pkg:/images/icons/plus.png"
+    m.addToQueue.icon = "pkg:/images/jellyfin-icons/plus.png"
     m.addToQueue.text = tr("Queue")
     m.addToQueue.height = "65"
     m.addToQueue.width = "140"

@@ -65,11 +65,11 @@ sub itemContentChanged()
     if not isValid(itemData) then return
 
     if LCase(itemData.type) = "musicalbum"
-        m.backdrop.uri = "pkg:/images/icons/album.png"
+        m.backdrop.uri = "pkg:/images/jellyfin-icons/album.png"
     else if LCase(itemData.type) = "musicartist"
         m.backdrop.uri = "pkg:/images/missingArtist.png"
     else if LCase(itemData.json.type) = "musicgenre"
-        m.backdrop.uri = "pkg:/images/icons/musicFolder.png"
+        m.backdrop.uri = "pkg:/images/jellyfin-icons/musicFolder.png"
     end if
 
     if isChainValid(itemData, "json.userdata.PlayedPercentage")

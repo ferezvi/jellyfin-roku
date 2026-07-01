@@ -31,11 +31,11 @@ sub setData()
 
         ' Add Icon URLs for display if there is no Poster
         if LCase(m.top.CollectionType) = "livetv"
-            m.top.iconUrl = "pkg:/images/media_type_icons/live_tv_white.png"
+            m.top.iconUrl = "pkg:/images/media-type-icons/live_tv_white.png"
         else if LCase(m.top.CollectionType) = "folders" or LCase(m.top.CollectionType) = "nextup"
-            m.top.iconUrl = "pkg:/images/media_type_icons/folder_white.png"
+            m.top.iconUrl = "pkg:/images/media-type-icons/folder_white.png"
         else if isStringEqual(m.top.CollectionType, ItemType.MYLIST)
-            m.top.iconUrl = "pkg:/images/icons/star.png"
+            m.top.iconUrl = "pkg:/images/jellyfin-icons/star.png"
         end if
 
     else if datum.type = "Episode" or LCase(datum.type) = "recording" or datum.type = "MusicVideo"
@@ -145,7 +145,7 @@ sub setData()
         params = { "Tag": datum.ImageTags.Primary, "maxHeight": 261, "maxWidth": 462 }
         m.top.thumbnailURL = ImageURL(datum.LookupCI("Id"), "Primary", params)
         m.top.widePosterUrl = m.top.thumbnailURL
-        m.top.iconUrl = "pkg:/images/media_type_icons/live_tv_white.png"
+        m.top.iconUrl = "pkg:/images/media-type-icons/live_tv_white.png"
     else if datum.type = "Photo"
         params = { "Tag": datum.ImageTags.Primary, "maxHeight": 261, "maxWidth": 462 }
 

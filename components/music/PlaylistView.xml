@@ -8,20 +8,20 @@
 
           <LayoutGroup layoutDirection="horiz" itemSpacings="[25]">
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="runtimeIcon" width="35" height="35" uri="pkg:/images/icons/35px/clock.png" />
+              <Poster id="runtimeIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/clock.png" />
               <Text id="runtime" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 
             <LayoutGroup layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="numberofsongsIcon" width="35" height="35" uri="pkg:/images/icons/35px/musicNote.png" />
+              <Poster id="numberofsongsIcon" width="35" height="35" uri="pkg:/images/jellyfin-icons/35px/musicNote.png" />
               <Text id="numberofsongs" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
           </LayoutGroup>
 
           <ButtonGroupHoriz id="buttons" itemSpacings="[20]">
-            <IconButton id="resume" background="#070707" padding="35" icon="pkg:/images/icons/resume.png" text="Resume" height="65" width="140" />
-            <IconButton id="play" background="#070707" padding="35" icon="pkg:/images/icons/play.png" text="Play" height="65" width="140" />
-            <IconButton id="shuffle" background="#070707" padding="35" icon="pkg:/images/icons/shufflePlay.png" text="Shuffle" height="65" width="140" />
+            <IconButton id="resume" background="#070707" padding="35" icon="pkg:/images/jellyfin-icons/resume.png" text="Resume" height="65" width="140" />
+            <IconButton id="play" background="#070707" padding="35" icon="pkg:/images/jellyfin-icons/play.png" text="Play" height="65" width="140" />
+            <IconButton id="shuffle" background="#070707" padding="35" icon="pkg:/images/jellyfin-icons/shufflePlay.png" text="Shuffle" height="65" width="140" />
           </ButtonGroupHoriz>
         </LayoutGroup>
 

@@ -15,20 +15,20 @@
     <Clock id="clock" translation="[1618, 46]" />
 
     <ButtonGroup id="optionControls" itemSpacings="[20]" layoutDirection="horiz" horizAlignment="left" translation="[103,120]">
-      <IconButton id="showVideoInfoPopup" padding="16" icon="pkg:/images/icons/videoInfo.png" height="65" width="100" />
-      <IconButton id="showVideoOverviewPopup" padding="25" icon="pkg:/images/icons/info.png" height="65" width="100" />
-      <IconButton id="showCastCrewPopup" padding="16" icon="pkg:/images/icons/userGroup.png" height="65" width="100" />
-      <IconButton id="chapterList" padding="16" icon="pkg:/images/icons/numberList.png" height="65" width="100" />
-      <IconButton id="showSubtitleMenu" padding="0" icon="pkg:/images/icons/subtitle.png" height="65" width="100" />
-      <IconButton id="showAudioMenu" padding="27" icon="pkg:/images/icons/musicNote.png" height="65" width="100" />
+      <IconButton id="showVideoInfoPopup" padding="16" icon="pkg:/images/jellyfin-icons/videoInfo.png" height="65" width="100" />
+      <IconButton id="showVideoOverviewPopup" padding="25" icon="pkg:/images/jellyfin-icons/info.png" height="65" width="100" />
+      <IconButton id="showCastCrewPopup" padding="16" icon="pkg:/images/jellyfin-icons/userGroup.png" height="65" width="100" />
+      <IconButton id="chapterList" padding="16" icon="pkg:/images/jellyfin-icons/numberList.png" height="65" width="100" />
+      <IconButton id="showSubtitleMenu" padding="0" icon="pkg:/images/jellyfin-icons/subtitle.png" height="65" width="100" />
+      <IconButton id="showAudioMenu" padding="27" icon="pkg:/images/jellyfin-icons/musicNote.png" height="65" width="100" />
     </ButtonGroup>
 
     <ButtonGroup id="videoControls" itemSpacings="[20]" layoutDirection="horiz" horizAlignment="center" translation="[960,950]">
-      <IconButton id="itemBack" padding="35" icon="pkg:/images/icons/itemPrevious.png" height="65" width="100" />
-      <IconButton id="chapterBack" padding="16" icon="pkg:/images/icons/previousChapter.png" height="65" width="100" />
-      <IconButton id="videoPlayPause" padding="35" icon="pkg:/images/icons/play.png" height="65" width="100" />
-      <IconButton id="chapterNext" padding="16" icon="pkg:/images/icons/nextChapter.png" height="65" width="100" />
-      <IconButton id="itemNext" padding="35" icon="pkg:/images/icons/itemNext.png" height="65" width="100" />
+      <IconButton id="itemBack" padding="35" icon="pkg:/images/jellyfin-icons/itemPrevious.png" height="65" width="100" />
+      <IconButton id="chapterBack" padding="16" icon="pkg:/images/jellyfin-icons/previousChapter.png" height="65" width="100" />
+      <IconButton id="videoPlayPause" padding="35" icon="pkg:/images/jellyfin-icons/play.png" height="65" width="100" />
+      <IconButton id="chapterNext" padding="16" icon="pkg:/images/jellyfin-icons/nextChapter.png" height="65" width="100" />
+      <IconButton id="itemNext" padding="35" icon="pkg:/images/jellyfin-icons/itemNext.png" height="65" width="100" />
     </ButtonGroup>
 
     <ExpandingLabel
@@ -68,19 +68,19 @@
     <Group id="progressBarGroup" translation="[103,875]">
       <Rectangle id="progressBarBackground" width="1714" height="12" />
       <Rectangle id="progressBar" width="0" height="12" opacity="0.75" />
-      <Poster id="scrubber" uri="pkg:/images/icons/progress-bar-scrubber.png" width="20" height="20" />
-      <Poster id="scrubberOldPosition" uri="pkg:/images/icons/progress-bar-scrubber.png" width="20" height="20" />
+      <Poster id="scrubber" uri="pkg:/images/jellyfin-icons/progress-bar-scrubber.png" width="20" height="20" />
+      <Poster id="scrubberOldPosition" uri="pkg:/images/jellyfin-icons/progress-bar-scrubber.png" width="20" height="20" />
     </Group>
 
     <LayoutGroup id="fastForwardRewindIcons" layoutDirection="horiz" translation="[800,905]">
-      <Poster id="rewindIcon4" uri="pkg:/images/icons/rewind.png" width="40" height="25" visible="false" />
-      <Poster id="rewindIcon3" uri="pkg:/images/icons/rewind.png" width="40" height="25" visible="false" />
-      <Poster id="rewindIcon2" uri="pkg:/images/icons/rewind.png" width="40" height="25" visible="false" />
-      <Poster id="rewindIcon1" uri="pkg:/images/icons/rewind.png" width="40" height="25" visible="false" />
-      <Poster id="fastForwardIcon1" uri="pkg:/images/icons/fastforward.png" width="40" height="25" visible="false" />
-      <Poster id="fastForwardIcon2" uri="pkg:/images/icons/fastforward.png" width="40" height="25" visible="false" />
-      <Poster id="fastForwardIcon3" uri="pkg:/images/icons/fastforward.png" width="40" height="25" visible="false" />
-      <Poster id="fastForwardIcon4" uri="pkg:/images/icons/fastforward.png" width="40" height="25" visible="false" />
+      <Poster id="rewindIcon4" uri="pkg:/images/jellyfin-icons/rewind.png" width="40" height="25" visible="false" />
+      <Poster id="rewindIcon3" uri="pkg:/images/jellyfin-icons/rewind.png" width="40" height="25" visible="false" />
+      <Poster id="rewindIcon2" uri="pkg:/images/jellyfin-icons/rewind.png" width="40" height="25" visible="false" />
+      <Poster id="rewindIcon1" uri="pkg:/images/jellyfin-icons/rewind.png" width="40" height="25" visible="false" />
+      <Poster id="fastForwardIcon1" uri="pkg:/images/jellyfin-icons/fastforward.png" width="40" height="25" visible="false" />
+      <Poster id="fastForwardIcon2" uri="pkg:/images/jellyfin-icons/fastforward.png" width="40" height="25" visible="false" />
+      <Poster id="fastForwardIcon3" uri="pkg:/images/jellyfin-icons/fastforward.png" width="40" height="25" visible="false" />
+      <Poster id="fastForwardIcon4" uri="pkg:/images/jellyfin-icons/fastforward.png" width="40" height="25" visible="false" />
     </LayoutGroup>
 
     <Text id="liveTvPos" font="font:SmallSystemFont" color="0xffffffFF" translation="[103,825]" horizAlign="left" vertAlign="center" />

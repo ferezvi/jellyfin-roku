@@ -8,10 +8,10 @@
         checkedState="[true]"
         vertFocusAnimationStyle="floatingFocus"
         translation="[0, 0]"
-        checkedIconUri="pkg:/images/icons/checkboxChecked.png"
-        focusedCheckedIconUri="pkg:/images/icons/checkboxChecked.png"
-        uncheckedIconUri="pkg:/images/icons/checkboxUnchecked.png"
-        focusedUncheckedIconUri="pkg:/images/icons/checkboxUnchecked.png"
+        checkedIconUri="pkg:/images/jellyfin-icons/checkboxChecked.png"
+        focusedCheckedIconUri="pkg:/images/jellyfin-icons/checkboxChecked.png"
+        uncheckedIconUri="pkg:/images/jellyfin-icons/checkboxUnchecked.png"
+        focusedUncheckedIconUri="pkg:/images/jellyfin-icons/checkboxUnchecked.png"
         focusFootprintBitmapUri=""
         drawFocusFeedback="false">
         <ContentNode role="content">

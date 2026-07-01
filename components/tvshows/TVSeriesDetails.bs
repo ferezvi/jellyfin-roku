@@ -84,7 +84,7 @@ sub onDisplayResumeButtonChange()
         m.resume.id = "resume"
         m.resume.background = "#070707"
         m.resume.padding = "35"
-        m.resume.icon = "pkg:/images/icons/resume.png"
+        m.resume.icon = "pkg:/images/jellyfin-icons/resume.png"
         m.resume.text = "Resume"
         m.resume.height = "65"
         m.resume.width = "140"

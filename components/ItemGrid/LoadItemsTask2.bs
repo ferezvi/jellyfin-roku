@@ -362,7 +362,7 @@ sub loadItems()
                     else if isChainValid(item, "BackdropImageTags")
                         tmp.posterURL = ImageURL(item.id, "Backdrop")
                     else
-                        tmp.posterURL = "pkg:/images/icons/album.png"
+                        tmp.posterURL = "pkg:/images/jellyfin-icons/album.png"
                     end if
                 else if item.Type = "MusicArtist"
                     tmp = CreateObject("roSGNode", "MusicArtistData")

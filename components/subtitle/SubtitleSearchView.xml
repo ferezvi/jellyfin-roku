@@ -14,7 +14,7 @@
 
         <LayoutGroup layoutDirection="vert" itemSpacings="[10]">
           <Text id="languageLabel" font="font:MediumBoldSystemFont" text="Language" />
-          <TextButton id="languageButton" iconSide="right" fontSize="35" padding="35" icon="pkg:/images/icons/dropdown-dark.png" focusIcon="pkg:/images/icons/dropdown-light.png" text="" height="75" width="500" />
+          <TextButton id="languageButton" iconSide="right" fontSize="35" padding="35" icon="pkg:/images/jellyfin-icons/dropdown-dark.png" focusIcon="pkg:/images/jellyfin-icons/dropdown-light.png" text="" height="75" width="500" />
         </LayoutGroup>
         <ButtonGroup>
           <StandardButton

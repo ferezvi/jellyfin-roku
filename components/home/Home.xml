@@ -9,8 +9,8 @@
         iconSide="left"
         fontSize="25"
         padding="20"
-        icon="pkg:/images/icons/search-light.png"
-        focusIcon="pkg:/images/icons/search-light.png"
+        icon="pkg:/images/jellyfin-icons/search-light.png"
+        focusIcon="pkg:/images/jellyfin-icons/search-light.png"
         text="Search"
         height="50"
         width="200" />
@@ -19,8 +19,8 @@
         iconSide="left"
         fontSize="25"
         padding="20"
-        icon="pkg:/images/icons/settings.png"
-        focusIcon="pkg:/images/icons/settings.png"
+        icon="pkg:/images/jellyfin-icons/settings.png"
+        focusIcon="pkg:/images/jellyfin-icons/settings.png"
         text="Settings"
         height="50"
         width="200" />

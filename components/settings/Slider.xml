@@ -3,7 +3,7 @@
   <children>
     <Rectangle id="seekBar" width="1050" height="10">
       <LayoutGroup id="optionMarkers" layoutDirection="horiz" horizAlignment="left" translation="[0, -20]" />
-      <Poster id="thumb" width="25" height="25" uri="pkg:/images/icons/circle.png" translation="[-10, -10]" />
+      <Poster id="thumb" width="25" height="25" uri="pkg:/images/jellyfin-icons/circle.png" translation="[-10, -10]" />
     </Rectangle>
   </children>
   <interface>

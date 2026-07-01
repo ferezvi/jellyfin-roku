@@ -212,9 +212,9 @@ sub updatePlayButtonState()
     if not isValid(m.play) then return
 
     if isStringEqual(m.global.audioPlayer.state, MediaPlaybackState.PLAYING)
-        m.play.uri = "pkg:/images/icons/pause.png"
+        m.play.uri = "pkg:/images/jellyfin-icons/pause.png"
     else
-        m.play.uri = "pkg:/images/icons/play.png"
+        m.play.uri = "pkg:/images/jellyfin-icons/play.png"
     end if
 end sub
 

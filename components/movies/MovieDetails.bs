@@ -1071,13 +1071,13 @@ sub updatePlayButtons(itemData as object)
         calculateButtonThumbProperties()
         playButton.text = `${tr("Resume from")} ${ticksToHuman(itemData.UserData.PlaybackPositionTicks)}`
         playButton.AUDIO_GUIDE_SUFFIX = `${tr("Resume from")} ${ticksToAudioGuide(itemData.UserData.PlaybackPositionTicks)}`
-        playButton.icon = "pkg:/images/icons/36px/resume.png"
+        playButton.icon = "pkg:/images/jellyfin-icons/36px/resume.png"
         return
     end if
     ' No progress: show only Play
     playButton.text = tr("Play")
     playButton.AUDIO_GUIDE_SUFFIX = tr("Play")
-    playButton.icon = "pkg:/images/icons/36px/play.png"
+    playButton.icon = "pkg:/images/jellyfin-icons/36px/play.png"
     if isValid(m.buttonGrp.content.findNode("play-from-beginning-button"))
         ' Save focused button id before removing
         focusedId = string.EMPTY

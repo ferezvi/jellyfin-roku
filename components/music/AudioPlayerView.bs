@@ -347,9 +347,9 @@ sub updatePlayButtonState()
     if not isValid(m.playButton) then return
 
     if isStringEqual(m.global.audioPlayer.state, MediaPlaybackState.PLAYING)
-        m.playButton.uri = "pkg:/images/icons/pauseCircle.png"
+        m.playButton.uri = "pkg:/images/jellyfin-icons/pauseCircle.png"
     else
-        m.playButton.uri = "pkg:/images/icons/playCircle.png"
+        m.playButton.uri = "pkg:/images/jellyfin-icons/playCircle.png"
     end if
 end sub
 
@@ -384,13 +384,13 @@ end function
 sub setLoopButtonImage()
     if m.global.audioPlayer.loopMode = "all"
         m.loopIndicator.opacity = "1"
-        m.loopIndicator.uri = "pkg:/images/icons/loopIndicator-on.png"
+        m.loopIndicator.uri = "pkg:/images/jellyfin-icons/loopIndicator-on.png"
     else if m.global.audioPlayer.loopMode = "one"
         m.loopIndicator.opacity = "1"
-        m.loopIndicator.uri = "pkg:/images/icons/loopIndicator1-on.png"
+        m.loopIndicator.uri = "pkg:/images/jellyfin-icons/loopIndicator1-on.png"
     else
         m.loopIndicator.opacity = "0"
-        m.loopIndicator.uri = "pkg:/images/icons/loopIndicator-off.png"
+        m.loopIndicator.uri = "pkg:/images/jellyfin-icons/loopIndicator-off.png"
     end if
 end sub
 

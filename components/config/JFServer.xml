@@ -17,7 +17,7 @@
     <Label id="baseUrl" translation="[100, 58]" font="font:SmallSystemFont" />
 
     <!-- Trash icon (solo servidores guardados) -->
-    <Poster id="trash" translation="[1516, 25]" width="50" height="50" uri="pkg:/images/icons/trash.png" visible="false" />
+    <Poster id="trash" translation="[1516, 25]" width="50" height="50" uri="pkg:/images/jellyfin-icons/trash.png" visible="false" />
   </children>
 
 </component>

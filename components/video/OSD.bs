@@ -141,12 +141,12 @@ end sub
 sub onPlaybackStateChanged()
     if LCase(m.top.playbackState) = "playing"
         m.scrubberOldPosition.visible = false
-        m.videoPlayPause.icon = "pkg:/images/icons/pause.png"
+        m.videoPlayPause.icon = "pkg:/images/jellyfin-icons/pause.png"
         return
     end if
 
     m.scrubberOldPosition.visible = true
-    m.videoPlayPause.icon = "pkg:/images/icons/play.png"
+    m.videoPlayPause.icon = "pkg:/images/jellyfin-icons/play.png"
 end sub
 
 ' onItemTitleTextChanged: Handler for changes to m.top.itemTitleText param.
