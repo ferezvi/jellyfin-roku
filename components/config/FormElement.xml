@@ -6,7 +6,7 @@
         id="buttonBackground"
         height="72"
         width="750"
-        uri="pkg:/images/ocelotl/card-bg.9.png"
+        uri="pkg:/images/ocelotl/backgrounds/card-bg.9.png"
         translation="[0, 0]" />
 
       <Label

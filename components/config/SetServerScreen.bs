@@ -14,7 +14,7 @@ sub init()
     m.serverUrlBackground = m.top.findNode("serverUrlBackground")
     m.serverPickerContainer = m.top.findNode("serverPickerContainer")
 
-    m.serverPickerContainer.uri = "pkg:/images/ocelotl/card-bg.9.png"
+    m.serverPickerContainer.uri = "pkg:/images/ocelotl/backgrounds/card-bg.9.png"
     m.serverPickerContainer.blendColor = ColorPalette.OCELOTL_SURFACE
 
     m.submit = m.top.findNode("submit")

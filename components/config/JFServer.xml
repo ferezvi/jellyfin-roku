@@ -8,7 +8,7 @@
 
   <children>
     <!-- Fondo de la fila -->
-    <Poster id="background" width="1560" height="100" uri="pkg:/images/ocelotl/card-bg.9.png" />
+    <Poster id="background" width="1560" height="100" uri="pkg:/images/ocelotl/backgrounds/card-bg.9.png" />
 
     <!-- Icono servidor -->
     <Poster id="serverIcon" translation="[18, 18]" width="64" height="64" uri="pkg:/images/ocelotl/icons/ui/server-icon.png" />

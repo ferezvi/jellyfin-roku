@@ -15,7 +15,7 @@
       <Text id="errorMessage" text="" wrap="true" width="600" font="font:MediumSystemFont" horizAlign="center" translation="[10, 15]" />
     </Rectangle>
 
-    <Poster id="signInFormBg" width="870" height="280" translation="[525,466]" uri="pkg:/images/ocelotl/card-bg.9.png" />
+    <Poster id="signInFormBg" width="870" height="280" translation="[525,466]" uri="pkg:/images/ocelotl/backgrounds/card-bg.9.png" />
 
     <Rectangle id="signInFormContainer" width="870" height="280" translation="[525,466]" color="0x00000000">
       <FormList id="configOptions" translation="[60,40]" itemSpacing="[0,50]" />
