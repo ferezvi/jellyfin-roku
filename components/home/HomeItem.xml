@@ -8,10 +8,15 @@
     </MaskGroup>
 
     <PlayedCheckmark id="playedIndicator" translation="[375, 0]" />
+    <Group id="progressBackground" visible="false" translation="[15,236]">
+      <Poster id="progressTrack" width="432" height="6" loadDisplayMode="scaleToFit" uri="pkg:/images/ocelotl/progress/progress_track_bg.png" />
 
-    <Rectangle id="progressBackground" visible="false" width="462" height="8" translation="[0,253]">
-      <Rectangle id="progress" width="0" height="8" />
-    </Rectangle>
+      <Rectangle id="progress" width="0" height="6" visible="false" />
+
+      <Poster id="progressFill" translation="[3,0]" width="0" height="6" uri="pkg:/images/ocelotl/progress/progress_fill.png" />
+      <Poster id="fillCapLeft" width="6" height="6" loadDisplayMode="scaleToFit" visible="false" uri="pkg:/images/ocelotl/progress/progress_cap.png" />
+      <Poster id="fillCapRight" width="6" height="6" loadDisplayMode="scaleToFit" visible="false" uri="pkg:/images/ocelotl/progress/progress_cap.png" />
+    </Group>
 
     <ScrollingText id="itemText" horizAlign="center" vertAlign="center" font="font:SmallBoldSystemFont" height="64" maxWidth="456" translation="[8,267]" repeatCount="0" />
     <Text id="itemTextExtra" horizAlign="left" vertAlign="center" font="font:SmallBoldSystemFont" height="32" width="456" translation="[8,300]" visible="false" />

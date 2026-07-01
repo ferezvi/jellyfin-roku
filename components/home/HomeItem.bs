@@ -11,8 +11,9 @@ import "pkg:/source/utils/misc.bs"
 
 sub init()
     findNodes()
-    m.itemPoster.observeField("loadStatus", "onPosterLoadStatusChanged")
     setColors()
+    m.itemPoster.observeField("loadStatus", "onPosterLoadStatusChanged")
+    m.progress.ObserveField("width", "onProgressWidthChanged")
 end sub
 
 sub setColors()
@@ -22,8 +23,20 @@ sub setColors()
         m.itemProgress.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.OCELOTL_ACCENT)
     end if
 
-    if isValid(m.itemProgressBackground)
-        m.itemProgressBackground.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgressBackground", ColorPalette.BLACK90)
+    if isValid(m.progressFill)
+        m.progressFill.blendColor = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.OCELOTL_PROGRESSBAR)
+    end if
+
+    if isValid(m.itemProgressTrack)
+        m.itemProgressTrack.blendColor = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgressBackground", ColorPalette.BLACK90)
+    end if
+
+    if isValid(m.fillCapLeft)
+        m.fillCapLeft.blendColor = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.OCELOTL_PROGRESSBAR)
+    end if
+
+    if isValid(m.fillCapRight)
+        m.fillCapRight.blendColor = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.OCELOTL_PROGRESSBAR)
     end if
 
     if isValid(m.backdrop)
@@ -43,6 +56,12 @@ sub findNodes()
     m.showProgressBarAnimation = m.top.findNode("showProgressBar")
     m.showProgressBarField = m.top.findNode("showProgressBarField")
     m.itemPosterMask = m.top.findNode("itemPosterMask")
+    m.progress = m.top.findNode("progress")
+    m.progressFill = m.top.findNode("progressFill")
+    m.fillCapLeft = m.top.findNode("fillCapLeft")
+    m.fillCapRight = m.top.findNode("fillCapRight")
+    m.itemProgressTrack = m.top.findNode("progressTrack")
+
 end sub
 
 sub initItemText()
@@ -115,7 +134,6 @@ sub itemContentChanged()
     m.itemPoster.loadDisplayMode = "scaleToZoom"
 
     m.showProgressBarAnimation.control = AnimationControl.STOP
-    m.itemProgressBackground.width = itemData.imageWidth
     m.itemProgressBackground.visible = false
     m.itemProgress.width = 0
 
@@ -141,8 +159,12 @@ sub itemContentChanged()
         return
     end if
 
-    playedIndicatorLeftPosition = m.itemPoster.width - 60
-    m.playedIndicator.translation = [playedIndicatorLeftPosition, 0]
+    badgeSize = 54
+    rightMargin = 14
+    topMargin = 14
+
+    playedIndicatorLeftPosition = m.itemPoster.width - rightMargin - badgeSize
+    m.playedIndicator.translation = [playedIndicatorLeftPosition, topMargin]
 
     ' "Program" is from clicking on an "On Now" item on the Home Screen
     if itemDataType = ItemType.PROGRAM
@@ -445,10 +467,8 @@ end sub
 ' Draws and animates item progress bar
 sub drawProgressBar(itemData)
     if not isValid(itemData.LookupCI("imageWidth")) then return
-
-    m.itemProgressBackground.width = itemData.LookupCI("imageWidth")
     m.itemProgressBackground.visible = true
-    m.showProgressBarField.keyValue = [0, m.itemPoster.width * (itemData.PlayedPercentage / 100)]
+    m.showProgressBarField.keyValue = [0, 432 * (itemData.PlayedPercentage / 100)]
     m.showProgressBarAnimation.control = AnimationControl.START
 end sub
 
@@ -520,5 +540,23 @@ sub onPosterLoadStatusChanged()
     else
         m.backdrop.visible = true
         m.itemIcon.visible = true
+    end if
+end sub
+
+sub onProgressWidthChanged()
+    capWidth = 6
+    totalWidth = m.progress.width
+
+    if totalWidth <= capWidth
+        m.fillCapLeft.visible = false
+        m.fillCapRight.visible = false
+        m.progressFill.width = 0
+    else
+        m.fillCapLeft.visible = true
+        m.fillCapRight.visible = true
+        m.fillCapLeft.translation = [0, 0]
+        m.fillCapRight.translation = [totalWidth - capWidth, 0]
+        m.progressFill.translation = [3, 0]
+        m.progressFill.width = totalWidth - capWidth
     end if
 end sub

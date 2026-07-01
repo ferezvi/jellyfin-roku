@@ -29,4 +29,7 @@ enum ColorPalette
     OCELOTL_TEXT_PRIMARY = "#FFFFFF"
     ' Ocelotl theme - secondary text color
     OCELOTL_TEXT_SECONDARY = "#A1A1AA"
+    ' Ocelotl theme - Progressbar
+    OCELOTL_PROGRESSBAR = "#7C3AED"
+
 end enum
