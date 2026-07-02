@@ -160,8 +160,8 @@ sub itemContentChanged()
     end if
 
     badgeSize = 54
-    rightMargin = 14
-    topMargin = 14
+    rightMargin = 0
+    topMargin = 0
 
     playedIndicatorLeftPosition = m.itemPoster.width - rightMargin - badgeSize
     m.playedIndicator.translation = [playedIndicatorLeftPosition, topMargin]

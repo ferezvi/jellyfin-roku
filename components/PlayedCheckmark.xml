@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component name="PlayedCheckmark" extends="Group">
+<component name="PlayedCheckmark" extends="Rectangle">
   <children>
     <Poster
       id="badgeBackground"
       width="54"
       height="54"
+      translation="[-12, 12]"
       uri="pkg:/images/ocelotl/badges/badge_cap.png" />
     <Label
       id="checkmark"
       width="54"
       height="54"
+      translation="[-12, 12]"
       font="font:MediumBoldSystemFont"
       horizAlign="center"
       vertAlign="center"
@@ -19,6 +21,7 @@
       id="unplayedNumber"
       width="54"
       height="54"
+      translation="[-12, 12]"
       font="font:MediumBoldSystemFont"
       horizAlign="center"
       vertAlign="center"

@@ -6,6 +6,9 @@ sub init()
     m.checkmark = m.top.findNode("checkmark")
     m.badgeBackground = m.top.findNode("badgeBackground")
 
+    ' force transparent backgroud
+    m.top.color = colorPalette.TRANSPARENT
+
     m.checkmark.font.size = 36
     m.checkmark.visible = false
     m.unplayedNumber.visible = false
