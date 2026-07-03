@@ -10,6 +10,33 @@ sub init()
     m.top.observeField("width", "onWidthChanged")
     m.top.observeField("padding", "onPaddingChanged")
     m.top.observeField("focus", "onFocusChanged")
+    m.top.observeField("iconColor", "onIconColorChanged")
+    m.top.observeField("roundBackground", "onRoundBackgroundChanged")
+end sub
+
+sub onRoundBackgroundChanged()
+    if m.top.roundBackground
+        m.buttonBackground.uri = "pkg:/images/ui/focus-circle.png"
+    else
+        m.buttonBackground.uri = "pkg:/images/ui/white.9.png"
+    end if
+    updateBackgroundShape()
+end sub
+
+sub updateBackgroundShape()
+    if m.top.roundBackground
+        iconSize = m.top.height
+        if m.top.padding > 0 then iconSize = iconSize - m.top.padding
+        diameter = iconSize + 12 ' 6px de aire alrededor del ícono
+
+        m.buttonBackground.width = diameter
+        m.buttonBackground.height = diameter
+        m.buttonBackground.translation = [(m.top.width - diameter) / 2, (m.top.height - diameter) / 2]
+    else
+        m.buttonBackground.width = m.top.width
+        m.buttonBackground.height = m.top.height
+        m.buttonBackground.translation = [0, 0]
+    end if
 end sub
 
 sub onFocusChanged()
@@ -53,12 +80,12 @@ sub setIconSize()
 end sub
 
 sub onHeightChanged()
-    m.buttonBackground.height = m.top.height
+    updateBackgroundShape()
     setIconSize()
 end sub
 
 sub onWidthChanged()
-    m.buttonBackground.width = m.top.width
+    updateBackgroundShape()
     setIconSize()
 end sub
 
@@ -87,3 +114,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     return false
 end function
+
+sub onIconColorChanged()
+    m.buttonIcon.blendColor = m.top.iconColor
+end sub

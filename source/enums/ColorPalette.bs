@@ -31,5 +31,7 @@ enum ColorPalette
     OCELOTL_TEXT_SECONDARY = "#A1A1AA"
     ' Ocelotl theme - Progressbar
     OCELOTL_PROGRESSBAR = "#7C3AED"
+    ' Ocelotl theme - Progressbar track (unfilled)
+    OCELOTL_PROGRESSBAR_TRACK = "#FFFFFF4D"
 
 end enum

@@ -2,12 +2,12 @@ import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/utils/misc.bs"
 
 const LOGO_RIGHT_PADDING = 30
-const OPTIONCONTROLS_TOP_PADDING = 50
 const LIVETV_REWIND_LIMIT = 3600 ' 1 hour
 
 sub init()
     m.videoControls = m.top.findNode("videoControls")
     m.optionControls = m.top.findNode("optionControls")
+    m.rightControls = m.top.findNode("rightControls")
 
     if isValid(m.videoControls)
         if chainLookupReturn(m.global.session, "user.settings.`playback.showPlaybackSpeedControls`", false)
@@ -80,19 +80,27 @@ sub init()
     m.videoControls.getChild(m.top.defaultButtonIndex).focus = true
     m.deviceInfo = CreateObject("roDeviceInfo")
 
-    m.progressBarBackground.color = ColorPalette.BLACK77
-    m.progressBar.color = ColorPalette.TRIADBLUE
+    m.progressBarBackground.blendColor = ColorPalette.OCELOTL_PROGRESSBAR_TRACK
+    m.progressBar.blendColor = ColorPalette.OCELOTL_PROGRESSBAR
+    m.scrubberGlow = m.top.findNode("scrubberGlow")
+    m.scrubberGlow.blendColor = ColorPalette.OCELOTL_PROGRESSBAR
 
     optionButtons = m.optionControls.getChildren(-1, 0)
     for each button in optionButtons
-        button.background = ColorPalette.DARKGREY
-        button.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
+        button.background = ColorPalette.TRANSPARENT
+        button.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.OCELOTL_ACCENT)
     end for
 
     videoButtons = m.videoControls.getChildren(-1, 0)
     for each button in videoButtons
-        button.background = ColorPalette.DARKGREY
-        button.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
+        button.background = ColorPalette.TRANSPARENT
+        button.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.OCELOTL_ACCENT)
+    end for
+
+    rightButtons = m.rightControls.getChildren(-1, 0)
+    for each button in rightButtons
+        button.background = ColorPalette.TRANSPARENT
+        button.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.OCELOTL_ACCENT)
     end for
 
     m.top.isSeeking = false
@@ -141,12 +149,12 @@ end sub
 sub onPlaybackStateChanged()
     if LCase(m.top.playbackState) = "playing"
         m.scrubberOldPosition.visible = false
-        m.videoPlayPause.icon = "pkg:/images/jellyfin-icons/pause.png"
+        m.videoPlayPause.icon = "pkg:/images/ocelotl/icons/player/play.png"
         return
     end if
 
     m.scrubberOldPosition.visible = true
-    m.videoPlayPause.icon = "pkg:/images/jellyfin-icons/play.png"
+    m.videoPlayPause.icon = "pkg:/images/ocelotl/icons/player/play.png"
 end sub
 
 ' onItemTitleTextChanged: Handler for changes to m.top.itemTitleText param.
@@ -162,7 +170,6 @@ sub onItemSubtitleTextChanged()
 
     ' Move the option controls down to give room for season number
     if not m.optionControlsMoved
-        moveOptionControls(0, OPTIONCONTROLS_TOP_PADDING)
         m.optionControlsMoved = true
     end if
 end sub
@@ -177,7 +184,6 @@ sub onSeasonNumberChanged()
 
     ' Move the option controls down to give room for season number
     if not m.optionControlsMoved
-        moveOptionControls(0, OPTIONCONTROLS_TOP_PADDING)
         m.optionControlsMoved = true
     end if
 end sub
@@ -192,7 +198,6 @@ sub onEpisodeNumberChanged()
 
     ' Move the option controls down to give room for episode number
     if not m.optionControlsMoved
-        moveOptionControls(0, OPTIONCONTROLS_TOP_PADDING)
         m.optionControlsMoved = true
     end if
 end sub
@@ -207,7 +212,6 @@ sub onEpisodeNumberEndChanged()
 
     ' Move the option controls down to give room for episode number
     if not m.optionControlsMoved
-        moveOptionControls(0, OPTIONCONTROLS_TOP_PADDING)
         m.optionControlsMoved = true
     end if
 end sub
@@ -232,9 +236,13 @@ sub onLogoLoadStatusChanged(event)
         m.videoInfo.translation = `[${m.videoInfo.translation[0] + logoImage.bitmapWidth + LOGO_RIGHT_PADDING}, ${m.videoInfo.translation[1]}]`
         m.itemTitle.maxWidth = m.itemTitle.maxWidth - (logoImage.bitmapWidth + LOGO_RIGHT_PADDING)
 
+        ' Center videoInfo vertically against the logo's actual height
+        logoCenterY = logoImage.translation[1] + (logoImage.bitmapHeight / 2)
+        videoInfoHeight = m.videoInfo.boundingRect().height
+        m.videoInfo.translation = `[${m.videoInfo.translation[0]}, ${logoCenterY - (videoInfoHeight / 2)}]`
+
         ' Move the option controls down based on the logo height
         if not m.optionControlsMoved
-            moveOptionControls(0, OPTIONCONTROLS_TOP_PADDING)
             m.optionControlsMoved = true
         end if
     end if
@@ -334,8 +342,12 @@ end sub
 '
 sub onFocusChanged()
     if m.top.hasfocus
-        focusedButton = m.optionControls.getChild(m.focusedButtonIndex)
-        if focusedButton.focus
+        optionIndex = m.focusedButtonIndex
+        if optionIndex >= m.optionControls.getChildCount() then optionIndex = m.optionControls.getChildCount() - 1
+        if optionIndex < 0 then optionIndex = 0
+
+        focusedButton = m.optionControls.getChild(optionIndex)
+        if isValid(focusedButton) and focusedButton.focus
             m.optionControls.setFocus(true)
             return
         end if
@@ -366,11 +378,14 @@ end sub
 ' onButtonSelected: Handler for selection of buttons from the menu.
 '
 sub onButtonSelected()
-    if m.optionControls.isInFocusChain()
-        buttonGroup = m.optionControls
-    else
-        buttonGroup = m.videoControls
-    end if
+    groups = [m.optionControls, m.videoControls, m.rightControls]
+    buttonGroup = m.optionControls
+    for i = 0 to 2
+        if groups[i].isInFocusChain()
+            buttonGroup = groups[i]
+            exit for
+        end if
+    end for
 
     selectedButton = buttonGroup.getChild(m.focusedButtonIndex)
 
@@ -437,15 +452,39 @@ function onKeyEvent(key as string, press as boolean) as boolean
         end if
 
         if key = "right"
-            if m.optionControls.isInFocusChain()
-                buttonGroup = m.optionControls
-            else
-                buttonGroup = m.videoControls
-            end if
+            groups = [m.optionControls, m.videoControls, m.rightControls]
+            groupIndex = 0
+            for i = 0 to 2
+                if groups[i].isInFocusChain()
+                    groupIndex = i
+                    exit for
+                end if
+            end for
+            buttonGroup = groups[groupIndex]
 
             m.top.action = "checkskipsegmentbuttonvisible"
+
             if m.focusedButtonIndex + 1 >= buttonGroup.getChildCount()
-                if m.top.skipSegmentButtonVisible and m.videoControls.isInFocusChain()
+                ' Cruzar al primer botón del siguiente grupo, si existe
+                if groupIndex < 2
+                    focusedButton = buttonGroup.getChild(m.focusedButtonIndex)
+                    focusedButton.focus = false
+                    buttonGroup.setFocus(false)
+
+                    nextGroup = groups[groupIndex + 1]
+                    m.focusedButtonIndex = 0
+                    nextGroup.buttonFocused = 0
+                    nextFocusedButton = nextGroup.getChild(0)
+                    nextGroup.setFocus(true)
+                    nextFocusedButton.focus = true
+
+                    focusedButtonID = (nextGroup.id = "videoControls") ? nextFocusedButton.id : ""
+                    checkDisplaySiblingItem(focusedButtonID)
+                    return true
+                end if
+
+                ' Ya en el último grupo (rightControls): comportamiento de skip-segment
+                if m.top.skipSegmentButtonVisible
                     buttonGroup.setFocus(false)
                     m.top.action = "setskipsegmentbuttonfocus"
                     focusedButton = buttonGroup.getChild(m.focusedButtonIndex)
@@ -477,14 +516,35 @@ function onKeyEvent(key as string, press as boolean) as boolean
         end if
 
         if key = "left"
-            if m.focusedButtonIndex = 0
-                return true
-            end if
+            groups = [m.optionControls, m.videoControls, m.rightControls]
+            groupIndex = 0
+            for i = 0 to 2
+                if groups[i].isInFocusChain()
+                    groupIndex = i
+                    exit for
+                end if
+            end for
+            buttonGroup = groups[groupIndex]
 
-            if m.optionControls.isInFocusChain()
-                buttonGroup = m.optionControls
-            else
-                buttonGroup = m.videoControls
+            if m.focusedButtonIndex = 0
+                ' Cruzar al último botón del grupo anterior, si existe
+                if groupIndex > 0
+                    focusedButton = buttonGroup.getChild(0)
+                    focusedButton.focus = false
+                    buttonGroup.setFocus(false)
+
+                    prevGroup = groups[groupIndex - 1]
+                    lastIndex = prevGroup.getChildCount() - 1
+                    m.focusedButtonIndex = lastIndex
+                    prevGroup.buttonFocused = lastIndex
+                    prevFocusedButton = prevGroup.getChild(lastIndex)
+                    prevGroup.setFocus(true)
+                    prevFocusedButton.focus = true
+
+                    focusedButtonID = (prevGroup.id = "videoControls") ? prevFocusedButton.id : ""
+                    checkDisplaySiblingItem(focusedButtonID)
+                end if
+                return true
             end if
 
             focusedButton = buttonGroup.getChild(m.focusedButtonIndex)
@@ -556,6 +616,7 @@ end function
 sub setOsdStatus(whichfocus as string)
     if whichfocus = "optionControls"
         m.scrubber.visible = false
+        m.scrubberGlow.visible = false
         m.progressBarGroup.setFocus(false)
         m.focusedButtonIndex = m.optionControls.buttonFocused
         focusedButton = m.optionControls.getChild(m.focusedButtonIndex)
@@ -564,6 +625,7 @@ sub setOsdStatus(whichfocus as string)
         m.top.action = "stopfastforwardorrewind"
     else if whichfocus = "videoControls"
         m.scrubber.visible = false
+        m.scrubberGlow.visible = false
         m.progressBarGroup.setFocus(false)
         m.focusedButtonIndex = m.videoControls.buttonFocused
         focusedButton = m.videoControls.getChild(m.focusedButtonIndex)
@@ -573,12 +635,17 @@ sub setOsdStatus(whichfocus as string)
         resetFocusToDefaultButton()
     else if whichfocus = "progressBarGroup"
         m.scrubber.visible = true
+        m.scrubberGlow.visible = true
         m.scrubberOldPosition.visible = true
         checkDisplaySiblingItem("")
         resetFocusToDefaultButton()
         m.videoControls.getChild(m.focusedButtonIndex).focus = false
-        m.optionControls.getChild(m.focusedButtonIndex).focus = false
-        m.videoControls.setFocus(false)
+
+        optionIndex = m.focusedButtonIndex
+        if optionIndex >= m.optionControls.getChildCount() then optionIndex = m.optionControls.getChildCount() - 1
+        if optionIndex < 0 then optionIndex = 0
+        m.optionControls.getChild(optionIndex).focus = false
+
         m.optionControls.setFocus(false)
         m.progressBarGroup.setFocus(true)
     end if
@@ -592,6 +659,7 @@ sub reloadUI()
     scrubberXTranslation = (m.scrubber.width) / 2
     m.scrubber.translation = [-scrubberXTranslation, scrubberYTranslation]
     m.scrubberOldPosition.translation = [m.progressBarBackground.translation[0] - m.scrubberOldPosition.width / 2, scrubberYTranslation]
+    m.scrubberGlow.translation = [- (m.scrubberGlow.width / 2), (m.progressBar.height - m.scrubberGlow.height) / 2]
 end sub
 
 ' updateProgressBar: Update the scrubber and current position indicators during seeking or normal playback, depending on whether the content is live TV or not.
@@ -628,6 +696,14 @@ sub updateProgressBar(live as boolean, updatePosition as integer)
         scrubberOldPositionTrans = progressBarWidth - m.scrubberOldPosition.width / 2
     end if
     m.scrubber.translation = [scrubberHorizTrans, m.scrubber.translation[1]]
+    m.scrubberGlow.translation = [scrubberHorizTrans - (m.scrubberGlow.width - m.scrubber.width) / 2, m.scrubberGlow.translation[1]]
     m.scrubberOldPosition.translation = [scrubberOldPositionTrans, m.scrubberOldPosition.translation[1]]
+end sub
+
+' playControlsEntranceAnimation: Starts the entrance animation for the video controls.
+sub playControlsEntranceAnimation()
+    m.top.findNode("controlsRow").opacity = 0
+    m.top.findNode("controlsRow").translation = [0, 30]
+    m.top.findNode("controlsEntrance").control = "start"
 end sub
 

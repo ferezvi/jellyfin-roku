@@ -490,7 +490,7 @@
                 "description": "The color of the remote control's cursor.",
                 "settingName": "colorCursor",
                 "type": "colorgrid",
-                "default": "#FF6666"
+                "default": "#7C3AED"
               },
               {
                 "title": "Primary Text",

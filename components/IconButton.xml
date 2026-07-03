@@ -16,5 +16,7 @@
     <field id="selected" type="boolean" value="false" />
     <field id="focus" type="boolean" />
     <field id="escape" type="string" value="" />
+    <field id="iconColor" type="color" value="0xFFFFFFFF" />
+    <field id="roundBackground" type="boolean" value="false" />
   </interface>
 </component>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="LoadingOverlay" extends="Group">
+    <interface>
+        <field id="dismissed" type="boolean" value="false" onchange="onDismissedChanged" />
+    </interface>
+    <children>
+        <Rectangle id="bg" width="1920" height="1080" color="0x0E0323FF" />
+        <Spinner id="spinner" translation="[897, 760]" scale="[0.6, 0.6]" />
+        <Animation id="fadeAnim" duration="0.4" easeFunction="inOutCubic">
+            <FloatFieldInterpolator id="fadeInterp" key="[0.0, 1.0]" keyValue="[1.0, 0.0]" fieldToInterp="loadingOverlayRoot.opacity" />
+        </Animation>
+    </children>
+</component>

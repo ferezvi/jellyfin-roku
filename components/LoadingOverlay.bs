@@ -1,0 +1,17 @@
+sub init()
+    m.top.id = "loadingOverlayRoot"
+    m.anim = m.top.findNode("fadeAnim")
+    m.anim.observeField("state", "onFadeStateChange")
+end sub
+
+sub onDismissedChanged()
+    if m.top.dismissed
+        m.anim.control = "start"
+    end if
+end sub
+
+sub onFadeStateChange()
+    if m.anim.state = "stopped"
+        m.top.visible = false
+    end if
+end sub

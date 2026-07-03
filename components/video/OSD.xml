@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="OSD" extends="Group" initialFocus="chapterNext">
   <children>
-    <Poster uri="pkg:/images/backgrounds/osdBackground.png" width="1920" height="279" />
+    <Poster id="osdGradientTop" uri="pkg:/images/ocelotl/backgrounds/osd-gradient-top.png" translation="[0,0]" width="1920" height="320" />
+    <Poster id="osdGradientBottom" uri="pkg:/images/ocelotl/backgrounds/osd-gradient-bottom.png" translation="[0,580]" width="1920" height="500" />
 
     <LayoutGroup id="videoInfo" layoutDirection="vert" translation="[103,61]">
       <ScrollingText id="itemTitle" font="font:LargeBoldSystemFont" maxWidth="1400" />
@@ -14,22 +15,23 @@
 
     <Clock id="clock" translation="[1618, 46]" />
 
-    <ButtonGroup id="optionControls" itemSpacings="[20]" layoutDirection="horiz" horizAlignment="left" translation="[103,120]">
-      <IconButton id="showVideoInfoPopup" padding="16" icon="pkg:/images/jellyfin-icons/videoInfo.png" height="65" width="100" />
-      <IconButton id="showVideoOverviewPopup" padding="25" icon="pkg:/images/jellyfin-icons/info.png" height="65" width="100" />
-      <IconButton id="showCastCrewPopup" padding="16" icon="pkg:/images/jellyfin-icons/userGroup.png" height="65" width="100" />
-      <IconButton id="chapterList" padding="16" icon="pkg:/images/jellyfin-icons/numberList.png" height="65" width="100" />
-      <IconButton id="showSubtitleMenu" padding="0" icon="pkg:/images/jellyfin-icons/subtitle.png" height="65" width="100" />
-      <IconButton id="showAudioMenu" padding="27" icon="pkg:/images/jellyfin-icons/musicNote.png" height="65" width="100" />
-    </ButtonGroup>
-
-    <ButtonGroup id="videoControls" itemSpacings="[20]" layoutDirection="horiz" horizAlignment="center" translation="[960,950]">
-      <IconButton id="itemBack" padding="35" icon="pkg:/images/jellyfin-icons/itemPrevious.png" height="65" width="100" />
-      <IconButton id="chapterBack" padding="16" icon="pkg:/images/jellyfin-icons/previousChapter.png" height="65" width="100" />
-      <IconButton id="videoPlayPause" padding="35" icon="pkg:/images/jellyfin-icons/play.png" height="65" width="100" />
-      <IconButton id="chapterNext" padding="16" icon="pkg:/images/jellyfin-icons/nextChapter.png" height="65" width="100" />
-      <IconButton id="itemNext" padding="35" icon="pkg:/images/jellyfin-icons/itemNext.png" height="65" width="100" />
-    </ButtonGroup>
+    <Group id="controlsRow" translation="[0,0]">
+      <ButtonGroup id="optionControls" itemSpacings="[20]" layoutDirection="horiz" horizAlignment="left" translation="[103,950]">
+        <IconButton id="showVideoInfoPopup" padding="12" icon="pkg:/images/ocelotl/icons/player/info.png" text="Info" height="60" width="60" roundBackground="true" />
+        <IconButton id="showOptionsMenu" padding="12" icon="pkg:/images/ocelotl/icons/player/options.png" text="Options" height="60" width="120" roundBackground="true" />
+      </ButtonGroup>
+      <ButtonGroup id="videoControls" itemSpacings="[24]" layoutDirection="horiz" horizAlignment="center" translation="[960,940]">
+        <IconButton id="itemBack" padding="21" icon="pkg:/images/ocelotl/icons/player/previous.png" height="84" width="66" roundBackground="true" />
+        <IconButton id="chapterBack" padding="21" icon="pkg:/images/ocelotl/icons/player/rewind.png" height="84" width="66" roundBackground="true" />
+        <IconButton id="videoPlayPause" padding="12" icon="pkg:/images/ocelotl/icons/player/play.png" height="84" width="84" roundBackground="true" />
+        <IconButton id="chapterNext" padding="21" icon="pkg:/images/ocelotl/icons/player/fast-forward.png" height="84" width="66" roundBackground="true" />
+        <IconButton id="itemNext" padding="21" icon="pkg:/images/ocelotl/icons/player/next.png" height="84" width="66" roundBackground="true" />
+      </ButtonGroup>
+      <ButtonGroup id="rightControls" itemSpacings="[20]" layoutDirection="horiz" horizAlignment="right" translation="[1817,950]">
+        <IconButton id="showFavoriteToggle" padding="12" icon="pkg:/images/ocelotl/icons/player/favorite.png" text="Favorite" height="60" width="120" roundBackground="true" />
+        <IconButton id="showLanguageMenu" padding="12" icon="pkg:/images/ocelotl/icons/player/audio-subs.png" text="Language" height="60" width="120" roundBackground="true" />
+      </ButtonGroup>
+    </Group>
 
     <ExpandingLabel
       translation="[705, 890]"
@@ -66,8 +68,9 @@
     />
 
     <Group id="progressBarGroup" translation="[103,875]">
-      <Rectangle id="progressBarBackground" width="1714" height="12" />
-      <Rectangle id="progressBar" width="0" height="12" opacity="0.75" />
+      <Poster id="progressBarBackground" uri="pkg:/images/ui/white.9.png" width="1714" height="8" />
+      <Poster id="progressBar" uri="pkg:/images/ui/white.9.png" width="0" height="8" />
+      <Poster id="scrubberGlow" uri="pkg:/images/jellyfin-icons/progress-bar-scrubber.png" width="34" height="34" opacity="0.35" visible="false" />
       <Poster id="scrubber" uri="pkg:/images/jellyfin-icons/progress-bar-scrubber.png" width="20" height="20" />
       <Poster id="scrubberOldPosition" uri="pkg:/images/jellyfin-icons/progress-bar-scrubber.png" width="20" height="20" />
     </Group>
@@ -90,12 +93,19 @@
     <Text id="videoEndingTime" font="font:SmallSystemFont" color="0xffffffFF" horizAlign="right" width="200" translation="[1617,825]" />
 
     <Timer id="inactivityTimer" duration="1" repeat="true" />
+
+    <Animation id="controlsEntrance" duration="0.25" easeFunction="outCubic">
+      <FloatFieldInterpolator id="fadeIn" key="[0,1]" keyValue="[0,1]" fieldToInterp="controlsRow.opacity" />
+      <Vector2DFieldInterpolator id="riseControlsRow" key="[0,1]" keyValue="[[0,30],[0,0]]" fieldToInterp="controlsRow.translation" />
+    </Animation>
+
   </children>
   <interface>
     <function name="updateProgressBar" />
     <function name="checkDisplaySiblingItem" />
     <function name="clampSeek" />
     <function name="setOsdStatus" />
+    <function name="playControlsEntranceAnimation" />
     <field id="itemTitleText" type="string" />
     <field id="itemSubtitleText" type="string" />
     <field id="seasonNumber" type="integer" />

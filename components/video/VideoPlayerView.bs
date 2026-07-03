@@ -490,7 +490,7 @@ sub onOSDAction()
         return
     end if
 
-    if action = "showsubtitlemenu"
+    if action = "showlanguagemenu"
         handleShowSubtitleMenuAction()
         return
     end if
@@ -1702,6 +1702,7 @@ sub showOSD(whichfocus as string)
     setVideoEndingTime()
     m.osd.visible = true
     m.osd.hasFocus = true
+    m.osd.callFunc("playControlsEntranceAnimation")
     if whichfocus = "videoControls"
         m.osd.previewPos = m.osd.isSeeking ? m.previewPos : m.top.position
         m.scrubber.visible = false
@@ -2040,10 +2041,12 @@ end function
 '
 sub createOSDMediaSegmentMarkers()
     ' --- Clear any existing markers ---
-    childCount = m.progressBarBackground.getChildCount()
-    if childCount > 2
-        m.progressBarBackground.removeChildrenIndex((childCount - 2), 2)
-    end if
+    for i = m.progressBarGroup.getChildCount() - 1 to 0 step -1
+        child = m.progressBarGroup.getChild(i)
+        if child.id = "MediaSegment"
+            m.progressBarGroup.removeChildIndex(i)
+        end if
+    end for
 
     if not isValidAndNotEmpty(m.mediaSegments) then return
 
@@ -2066,9 +2069,9 @@ sub createOSDMediaSegmentMarkers()
         osdMarker.width = osdMarkerWidth
         osdMarker.height = m.progressBarBackground.height
         osdMarker.color = ColorPalette.WHITE
-        osdMarker.opacity = 0.5
+        osdMarker.opacity = 0.6
         osdMarker.translation = [osdMarkerStartPos, 0]
-        m.progressBarBackground.appendChild(osdMarker)
+        m.progressBarGroup.appendChild(osdMarker)
     end for
 end sub
 
