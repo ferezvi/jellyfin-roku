@@ -1,0 +1,185 @@
+' subtitlePositioning.bs
+'
+' Detects legacy ASS/SSA alignment override tags (e.g. {\an8}) that survive as
+' literal text inside WebVTT cues (this happens when the server's source
+' subtitle was SRT-with-embedded-ASS-tags, since SRT has no way to represent
+' position and the server just wraps the text as-is into VTT syntax).
+'
+' When found, strips the tag from the visible text and injects the
+' equivalent WebVTT cue positioning settings on the timestamp line, so
+' Roku's native WebVTT renderer places the cue correctly instead of
+' displaying "{\an8}" as literal text.
+
+' Quick check to avoid processing every subtitle file unnecessarily.
+function ContainsPositionTags(vttText as string) as boolean
+    regex = CreateObject("roRegex", "\{\\an[1-9]\}", "i")
+    return regex.IsMatch(vttText)
+end function
+
+' Extracts a leading {\anN} tag from a single line of cue text.
+' Returns { tag: "1".."9" or invalid, text: <line with tag removed> }
+function ExtractPositionTag(lineText as string) as object
+    regex = CreateObject("roRegex", "^\{\\an([1-9])\}", "i")
+    match = regex.Match(lineText)
+    if match.Count() > 1
+        cleanText = regex.ReplaceAll(lineText, "")
+        return { "tag": match[1], "text": cleanText }
+    end if
+    return { "tag": invalid, "text": lineText }
+end function
+
+' Maps an ASS numpad-alignment tag (1-9) to WebVTT cue settings.
+' Layout matches ASS/SSA \an convention:
+'   7 8 9   (top)
+'   4 5 6   (middle)
+'   1 2 3   (bottom)
+function PositionTagToVttSetting(tag as string) as string
+    settings = {
+        "7": "line:10% position:10% align:start",
+        "8": "line:10% position:50% align:center",
+        "9": "line:10% position:90% align:end",
+        "4": "line:50% position:10% align:start",
+        "5": "line:50% position:50% align:center",
+        "6": "line:50% position:90% align:end",
+        "1": "line:90% position:10% align:start",
+        "2": "line:90% position:50% align:center",
+        "3": "line:90% position:90% align:end"
+    }
+
+    setting = settings.LookupCI(tag)
+    if isValid(setting) then return setting
+    return ""
+end function
+
+' Returns true if a line looks like a WebVTT/SRT timestamp line, e.g.
+' "00:00:01.000 --> 00:00:04.000"
+function IsTimestampLine(lineText as string) as boolean
+    return lineText.Instr("-->") >= 0
+end function
+
+' Extracts just the "start --> end" portion of a timestamp line, discarding
+' any existing cue settings (position:, line:, align:, etc.) that follow it.
+' We discard rather than merge because a cue carrying an {\anN} tag should
+' have its position fully determined by that tag, not partially inherited
+' from whatever settings the source happened to already include.
+function StripExistingCueSettings(timestampLine as string) as string
+    regex = CreateObject("roRegex", "^(\s*[\d:.,]+\s*-->\s*[\d:.,]+)", "")
+    match = regex.Match(timestampLine)
+    if match.Count() > 1 then return match[1]
+    return timestampLine
+end function
+
+' Parses the raw VTT text into a list of "blocks" split on blank lines.
+' Each block is an array of its raw lines (header/cue-id, timestamp, text...).
+function SplitVttBlocks(vttText as string) as object
+    ' Normalize line endings
+    normalized = vttText.Replace(Chr(13), "")
+    rawLines = normalized.Split(Chr(10))
+
+    blocks = []
+    currentBlock = []
+
+    for each line in rawLines
+        if line.Trim() = ""
+            if currentBlock.Count() > 0
+                blocks.push(currentBlock)
+                currentBlock = []
+            end if
+        else
+            currentBlock.push(line)
+        end if
+    end for
+
+    if currentBlock.Count() > 0
+        blocks.push(currentBlock)
+    end if
+
+    return blocks
+end function
+
+' Processes a single cue block in-place-style (returns a new array of lines).
+' Looks for the timestamp line, then checks the following text line(s) for
+' a leading position tag. If found, strips the tag from the text and
+' appends the corresponding cue setting to the timestamp line.
+function ProcessVttBlock(blockLines as object) as object
+    result = []
+    timestampLineIndex = -1
+
+    for i = 0 to blockLines.Count() - 1
+        result.push(blockLines[i])
+        if IsTimestampLine(blockLines[i])
+            timestampLineIndex = i
+        end if
+    end for
+
+    if timestampLineIndex = -1
+        ' Not a cue block (e.g. the "WEBVTT" header block) - return untouched
+        return result
+    end if
+
+    ' The first text line usually comes right after the timestamp line
+    textLineIndex = timestampLineIndex + 1
+    if textLineIndex >= result.Count() then return result
+
+    extracted = ExtractPositionTag(result[textLineIndex])
+    if not isValid(extracted.tag) then return result
+
+    ' Strip the tag from the visible text
+    result[textLineIndex] = extracted.text
+
+    ' Replace any existing cue settings on the timestamp line with the ones
+    ' derived from the {\anN} tag, rather than appending alongside them.
+    vttSetting = PositionTagToVttSetting(extracted.tag)
+    if vttSetting <> ""
+        baseTimestamp = StripExistingCueSettings(result[timestampLineIndex])
+        result[timestampLineIndex] = baseTimestamp + " " + vttSetting
+    end if
+
+    return result
+end function
+
+' Main entry point: takes the raw WebVTT text as downloaded from the server
+' and returns a new WebVTT string with ASS position tags converted to
+' native WebVTT cue settings.
+function ProcessVttPositioning(vttText as string) as string
+    if not ContainsPositionTags(vttText) then return vttText
+
+    blocks = SplitVttBlocks(vttText)
+    outputLines = []
+
+    for each block in blocks
+        processedBlock = ProcessVttBlock(block)
+        for each line in processedBlock
+            outputLines.push(line)
+        end for
+        outputLines.push("") ' blank line separator between blocks
+    end for
+
+    return outputLines.Join(Chr(10))
+end function
+
+' Downloads the VTT file content from the given URL.
+' Returns invalid on failure.
+function DownloadSubtitleText(url as string) as dynamic
+    request = CreateObject("roUrlTransfer")
+    request.SetCertificatesFile("common:/certs/ca-bundle.crt")
+    request.InitClientCertificates()
+    request.SetUrl(url)
+
+    response = request.GetToString()
+    if response = invalid or response = "" then return invalid
+
+    return response
+end function
+
+' Writes processed VTT content to a local temp file and returns its path.
+' filename should be unique per subtitle track (e.g. based on stream index).
+function WriteLocalVttFile(content as string, filename as string) as dynamic
+    path = "tmp:/" + filename
+
+    writeSuccess = WriteAsciiFile(path, content)
+
+    if not writeSuccess then return invalid
+
+    return path
+end function

@@ -11,6 +11,7 @@ import "pkg:/source/enums/SubtitleSelection.bs"
 import "pkg:/source/utils/config.bs"
 import "pkg:/source/utils/deviceCapabilities.bs"
 import "pkg:/source/utils/misc.bs"
+import "pkg:/source/utils/subtitlePositioning.bs"
 
 sub init()
     m.top.filter = "All"
@@ -445,6 +446,25 @@ sub addSubtitlesToVideo(video, meta)
     if m.global.session.user.settings["playback.subs.onlytext"] = true
         safesubs = subtitles["text"]
     end if
+
+    ' Some source subtitles (typically ASS/SSA converted upstream to SRT, then
+    ' wrapped as WebVTT by the server) carry ASS alignment override tags
+    ' (e.g. "{\an8}") as literal text, since neither SRT nor the server's
+    ' conversion step have a way to represent cue positioning. Detect and
+    ' convert those into proper WebVTT cue settings so Roku's native caption
+    ' renderer positions them correctly instead of displaying the raw tag.
+    for each subtitle in safesubs
+        if subtitle.IsTextSubtitleStream and subtitle.IsExternal and isValid(subtitle.Track.TrackName) and subtitle.Track.TrackName <> ""
+            rawVtt = DownloadSubtitleText(subtitle.Track.TrackName)
+            if isValid(rawVtt) and ContainsPositionTags(rawVtt)
+                processedVtt = ProcessVttPositioning(rawVtt)
+                localPath = WriteLocalVttFile(processedVtt, `sub_${subtitle.Index}_positioned.vtt`)
+                if isValid(localPath)
+                    subtitle.Track.TrackName = localPath
+                end if
+            end if
+        end if
+    end for
 
     for each subtitle in safesubs
         subtitleTracks.push(subtitle.track)
