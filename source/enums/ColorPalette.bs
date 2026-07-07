@@ -2,7 +2,8 @@ enum ColorPalette
 
     ' Theme text
     TEXT_PRIMARY = "#FFFFFFFF"
-    TEXT_SECONDARY = "#B3B3B3FF"
+    TEXT_SECONDARY = "#777777FF"
+    TEXT_TERTIARY = "#101010FF"
 
     ' Backgrounds
     VIEWBACKGROUND = "#000018FF"

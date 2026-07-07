@@ -23,7 +23,7 @@ end sub
 
 sub applyTheme()
     m.name.color = ColorPalette.TEXT_PRIMARY
-    m.value.textColor = ColorPalette.TEXT_PRIMARY
+    m.value.textColor = ColorPalette.TEXT_TERTIARY
     m.value.hintTextColor = ColorPalette.TEXT_SECONDARY
 end sub
 
