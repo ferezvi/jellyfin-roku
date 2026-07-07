@@ -17,6 +17,7 @@ enum ColorPalette
     TRIADGREEN = "#67FF68FF"
     LIGHTBLUE = "#C8FAFAFF"
     RED = "#FF0000FF"
+    ERROR = "#CC0000FF"
 
     ' Grayscale
     WHITE = "#FFFFFFFF"
@@ -31,5 +32,11 @@ enum ColorPalette
     BLACK90 = "#00000090"
     BLACKDD = "#000000DD"
     TRANSPARENT = "#00000000"
+
+    ' Buttons
+    BUTTON_BACKGROUND = "#C8FAFAFF"
+    BUTTON_TEXT = "#101010FF"
+    BUTTON_FOCUS_BACKGROUND = "#FF6867FF"
+    BUTTON_FOCUS_TEXT = "#FFFFFFFF"
 
 end enum

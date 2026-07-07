@@ -6,6 +6,93 @@ import "pkg:/source/utils/misc.bs"
 
 const blankUserAvatarUri = "pkg:/images/baseline_person_white_48dp.png"
 
+sub init()
+    m.top.setFocus(true)
+    m.top.optionsAvailable = false
+
+    findNodes()
+    applyTheme()
+
+    m.profileImage.observeField("loadStatus", "onPosterLoadStatusChanged")
+
+    username_field = CreateObject("roSGNode", "ConfigData")
+    username_field.label = tr("Username")
+    username_field.type = "string"
+    username_field.value = string.EMPTY
+
+    password_field = CreateObject("roSGNode", "ConfigData")
+    password_field.label = tr("Password")
+    password_field.type = "password"
+
+    registryPassword = get_setting("password")
+    if isValid(registryPassword)
+        password_field.value = registryPassword
+    end if
+
+    if not isStringEqual(get_setting("saveCredentials", "true"), "true")
+        m.saveCredentials.checkedState = "[false]"
+    end if
+
+    items = [username_field, password_field]
+    m.config.configItems = items
+
+    m.saveCredentials.checkedIconUri = "pkg:/images/icons/checkboxChecked.png"
+    m.saveCredentials.focusedCheckedIconUri = "pkg:/images/icons/checkboxChecked.png"
+
+    m.saveCredentials.uncheckedIconUri = "pkg:/images/icons/checkboxUnchecked.png"
+    m.saveCredentials.focusedUncheckedIconUri = "pkg:/images/icons/checkboxUnchecked.png"
+end sub
+
+
+sub findNodes()
+
+    m.title = m.top.findNode("title")
+
+    m.signInFormContainer = m.top.findNode("signInFormContainer")
+
+    m.profileImage = m.top.findNode("overlayCurrentUserProfileImage")
+
+    m.submit = m.top.findNode("submit")
+    m.quickConnect = m.top.findNode("quickConnect")
+
+    m.errorContainer = m.top.findNode("errorContainer")
+    m.errorMessage = m.top.findNode("errorMessage")
+
+    m.config = m.top.findNode("configOptions")
+    m.saveCredentials = m.top.findNode("saveCredentials")
+end sub
+
+
+sub applyTheme()
+
+    m.title.color = ColorPalette.TEXT_PRIMARY
+
+    ' Buttons
+    m.submit.background = ColorPalette.BUTTON_BACKGROUND
+    m.submit.color = ColorPalette.BUTTON_TEXT
+    m.submit.focusBackground = ColorPalette.BUTTON_FOCUS_BACKGROUND
+    m.submit.focusColor = ColorPalette.BUTTON_FOCUS_TEXT
+
+    m.quickConnect.background = ColorPalette.BUTTON_BACKGROUND
+    m.quickConnect.color = ColorPalette.BUTTON_TEXT
+    m.quickConnect.focusBackground = ColorPalette.BUTTON_FOCUS_BACKGROUND
+    m.quickConnect.focusColor = ColorPalette.BUTTON_FOCUS_TEXT
+
+    ' Containers
+    m.errorContainer.color = ColorPalette.ERROR
+    m.signInFormContainer.color = ColorPalette.ELEMENTBACKGROUND
+
+    ' Form
+    m.config.focusBitmapBlendColor = ColorPalette.HIGHLIGHT
+    m.config.focusFootprintBlendColor = ColorPalette.TRANSPARENT
+
+    ' Checkbox
+    m.saveCredentials.focusedColor = ColorPalette.HIGHLIGHT
+    m.saveCredentials.font.size = 30
+    m.saveCredentials.focusedFont.size = 30
+
+end sub
+
 sub onProfileImageUriChange()
     if not isValid(m.top.profileImageUri)
         m.top.profileImageUri = blankUserAvatarUri
@@ -28,69 +115,9 @@ sub onPosterLoadStatusChanged()
     end if
 end sub
 
-sub init()
-    m.top.setFocus(true)
-    m.top.optionsAvailable = false
-
-    m.profileImage = m.top.findNode("overlayCurrentUserProfileImage")
-    m.profileImage.observeField("loadStatus", "onPosterLoadStatusChanged")
-
-    m.submit = m.top.findNode("submit")
-    m.submit.background = ColorPalette.LIGHTBLUE
-    m.submit.color = ColorPalette.DARKGREY
-    m.submit.focusBackground = ColorPalette.HIGHLIGHT
-    m.submit.focusColor = ColorPalette.WHITE
-
-    m.quickConnect = m.top.findNode("quickConnect")
-    m.quickConnect.background = ColorPalette.LIGHTBLUE
-    m.quickConnect.color = ColorPalette.DARKGREY
-    m.quickConnect.focusBackground = ColorPalette.HIGHLIGHT
-    m.quickConnect.focusColor = ColorPalette.WHITE
-
-    m.errorContainer = m.top.findNode("errorContainer")
-    m.errorContainer.color = "#CC0000"
-
-    m.config = m.top.findNode("configOptions")
-    m.config.focusBitmapBlendColor = ColorPalette.HIGHLIGHT
-    m.config.focusFootprintBlendColor = ColorPalette.TRANSPARENT
-
-    username_field = CreateObject("roSGNode", "ConfigData")
-    username_field.label = tr("Username")
-    username_field.type = "string"
-    username_field.value = string.EMPTY
-
-    password_field = CreateObject("roSGNode", "ConfigData")
-    password_field.label = tr("Password")
-    password_field.type = "password"
-    registryPassword = get_setting("password")
-    if isValid(registryPassword)
-        password_field.value = registryPassword
-    end if
-
-    saveCredentials = m.top.findNode("saveCredentials")
-    saveCredentials.focusedColor = ColorPalette.HIGHLIGHT
-    saveCredentials.font.size = 30
-    saveCredentials.focusedFont.size = 30
-
-    if not isStringEqual(get_setting("saveCredentials", "true"), "true")
-        saveCredentials.checkedState = "[false]"
-    end if
-
-    items = [username_field, password_field]
-    m.config.configItems = items
-
-    saveCredentials.checkedIconUri = "pkg:/images/icons/checkboxChecked.png"
-    saveCredentials.focusedCheckedIconUri = "pkg:/images/icons/checkboxChecked.png"
-
-    saveCredentials.uncheckedIconUri = "pkg:/images/icons/checkboxUnchecked.png"
-    saveCredentials.focusedUncheckedIconUri = "pkg:/images/icons/checkboxUnchecked.png"
-end sub
-
 sub onAlertChange()
     m.errorContainer.visible = isValidAndNotEmpty(m.top.alert)
-
-    errorMessage = m.top.findNode("errorMessage")
-    errorMessage.text = m.top.alert
+    m.errorMessage.text = m.top.alert
 end sub
 
 sub onUserChange()

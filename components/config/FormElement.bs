@@ -9,9 +9,7 @@ sub init()
     m.value.backgroundUri = "pkg:/images/transparent.png"
     m.value.width = 440
 
-    m.name.color = ColorPalette.WHITE
-    m.value.textColor = ColorPalette.DARKGREY
-    m.value.hintTextColor = ColorPalette.MIDGREY
+    applyTheme()
 
     m.name.width = 240
     m.name.height = 75
@@ -21,6 +19,12 @@ sub init()
 
     m.value.hintText = tr("Enter a username")
     m.value.maxTextLength = 120
+end sub
+
+sub applyTheme()
+    m.name.color = ColorPalette.TEXT_PRIMARY
+    m.value.textColor = ColorPalette.TEXT_PRIMARY
+    m.value.hintTextColor = ColorPalette.TEXT_SECONDARY
 end sub
 
 sub itemContentChanged()

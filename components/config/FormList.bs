@@ -1,3 +1,4 @@
+import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/utils/config.bs"
 
 sub init()
@@ -50,11 +51,8 @@ sub formListShowDialog(configField)
     m.configField = configField
     dialog.title = configField.label
     dialog.buttons = [tr("OK"), tr("Cancel")]
-    m.greenPalette = createObject("roSGNode", "RSGPalette")
-    m.greenPalette.colors = {
-        DialogBackgroundColor: "#2A2B2A"
-    }
-    dialog.palette = m.greenPalette
+
+    applyDialogTheme(dialog)
 
     if configField.type = "password"
         dialog.textEditBox.secureMode = true
@@ -68,6 +66,16 @@ sub formListShowDialog(configField)
     m.dialog = dialog
 
     dialog.observeField("buttonSelected", "onDialogButton")
+end sub
+
+sub applyDialogTheme(dialog)
+    palette = createObject("roSGNode", "RSGPalette")
+
+    palette.colors = {
+        DialogBackgroundColor: ColorPalette.ELEMENTBACKGROUND
+    }
+
+    dialog.palette = palette
 end sub
 
 sub dismiss_dialog()
