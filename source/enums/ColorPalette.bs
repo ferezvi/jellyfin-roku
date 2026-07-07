@@ -1,20 +1,35 @@
 enum ColorPalette
-    BLACK77 = "0x00000077"
-    BLACK90 = "0x00000090"
-    BLACKDD = "0x000000DD"
-    DARKGREY = "#101010"
-    ELEMENTBACKGROUND = "#101420"
-    HIGHLIGHT = "0xff6867FF"
-    LIGHTBLUE = "#c8fafa"
-    LIGHTGREY = "#aaaaaa"
-    LIGHTHIGHLIGHT = "#ff9a99"
-    MIDGREY = "#777777"
-    OFFWHITE = "#cccccc"
-    RED = "#FF0000"
-    SMOKE = "#303030"
-    TRANSPARENT = "0x00000000"
-    TRIADBLUE = "#6867ff"
-    TRIADGREEN = "#67ff68"
-    VIEWBACKGROUND = "#000018"
-    WHITE = "#ffffff"
+
+    ' Theme text
+    TEXT_PRIMARY = "#FFFFFFFF"
+    TEXT_SECONDARY = "#B3B3B3FF"
+
+    ' Backgrounds
+    VIEWBACKGROUND = "#000018FF"
+    ELEMENTBACKGROUND = "#101420FF"
+
+    ' Highlights
+    HIGHLIGHT = "#FF6867FF"
+    LIGHTHIGHLIGHT = "#FF9A99FF"
+
+    ' Supporting colors
+    TRIADBLUE = "#6867FFFF"
+    TRIADGREEN = "#67FF68FF"
+    LIGHTBLUE = "#C8FAFAFF"
+    RED = "#FF0000FF"
+
+    ' Grayscale
+    WHITE = "#FFFFFFFF"
+    OFFWHITE = "#CCCCCCFF"
+    LIGHTGREY = "#AAAAAAFF"
+    MIDGREY = "#777777FF"
+    SMOKE = "#303030FF"
+    DARKGREY = "#101010FF"
+
+    ' Overlays
+    BLACK77 = "#00000077"
+    BLACK90 = "#00000090"
+    BLACKDD = "#000000DD"
+    TRANSPARENT = "#00000000"
+
 end enum
