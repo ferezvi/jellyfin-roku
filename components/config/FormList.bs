@@ -24,7 +24,7 @@ end sub
 sub onItemSelected()
     i = m.top.itemSelected
     ' Remember which index is being edited so we know where to jump
-    ' after confirming (next field, or notify parent if it's the last one)
+    ' after confirming (next field, or out of the list if it's the last one)
     m.currentIndex = i
     itemField = m.top.content.getchild(i)
 
