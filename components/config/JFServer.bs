@@ -2,12 +2,22 @@ import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/utils/misc.bs"
 
 sub init()
+    findNodes()
+    applyTheme()
+end sub
+
+sub findNodes()
     m.poster = m.top.findNode("poster")
     m.background = m.top.findNode("background")
+    m.nameLabel = m.top.findNode("nameLabel")
+    m.urlLabel = m.top.findNode("urlLabel")
     m.name = m.top.findNode("name")
     m.trashContainer = m.top.findNode("trashContainer")
     m.baseUrl = m.top.findNode("baseUrl")
     m.labels = m.top.findNode("labels")
+end sub
+
+sub applyTheme()
     m.background.color = m.top.itemHasFocus ? ColorPalette.HIGHLIGHT : ColorPalette.ELEMENTBACKGROUND
 
     setTextColor()
@@ -71,10 +81,9 @@ sub setDeleteFocus()
 end sub
 
 sub setTextColor()
-    textColor = ColorPalette.WHITE
+    m.nameLabel.color = ColorPalette.TEXT_SECONDARY
+    m.urlLabel.color = ColorPalette.TEXT_SECONDARY
 
-    children = m.labels.getChildren(-1, 0)
-    for each child in children
-        child.color = textColor
-    end for
+    m.name.color = ColorPalette.TEXT_PRIMARY
+    m.baseUrl.color = ColorPalette.TEXT_PRIMARY
 end sub

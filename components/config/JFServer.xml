@@ -11,8 +11,8 @@
 
     <Poster id="poster" translation="[20,5]" width="90" height="90" />
     <Group id="labels" translation="[120,0]">
-      <Text text="Name:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,5]" />
-      <Text text="URL:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,55]" />
+      <Text id="nameLabel" text="Name:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,5]" />
+      <Text id="urlLabel" text="URL:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,55]" />
 
       <Text id="name" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[145,5]" />
       <Text id="baseUrl" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[145,55]" />
