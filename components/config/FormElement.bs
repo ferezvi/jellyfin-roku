@@ -1,4 +1,3 @@
-import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
 
@@ -22,9 +21,9 @@ sub init()
 end sub
 
 sub applyTheme()
-    m.name.color = ColorPalette.TEXT_PRIMARY
-    m.value.textColor = ColorPalette.TEXT_TERTIARY
-    m.value.hintTextColor = ColorPalette.TEXT_SECONDARY
+    m.name.color = m.global.theme.TEXT_PRIMARY
+    m.value.textColor = m.global.theme.TEXT_TERTIARY
+    m.value.hintTextColor = m.global.theme.TEXT_SECONDARY
 end sub
 
 sub itemContentChanged()
