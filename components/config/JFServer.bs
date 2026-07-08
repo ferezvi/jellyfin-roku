@@ -19,7 +19,7 @@ sub findNodes()
 end sub
 
 sub applyTheme()
-    m.background.color = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
+    m.background.blendColor = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
 
     setTextColor()
 end sub
@@ -57,11 +57,11 @@ sub setBackground()
     if not isValid(m.top.itemContent.itemHasDeleteFocus) then return
 
     if m.top.itemContent.itemHasDeleteFocus
-        m.background.color = m.global.theme.DELETE_FOCUS
+        m.background.blendColor = m.global.theme.DELETE_FOCUS
         return
     end if
 
-    m.background.color = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
+    m.background.blendColor = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
 end sub
 
 sub setDeleteFocus()

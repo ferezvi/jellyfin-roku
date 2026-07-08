@@ -6,12 +6,13 @@
         <Text text="Connect to Server" id="prompt" font="font:LargeBoldSystemFont" />
       </LayoutGroup>
 
-      <Poster id="serverPickerContainer" width="1620" height="400" uri="pkg:/images/white.9.png" />
+      <Poster id="serverPickerContainer" width="1620" height="400" uri="pkg:/images/panel.9.png" />
 
       <Text text="...or enter server URL manually:" translation="[0, 690]" />
 
       <Rectangle id="serverUrlContainer">
-        <TextEditBox id="serverUrlTextbox" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" />
+        <Poster id="serverUrlTextboxBg" uri="pkg:/images/panel.9.png" />
+        <TextEditBox id="serverUrlTextbox" translation="[12, 0]" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" backgroundUri="pkg:/images/transparent.png" />
         <Poster id="serverUrlOutline" visible="false" uri="pkg:/images/hd_focus.9.png" />
       </Rectangle>
 
@@ -44,8 +45,8 @@
   <interface>
     <field id="forgetServer" type="string" />
     <field id="serverUrl" type="string" alias="serverUrlTextbox.text" />
-    <field id="serverWidth" alias="serverUrlOutline.width,serverUrlTextbox.width,serverUrlContainer.width,submitSizer.width" value="1620" />
-    <field id="serverHeight" alias="serverUrlOutline.height,serverUrlTextbox.height,serverUrlContainer.height" value="60" />
+    <field id="serverWidth" alias="serverUrlOutline.width,serverUrlTextbox.width,serverUrlContainer.width,submitSizer.width,serverUrlTextboxBg.width" value="1620" />
+    <field id="serverHeight" alias="serverUrlOutline.height,serverUrlTextbox.height,serverUrlContainer.height,serverUrlTextboxBg.height" value="60" />
     <field id="errorMessage" type="string" alias="errorMessage.text" />
   </interface>
 </component>

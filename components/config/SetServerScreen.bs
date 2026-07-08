@@ -21,6 +21,7 @@ end sub
 sub findNodes()
     m.serverPicker = m.top.findNode("serverPicker")
     m.serverUrlTextbox = m.top.findNode("serverUrlTextbox")
+    m.serverUrlTextboxBg = m.top.findNode("serverUrlTextboxBg")
     m.serverUrlContainer = m.top.findNode("serverUrlContainer")
     m.serverPickerContainer = m.top.findNode("serverPickerContainer")
     m.serverUrlOutline = m.top.findNode("serverUrlOutline")
@@ -34,7 +35,8 @@ end sub
 sub applyTheme()
     ' Containers
     m.serverPickerContainer.blendColor = m.global.theme.ELEMENTBACKGROUND
-    m.serverUrlContainer.color = m.global.theme.OVERLAY
+    m.serverUrlContainer.color = ColorPalette.TRANSPARENT
+    m.serverUrlTextboxBg.blendColor = m.global.theme.ELEMENTBACKGROUND
     m.submitSizer.color = ColorPalette.TRANSPARENT
 
     ' Text
@@ -44,10 +46,10 @@ sub applyTheme()
     m.serverUrlOutline.blendColor = themeColor("colorCursor", "HIGHLIGHT")
 
     ' Buttons
-    m.submit.background = m.global.theme.BUTTON_BACKGROUND
-    m.submit.color = m.global.theme.BUTTON_TEXT
+    m.submit.background = m.global.theme.ELEMENTBACKGROUND
+    m.submit.color = m.global.theme.TEXT_SECONDARY
     m.submit.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
-    m.submit.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
+    m.submit.focusColor = m.global.theme.TEXT_PRIMARY
 end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean
