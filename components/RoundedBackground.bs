@@ -1,0 +1,11 @@
+import "pkg:/source/enums/Assets.bs"
+
+sub init()
+    m.top.uri = Assets.NINE_PATCH_PANEL
+    m.top.observeField("color", "onColorChanged")
+    onColorChanged()
+end sub
+
+sub onColorChanged()
+    m.top.blendColor = m.top.color
+end sub

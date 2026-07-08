@@ -19,7 +19,7 @@ sub findNodes()
 end sub
 
 sub applyTheme()
-    m.background.blendColor = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
+    m.background.color = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
 
     setTextColor()
 end sub

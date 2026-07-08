@@ -20,7 +20,7 @@ end function
 function getLightTheme() as object
     return {
         TEXT_PRIMARY: ColorPalette.TEXT_PRIMARY,
-        TEXT_SECONDARY: ColorPalette.TEXT_SECONDARY,
+        TEXT_SECONDARY: ColorPalette.TEXT_PRIMARY,
         TEXT_TERTIARY: ColorPalette.TEXT_TERTIARY,
 
         VIEWBACKGROUND: ColorPalette.VIEWBACKGROUND,
@@ -32,9 +32,8 @@ function getLightTheme() as object
         ERROR: ColorPalette.ERROR,
 
         BUTTON_BACKGROUND: ColorPalette.BUTTON_BACKGROUND,
-        BUTTON_TEXT: ColorPalette.BUTTON_TEXT,
         BUTTON_FOCUS_BACKGROUND: ColorPalette.BUTTON_FOCUS_BACKGROUND,
-        BUTTON_FOCUS_TEXT: ColorPalette.BUTTON_FOCUS_TEXT,
+
 
         OVERLAY: ColorPalette.BLACK77,
         DELETE_FOCUS: ColorPalette.MIDGREY

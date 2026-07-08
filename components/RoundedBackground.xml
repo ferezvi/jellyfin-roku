@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="RoundedBackground" extends="Poster">
+    <interface>
+        <field id="color" type="color" value="0xFFFFFFFF" />
+    </interface>
+</component>

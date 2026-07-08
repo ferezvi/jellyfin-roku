@@ -7,7 +7,7 @@
   </interface>
 
   <children>
-    <Poster id="background" translation="[0,0]" width="1460" height="100" uri="pkg:/images/panel.9.png" />
+    <RoundedBackground id="background" translation="[0,0]" width="1460" height="100" />
 
     <Poster id="poster" translation="[20,5]" width="90" height="90" />
     <Group id="labels" translation="[120,0]">

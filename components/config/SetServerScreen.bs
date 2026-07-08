@@ -34,9 +34,9 @@ end sub
 
 sub applyTheme()
     ' Containers
-    m.serverPickerContainer.blendColor = m.global.theme.ELEMENTBACKGROUND
+    m.serverPickerContainer.color = m.global.theme.ELEMENTBACKGROUND
     m.serverUrlContainer.color = ColorPalette.TRANSPARENT
-    m.serverUrlTextboxBg.blendColor = m.global.theme.ELEMENTBACKGROUND
+    m.serverUrlTextboxBg.color = m.global.theme.ELEMENTBACKGROUND
     m.submitSizer.color = ColorPalette.TRANSPARENT
 
     ' Text
@@ -46,8 +46,8 @@ sub applyTheme()
     m.serverUrlOutline.blendColor = themeColor("colorCursor", "HIGHLIGHT")
 
     ' Buttons
-    m.submit.background = m.global.theme.ELEMENTBACKGROUND
-    m.submit.color = m.global.theme.TEXT_SECONDARY
+    m.submit.background = m.global.theme.BUTTON_BACKGROUND
+    m.submit.color = m.global.theme.TEXT_TERTIARY
     m.submit.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
     m.submit.focusColor = m.global.theme.TEXT_PRIMARY
 end sub
