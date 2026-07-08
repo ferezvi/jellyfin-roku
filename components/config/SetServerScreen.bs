@@ -33,7 +33,7 @@ end sub
 
 sub applyTheme()
     ' Containers
-    m.serverPickerContainer.color = m.global.theme.ELEMENTBACKGROUND
+    m.serverPickerContainer.blendColor = m.global.theme.ELEMENTBACKGROUND
     m.serverUrlContainer.color = m.global.theme.OVERLAY
     m.submitSizer.color = ColorPalette.TRANSPARENT
 

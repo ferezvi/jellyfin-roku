@@ -6,18 +6,7 @@
         <Text text="Connect to Server" id="prompt" font="font:LargeBoldSystemFont" />
       </LayoutGroup>
 
-      <Rectangle id="serverPickerContainer" width="1620" height="400">
-        <MarkupList
-          id="serverPicker"
-          translation="[20, 20]"
-          drawFocusFeedback="false"
-          itemComponentName="JFServer"
-          focusFootprintBitmapUri=""
-          itemSpacing="[0, 30]"
-          itemSize="[1580, 100]"
-          numRows="3"
-          vertFocusAnimationStyle="floatingFocus" />
-      </Rectangle>
+      <Poster id="serverPickerContainer" width="1620" height="400" uri="pkg:/images/white.9.png" />
 
       <Text text="...or enter server URL manually:" translation="[0, 690]" />
 
@@ -39,6 +28,18 @@
         <Rectangle id="submitSizer" width="1620" height="0" />
       </LayoutGroup>
     </LayoutGroup>
+
+    <MarkupList
+      id="serverPicker"
+      translation="[170,256]"
+      drawFocusFeedback="false"
+      itemComponentName="JFServer"
+      focusFootprintBitmapUri=""
+      itemSpacing="[0, 30]"
+      itemSize="[1580, 100]"
+      numRows="3"
+      vertFocusAnimationStyle="floatingFocus" />
+
   </children>
   <interface>
     <field id="forgetServer" type="string" />
