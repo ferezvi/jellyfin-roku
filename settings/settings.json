@@ -482,15 +482,13 @@
                 "title": "Background",
                 "description": "The base background color. Background images are layered on top of this color.",
                 "settingName": "colorBackground",
-                "type": "colorgrid",
-                "default": "#000018"
+                "type": "colorgrid"
               },
               {
                 "title": "Cursor",
                 "description": "The color of the remote control's cursor.",
                 "settingName": "colorCursor",
-                "type": "colorgrid",
-                "default": "#FF6666"
+                "type": "colorgrid"
               },
               {
                 "title": "Primary Text",

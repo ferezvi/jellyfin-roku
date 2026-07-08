@@ -3,6 +3,7 @@ import "pkg:/source/enums/KeyCode.bs"
 import "pkg:/source/enums/TaskControl.bs"
 import "pkg:/source/utils/config.bs"
 import "pkg:/source/utils/misc.bs"
+import "pkg:/source/utils/theme.bs"
 
 sub init()
     m.top.optionsAvailable = false
@@ -32,21 +33,21 @@ end sub
 
 sub applyTheme()
     ' Containers
-    m.serverPickerContainer.color = ColorPalette.ELEMENTBACKGROUND
-    m.serverUrlContainer.color = ColorPalette.BLACK77
+    m.serverPickerContainer.color = m.global.theme.ELEMENTBACKGROUND
+    m.serverUrlContainer.color = m.global.theme.OVERLAY
     m.submitSizer.color = ColorPalette.TRANSPARENT
 
     ' Text
-    m.errorMessage.color = ColorPalette.RED
+    m.errorMessage.color = m.global.theme.ERROR
 
     ' Focus
-    m.serverUrlOutline.blendColor = ColorPalette.HIGHLIGHT
+    m.serverUrlOutline.blendColor = themeColor("colorCursor", "HIGHLIGHT")
 
     ' Buttons
-    m.submit.background = ColorPalette.LIGHTBLUE
-    m.submit.color = ColorPalette.DARKGREY
-    m.submit.focusBackground = ColorPalette.HIGHLIGHT
-    m.submit.focusColor = ColorPalette.WHITE
+    m.submit.background = m.global.theme.BUTTON_BACKGROUND
+    m.submit.color = m.global.theme.BUTTON_TEXT
+    m.submit.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
+    m.submit.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
 end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean
@@ -234,7 +235,7 @@ sub ShowKeyboard()
     dialog.text = m.serverUrlTextbox.text
 
     palette = createObject("roSGNode", "RSGPalette")
-    palette.colors = { DialogBackgroundColor: ColorPalette.ELEMENTBACKGROUND }
+    palette.colors = { DialogBackgroundColor: m.global.theme.ELEMENTBACKGROUND }
     dialog.palette = palette
 
     m.top.getscene().dialog = dialog

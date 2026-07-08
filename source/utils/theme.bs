@@ -1,0 +1,52 @@
+import "pkg:/source/enums/ColorPalette.bs"
+import "pkg:/source/utils/config.bs"
+
+' Saves the current theme to the global node for easy access throughout the application
+sub SaveThemeToGlobal()
+    themeName = get_setting("theme", "light")
+
+    m.global.addFields({
+        theme: getThemeColors(themeName)
+    })
+end sub
+
+function getThemeColors(themeName as string) as object
+    if themeName = "dark"
+        return getDarkTheme()
+    end if
+    return getLightTheme()
+end function
+
+function getLightTheme() as object
+    return {
+        TEXT_PRIMARY: ColorPalette.TEXT_PRIMARY,
+        TEXT_SECONDARY: ColorPalette.TEXT_SECONDARY,
+        TEXT_TERTIARY: ColorPalette.TEXT_TERTIARY,
+
+        VIEWBACKGROUND: ColorPalette.VIEWBACKGROUND,
+        ELEMENTBACKGROUND: ColorPalette.ELEMENTBACKGROUND,
+
+        HIGHLIGHT: ColorPalette.HIGHLIGHT,
+        LIGHTHIGHLIGHT: ColorPalette.LIGHTHIGHLIGHT,
+
+        ERROR: ColorPalette.ERROR,
+
+        BUTTON_BACKGROUND: ColorPalette.BUTTON_BACKGROUND,
+        BUTTON_TEXT: ColorPalette.BUTTON_TEXT,
+        BUTTON_FOCUS_BACKGROUND: ColorPalette.BUTTON_FOCUS_BACKGROUND,
+        BUTTON_FOCUS_TEXT: ColorPalette.BUTTON_FOCUS_TEXT,
+
+        OVERLAY: ColorPalette.BLACK77,
+        DELETE_FOCUS: ColorPalette.MIDGREY
+    }
+end function
+
+function getDarkTheme() as object
+    ' TODO: valores de Ocelotl (acento morado #7C3AED, base #0e0323, etc.) — pendiente hasta la fase de dark theme
+    return getLightTheme()
+end function
+
+' Returns the color for a given setting name, falling back to the theme color if not set in user settings
+function themeColor(settingName as string, themeKey as string) as string
+    return chainLookupReturn(m.global.session, "user.settings." + settingName, m.global.theme[themeKey])
+end function
