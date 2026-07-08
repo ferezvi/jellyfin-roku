@@ -71,14 +71,14 @@ sub applyTheme()
 
     ' Buttons
     m.submit.background = m.global.theme.BUTTON_BACKGROUND
-    m.submit.color = m.global.theme.BUTTON_TEXT
+    m.submit.color = m.global.theme.TEXT_TERTIARY
     m.submit.focusBackground = m.global.theme.BUTTON_FOCUS_BACKGROUND
-    m.submit.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
+    m.submit.focusColor = m.global.theme.TEXT_PRIMARY
 
     m.quickConnect.background = m.global.theme.BUTTON_BACKGROUND
-    m.quickConnect.color = m.global.theme.BUTTON_TEXT
+    m.quickConnect.color = m.global.theme.TEXT_TERTIARY
     m.quickConnect.focusBackground = m.global.theme.BUTTON_FOCUS_BACKGROUND
-    m.quickConnect.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
+    m.quickConnect.focusColor = m.global.theme.TEXT_PRIMARY
 
     ' Containers
     m.errorContainer.color = m.global.theme.ERROR
