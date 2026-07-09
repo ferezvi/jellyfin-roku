@@ -17,7 +17,7 @@
     </Rectangle>
 
     <RoundedBackground id="signInFormContainer" width="870" height="280" translation="[525, 466]">
-      <FormList id="configOptions" translation="[60, 40]" itemSpacing="[0, 50]" />
+      <FormList id="configOptions" translation="[60, 40]" itemSpacing="[0, 75]" />
     </RoundedBackground>
 
     <CheckList
