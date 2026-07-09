@@ -9,6 +9,7 @@ import "pkg:/source/enums/TaskControl.bs"
 import "pkg:/source/utils/config.bs"
 import "pkg:/source/utils/deviceCapabilities.bs"
 import "pkg:/source/utils/misc.bs"
+import "pkg:/source/utils/theme.bs"
 
 sub init()
     m.isFirstRun = true
@@ -26,34 +27,36 @@ sub init()
     m.loadMetaDataTask.itemsToLoad = "metaData"
     m.loadMetaDataTask.observeField("content", "onMetaDataLoaded")
 
-    m.homeRows = m.top.findNode("homeRows")
-    m.homeRows.focusBitmapBlendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
+    findNodes()
+end sub
 
+sub findNodes()
+    m.homeRows = m.top.findNode("homeRows")
     m.buttons = m.top.findNode("buttons")
     m.toggleButtonsAnimation = m.top.findNode("toggleButtonsAnimation")
     m.buttonsFade = m.top.findNode("buttonsFade")
     m.buttonsMove = m.top.findNode("buttonsMove")
+    m.searchButton = m.top.findNode("searchButton")
+    m.settingsButton = m.top.findNode("settingsButton")
+end sub
 
-    setButtonColors()
+sub applyTheme()
+    m.homeRows.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
+    m.homeRows.rowLabelColor = themeColor("colorHomeRowHeaders", "TEXT_PRIMARY")
+
+    m.searchButton.textColor = themeColor("colorHomeButtonText", "TEXT_SECONDARY")
+    m.searchButton.background = themeColor("colorHomeButtonBackground", "BUTTON_BACKGROUND")
+    m.searchButton.focusTextColor = themeColor("colorHomeButtonFocusText", "TEXT_PRIMARY")
+    m.searchButton.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
+
+    m.settingsButton.textColor = themeColor("colorHomeButtonText", "TEXT_SECONDARY")
+    m.settingsButton.background = themeColor("colorHomeButtonBackground", "BUTTON_BACKGROUND")
+    m.settingsButton.focusTextColor = themeColor("colorHomeButtonFocusText", "TEXT_PRIMARY")
+    m.settingsButton.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
 end sub
 
 sub refresh()
-    m.homeRows.focusBitmapBlendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
     m.homeRows.callFunc("updateHomeRows")
-end sub
-
-sub setButtonColors()
-    m.searchButton = m.top.findNode("searchButton")
-    m.searchButton.textColor = ColorPalette.WHITE
-    m.searchButton.background = ColorPalette.DARKGREY
-    m.searchButton.focusTextColor = ColorPalette.WHITE
-    m.searchButton.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
-
-    m.settingsButton = m.top.findNode("settingsButton")
-    m.settingsButton.textColor = ColorPalette.WHITE
-    m.settingsButton.background = ColorPalette.DARKGREY
-    m.settingsButton.focusTextColor = ColorPalette.WHITE
-    m.settingsButton.focusBackground = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
 end sub
 
 sub loadLibraries()
@@ -62,7 +65,7 @@ end sub
 
 ' JFScreen hook called when the screen is displayed by the screen manager
 sub OnScreenShown()
-    m.homeRows.rowLabelColor = chainLookupReturn(m.global.session, "user.settings.colorHomeRowHeaders", ColorPalette.WHITE)
+    applyTheme()
 
     scene = m.top.getScene()
     overhang = scene.findNode("overhang")

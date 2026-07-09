@@ -1,7 +1,4 @@
 import "pkg:/source/api/Image.bs"
-import "pkg:/source/utils/config.bs"
-import "pkg:/source/utils/misc.bs"
-
 import "pkg:/source/enums/AnimationControl.bs"
 import "pkg:/source/enums/AnimationState.bs"
 import "pkg:/source/enums/ColorPalette.bs"
@@ -15,6 +12,9 @@ import "pkg:/source/enums/SubtitleSelection.bs"
 import "pkg:/source/enums/TaskControl.bs"
 import "pkg:/source/enums/VideoType.bs"
 import "pkg:/source/enums/ViewLoadStatus.bs"
+import "pkg:/source/utils/config.bs"
+import "pkg:/source/utils/misc.bs"
+import "pkg:/source/utils/theme.bs"
 
 sub init()
     m.global.queueManager.callFunc("setForceTranscode", PlaybackMethod.PLAYNORMALLY)
@@ -28,8 +28,6 @@ sub init()
     m.performRotationCheck = true
 
     m.scrollBar.opacity = .75
-    m.scrollBar.color = ColorPalette.BLACK77
-    m.thumb.color = ColorPalette.LIGHTGREY
 
     m.container = m.top.findnode("container")
     m.extrasGrp = m.top.findnode("extrasGrp")
@@ -50,7 +48,8 @@ sub init()
     m.buttonGrp.setFocus(true)
     m.top.lastFocus = m.buttonGrp
     m.playFromBeginningButton = m.top.findNode("play-from-beginning-button")
-    setButtonColors()
+
+    applyTheme()
 
     m.loadStatus = ViewLoadStatus.INIT
 
@@ -76,6 +75,13 @@ sub init()
     m.loadItemsTask = createObject("roSGNode", "LoadItemsTask")
     m.loadItemsTask.observeField("content", "onMyListLoaded")
     m.loadItemsTask.itemsToLoad = "isInMyList"
+end sub
+
+sub applyTheme()
+    m.scrollBar.color = themeColor("colorMovieDetailsScrollbar", "OVERLAY")
+    m.thumb.color = themeColor("colorMovieDetailsScrollbarThumb", "SCROLLBAR_THUMB")
+    m.buttonGrp.focusBitmapUri = "pkg:/images/white.9.png"
+    m.buttonGrp.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
 end sub
 
 sub calculateButtonThumbProperties()
@@ -146,14 +152,10 @@ sub onMovieExtrasHasItems()
     if m.movieExtras.hasItems then m.movieExtras.visible = true
 end sub
 
-sub setButtonColors()
-    m.buttonGrp.focusBitmapUri = "pkg:/images/white.9.png"
-    m.buttonGrp.focusBitmapBlendColor = chainLookupReturn(m.global.session, "user.settings.colorCursor", ColorPalette.HIGHLIGHT)
-end sub
-
 ' OnScreenShown: Callback function when view is presented on screen
 '
 sub OnScreenShown()
+    applyTheme()
     ' Reset startingPoint to avoid other buttons inheriting playback position
     if isValid(m.top.itemContent)
         m.top.itemContent.startingPoint = -1

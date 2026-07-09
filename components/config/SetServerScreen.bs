@@ -44,7 +44,7 @@ sub applyTheme()
     m.serverUrlOutline.blendColor = themeColor("colorCursor", "HIGHLIGHT")
 
     ' Buttons
-    m.submit.background = m.global.theme.BUTTON_BACKGROUND
+    m.submit.background = m.global.theme.CONFIG_BUTTON_BACKGROUND
     m.submit.color = m.global.theme.TEXT_TERTIARY
     m.submit.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
     m.submit.focusColor = m.global.theme.TEXT_PRIMARY

@@ -31,12 +31,20 @@ function getLightTheme() as object
 
         ERROR: ColorPalette.ERROR,
 
+        CONFIG_BUTTON_BACKGROUND: ColorPalette.CONFIG_BUTTON_BACKGROUND,
         BUTTON_BACKGROUND: ColorPalette.BUTTON_BACKGROUND,
         BUTTON_FOCUS_BACKGROUND: ColorPalette.BUTTON_FOCUS_BACKGROUND,
 
+        TEXT_MUTED: ColorPalette.MIDGREY,
+        PROGRESS: ColorPalette.TRIADBLUE,
+        PROGRESS_BACKGROUND: ColorPalette.BLACK90,
 
         OVERLAY: ColorPalette.BLACK77,
-        DELETE_FOCUS: ColorPalette.MIDGREY
+        DELETE_FOCUS: ColorPalette.MIDGREY,
+
+        SCROLLBAR_THUMB: ColorPalette.LIGHTGREY,
+        ICON_DEFAULT: ColorPalette.WHITE,
+        ICON_ACTIVE: ColorPalette.RED
     }
 end function
 

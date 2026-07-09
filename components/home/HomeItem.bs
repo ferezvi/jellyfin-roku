@@ -1,76 +1,57 @@
 import "pkg:/source/api/baserequest.bs"
 import "pkg:/source/api/Image.bs"
 import "pkg:/source/enums/AnimationControl.bs"
-import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/enums/ItemType.bs"
 import "pkg:/source/enums/PosterLoadStatus.bs"
 import "pkg:/source/enums/SeriesStatus.bs"
 import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/config.bs"
 import "pkg:/source/utils/misc.bs"
+import "pkg:/source/utils/theme.bs"
 
 sub init()
     findNodes()
     m.itemPoster.observeField("loadStatus", "onPosterLoadStatusChanged")
-    setColors()
-end sub
-
-sub setColors()
-    if not isAllValid([m.itemProgress, m.itemProgressBackground, m.backdrop]) then findNodes()
-
-    if isValid(m.itemProgress)
-        m.itemProgress.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgress", ColorPalette.TRIADBLUE)
-    end if
-
-    if isValid(m.itemProgressBackground)
-        m.itemProgressBackground.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemProgressBackground", ColorPalette.BLACK90)
-    end if
-
-    if isValid(m.backdrop)
-        m.backdrop.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemBackground", ColorPalette.ELEMENTBACKGROUND)
-    end if
+    applyTheme()
 end sub
 
 sub findNodes()
-    initItemText()
-    initItemPoster()
-    initItemTextExtra()
-    initBackdrop()
-    initItemIcon()
-    m.itemProgress = m.top.findNode("progress")
-    m.itemProgressBackground = m.top.findNode("progressBackground")
+    m.backdrop = m.top.findNode("backdrop")
+    m.itemIcon = m.top.findNode("itemIcon")
+    m.itemPoster = m.top.findNode("itemPoster")
     m.playedIndicator = m.top.findNode("playedIndicator")
-    m.showProgressBarAnimation = m.top.findNode("showProgressBar")
+    m.progressBackground = m.top.findNode("progressBackground")
+    m.progress = m.top.findNode("progress")
+    m.itemText = m.top.findNode("itemText")
+    m.itemTextExtra = m.top.findNode("itemTextExtra")
+    m.showProgressBar = m.top.findNode("showProgressBar")
     m.showProgressBarField = m.top.findNode("showProgressBarField")
 end sub
 
-sub initItemText()
-    m.itemText = m.top.findNode("itemText")
+sub applyTheme()
+    if isValid(m.backdrop)
+        m.backdrop.color = themeColor("colorHomeRowItemBackground", "ELEMENTBACKGROUND")
+    end if
+
+    if isValid(m.itemIcon)
+        m.itemIcon.blendColor = themeColor("colorHomeMyListIcon", "ICON_DEFAULT")
+    end if
+
     if isValid(m.itemText)
-        m.itemText.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemTitle", ColorPalette.WHITE)
+        m.itemText.color = themeColor("colorHomeRowItemTitle", "TEXT_PRIMARY")
     end if
-end sub
 
-sub initItemPoster()
-    m.itemPoster = m.top.findNode("itemPoster")
-end sub
-
-sub initItemTextExtra()
-    m.itemTextExtra = m.top.findNode("itemTextExtra")
     if isValid(m.itemTextExtra)
-        m.itemTextExtra.color = chainLookupReturn(m.global.session, "user.settings.colorHomeRowItemSubtitle", ColorPalette.MIDGREY)
+        m.itemTextExtra.color = themeColor("colorHomeRowItemSubtitle", "TEXT_MUTED")
     end if
-end sub
 
-sub initBackdrop()
-    m.backdrop = m.top.findNode("backdrop")
-end sub
+    if isValid(m.progress)
+        m.progress.color = themeColor("colorHomeRowItemProgress", "PROGRESS")
+    end if
 
-sub initItemIcon()
-    m.itemIcon = m.top.findNode("itemIcon")
-    if not isValid(m.itemIcon) then return
-
-    m.itemIcon.blendcolor = chainLookupReturn(m.global.session, "user.settings.colorHomeMyListIcon", ColorPalette.WHITE)
+    if isValid(m.progressBackground)
+        m.progressBackground.color = themeColor("colorHomeRowItemProgressBackground", "PROGRESS_BACKGROUND")
+    end if
 end sub
 
 sub itemContentChanged()
@@ -90,23 +71,19 @@ sub itemContentChanged()
 
     itemData.AddReplace("Title", itemData.LookupCI("name"))
 
-    setColors()
-    initItemIcon()
-    initItemText()
-    initItemTextExtra()
-
+    applyTheme()
     ' validate to prevent crash
-    if not isValid(m.itemPoster) then initItemPoster()
-    if not isValid(m.backdrop) then initBackdrop()
-    if not isValid(m.itemIcon) then initItemIcon()
+    if not isValid(m.itemPoster) or not isValid(m.backdrop) or not isValid(m.itemIcon)
+        findNodes()
+    end if
 
     m.itemPoster.width = itemData.imageWidth
     m.itemPoster.loadDisplayMode = "scaleToZoom"
 
-    m.showProgressBarAnimation.control = AnimationControl.STOP
-    m.itemProgressBackground.width = itemData.imageWidth
-    m.itemProgressBackground.visible = false
-    m.itemProgress.width = 0
+    m.showProgressBar.control = AnimationControl.STOP
+    m.progressBackground.width = itemData.imageWidth
+    m.progressBackground.visible = false
+    m.progress.width = 0
 
     m.itemTextExtra.width = itemData.imageWidth
     m.itemTextExtra.visible = true
@@ -435,10 +412,10 @@ end sub
 sub drawProgressBar(itemData)
     if not isValid(itemData.LookupCI("imageWidth")) then return
 
-    m.itemProgressBackground.width = itemData.LookupCI("imageWidth")
-    m.itemProgressBackground.visible = true
+    m.progressBackground.width = itemData.LookupCI("imageWidth")
+    m.progressBackground.visible = true
     m.showProgressBarField.keyValue = [0, m.itemPoster.width * (itemData.PlayedPercentage / 100)]
-    m.showProgressBarAnimation.control = AnimationControl.START
+    m.showProgressBar.control = AnimationControl.START
 end sub
 
 '
