@@ -1,11 +1,76 @@
 import "pkg:/source/enums/Assets.bs"
 
 sub init()
-    m.top.uri = Assets.NINE_PATCH_PANEL
-    m.top.observeField("color", "onColorChanged")
-    onColorChanged()
+    m.fillPoster = m.top.findNode("fillPoster")
+    m.outlinePoster = m.top.findNode("outlinePoster")
+end sub
+
+sub onSizeChanged()
+    updateOutline()
+end sub
+
+sub onRadiusChanged()
+    updateOutline()
 end sub
 
 sub onColorChanged()
-    m.top.blendColor = m.top.color
+    m.fillPoster.blendColor = m.top.color
 end sub
+
+sub onOutlineChanged()
+    updateOutline()
+end sub
+
+sub updateOutline()
+    width = m.top.width
+    height = m.top.height
+    inset = m.top.outlineWidth
+
+    ' Get the asset and use it directly
+    m.outlinePoster.uri = getRoundedAsset(m.top.radius)
+    m.fillPoster.uri = getRoundedAsset(m.top.radius)
+
+    ' Outer poster
+    m.outlinePoster.width = width
+    m.outlinePoster.height = height
+    m.outlinePoster.translation = [0, 0]
+    m.outlinePoster.blendColor = m.top.outlineColor
+    m.outlinePoster.visible = inset > 0
+
+    ' Inner poster (same radius)
+    m.fillPoster.blendColor = m.top.color
+
+    if inset > 0
+        fillWidth = width - inset * 2
+        fillHeight = height - inset * 2
+
+        ' Avoid negative sizes
+        if fillWidth < 0 then fillWidth = 0
+        if fillHeight < 0 then fillHeight = 0
+
+        m.fillPoster.width = fillWidth
+        m.fillPoster.height = fillHeight
+        m.fillPoster.translation = [inset, inset]
+    else
+        m.fillPoster.width = width
+        m.fillPoster.height = height
+        m.fillPoster.translation = [0, 0]
+    end if
+end sub
+
+function getRoundedAsset(radius as integer) as string
+    if radius = 14
+        return Assets.NINE_PATCH_ROUNDED_14
+    else if radius = 12
+        return Assets.NINE_PATCH_ROUNDED_12
+    else if radius = 10
+        return Assets.NINE_PATCH_ROUNDED_10
+    else if radius = 8
+        return Assets.NINE_PATCH_ROUNDED_8
+    else if radius = 6
+        return Assets.NINE_PATCH_ROUNDED_6
+    end if
+
+    ' Fallback
+    return Assets.NINE_PATCH_ROUNDED_10
+end function

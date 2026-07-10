@@ -7,19 +7,16 @@
   </interface>
 
   <children>
-    <RoundedBackground id="background" translation="[0,0]" width="1460" height="100" />
+    <Rectangle id="background" translation="[0,0]" width="1460" height="100" color="#00000000" />
 
-    <Poster id="poster" translation="[20,5]" width="90" height="90" />
-    <Group id="labels" translation="[120,0]">
-      <Text id="nameLabel" text="Name:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,5]" />
-      <Text id="urlLabel" text="URL:" horizAlign="left" font="font:MediumBoldSystemFont" width="130" height="65" translation="[0,55]" />
-
-      <Text id="name" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[145,5]" />
-      <Text id="baseUrl" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[145,55]" />
+    <Poster id="poster" translation="[20,20]" width="75" height="75" uri="pkg:/images/icons/jellyfin-logo.png" />
+    <Group id="labels" translation="[110,0]">
+      <Text id="name" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[0,20]" />
+      <Text id="baseUrl" horizAlign="left" font="font:MediumSystemFont" height="65" translation="[0,70]" />
     </Group>
 
-    <Rectangle id="trashContainer" translation="[1480,0]" width="100" height="100">
-      <Poster id="trash" width="50" height="50" uri="pkg:/images/icons/trash.png" translation="[25,25]" />
+    <Rectangle id="trashWrapper" translation="[1460,0]" width="100" height="100" color="#00000000">
+      <Poster id="trash" translation="[32,37]" width="36" height="36" uri="pkg:/images/icons/trash.png" />
     </Rectangle>
   </children>
 

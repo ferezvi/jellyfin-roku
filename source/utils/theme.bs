@@ -3,7 +3,7 @@ import "pkg:/source/utils/config.bs"
 
 ' Saves the current theme to the global node for easy access throughout the application
 sub SaveThemeToGlobal()
-    themeName = get_setting("theme", "light")
+    themeName = get_setting("theme", "dark")
 
     m.global.addFields({
         theme: getThemeColors(themeName)
@@ -19,38 +19,104 @@ end function
 
 function getLightTheme() as object
     return {
-        TEXT_PRIMARY: ColorPalette.TEXT_PRIMARY,
-        TEXT_SECONDARY: ColorPalette.TEXT_PRIMARY,
-        TEXT_TERTIARY: ColorPalette.TEXT_TERTIARY,
+        TEXT_PRIMARY: ColorPalette.CHARCOAL,
+        TEXT_SECONDARY: ColorPalette.MIDGREY,
+        TEXT_TERTIARY: ColorPalette.WARMGREY,
+        TEXT_MUTED: ColorPalette.LIGHTGREY,
 
-        VIEWBACKGROUND: ColorPalette.VIEWBACKGROUND,
-        ELEMENTBACKGROUND: ColorPalette.ELEMENTBACKGROUND,
+        FOCUS_TEXT_PRIMARY: ColorPalette.WHITE,
+        FOCUS_TEXT_SECONDARY: ColorPalette.NEARWHITE,
 
-        HIGHLIGHT: ColorPalette.HIGHLIGHT,
-        LIGHTHIGHLIGHT: ColorPalette.LIGHTHIGHLIGHT,
+        VIEWBACKGROUND: ColorPalette.WHITE,
+        ELEMENTBACKGROUND: ColorPalette.NEARWHITE,
 
-        ERROR: ColorPalette.ERROR,
+        HIGHLIGHT: ColorPalette.TRIADBLUE,
+        LIGHTHIGHLIGHT: ColorPalette.PALEGREY,
 
-        CONFIG_BUTTON_BACKGROUND: ColorPalette.CONFIG_BUTTON_BACKGROUND,
-        BUTTON_BACKGROUND: ColorPalette.BUTTON_BACKGROUND,
+        ERROR: ColorPalette.ALERTRED,
+
+        CONFIG_BUTTON_BACKGROUND: ColorPalette.LIGHTGREY,
+
+        BUTTON_BACKGROUND: ColorPalette.TRIADBLUE,
         BUTTON_FOCUS_BACKGROUND: ColorPalette.BUTTON_FOCUS_BACKGROUND,
 
-        TEXT_MUTED: ColorPalette.MIDGREY,
+        BUTTON_TEXT: ColorPalette.WHITE,
+        BUTTON_FOCUS_TEXT: ColorPalette.WHITE,
+
         PROGRESS: ColorPalette.TRIADBLUE,
-        PROGRESS_BACKGROUND: ColorPalette.BLACK90,
+        PROGRESS_BACKGROUND: ColorPalette.LIGHTGREY,
 
-        OVERLAY: ColorPalette.BLACK77,
-        DELETE_FOCUS: ColorPalette.MIDGREY,
+        OVERLAY: ColorPalette.WHITEHALO,
 
-        SCROLLBAR_THUMB: ColorPalette.LIGHTGREY,
-        ICON_DEFAULT: ColorPalette.WHITE,
-        ICON_ACTIVE: ColorPalette.RED
+        DELETE_FOCUS: ColorPalette.ALERTRED,
+
+        SCROLLBAR_THUMB: ColorPalette.MIDGREY,
+
+        ICON_DEFAULT: ColorPalette.CHARCOAL,
+        ICON_ACTIVE: ColorPalette.TRIADBLUE,
+
+        OUTLINE_DEFAULT: ColorPalette.LIGHTGREY,
+
+        CARD_WASH: ColorPalette.OFFWHITE,
+        CARD_ITEM_BACKGROUND: ColorPalette.WHITE,
+        CARD_FOCUS_BORDER: ColorPalette.TRIADBLUE,
+        CARD_FOCUS_HALO: ColorPalette.WHITEHALO,
+
+        ' Add these for BaseScene
+        BACKGROUND_OVERLAY: "#F5F5F5FF",
+        BACKGROUND_OPACITY: 1.0
     }
 end function
 
 function getDarkTheme() as object
-    ' TODO: valores de Ocelotl (acento morado #7C3AED, base #0e0323, etc.) — pendiente hasta la fase de dark theme
-    return getLightTheme()
+    return {
+
+        TEXT_PRIMARY: ColorPalette.WHITE,
+        TEXT_SECONDARY: ColorPalette.PALEGREY,
+        TEXT_TERTIARY: ColorPalette.WARMGREY,
+        TEXT_MUTED: ColorPalette.MUTEDGREY,
+
+        FOCUS_TEXT_PRIMARY: ColorPalette.BLACK,
+        FOCUS_TEXT_SECONDARY: ColorPalette.CHARCOAL,
+
+        VIEWBACKGROUND: ColorPalette.NEARBLACK,
+        ELEMENTBACKGROUND: ColorPalette.RAISEDBLACK,
+
+        HIGHLIGHT: ColorPalette.WHITE,
+        LIGHTHIGHLIGHT: ColorPalette.NEARWHITE,
+
+        ERROR: ColorPalette.ALERTRED,
+
+        CONFIG_BUTTON_BACKGROUND: ColorPalette.DARKPANEL,
+
+        BUTTON_BACKGROUND: ColorPalette.BUTTONDARK,
+        BUTTON_FOCUS_BACKGROUND: ColorPalette.WHITE,
+
+        BUTTON_TEXT: ColorPalette.WHITE,
+        BUTTON_FOCUS_TEXT: ColorPalette.BLACK,
+
+        PROGRESS: ColorPalette.WHITE,
+        PROGRESS_BACKGROUND: ColorPalette.PROGRESSTRACK,
+
+        OVERLAY: ColorPalette.BLACKB8,
+
+        DELETE_FOCUS: ColorPalette.ALERTRED,
+
+        SCROLLBAR_THUMB: ColorPalette.SCROLLGREY,
+
+        ICON_DEFAULT: ColorPalette.WHITE,
+        ICON_ACTIVE: ColorPalette.WHITE,
+
+        OUTLINE_DEFAULT: ColorPalette.OUTLINEDEFAULT,
+
+        CARD_WASH: ColorPalette.SMOKE,
+        CARD_ITEM_BACKGROUND: ColorPalette.CARDBACKGROUND,
+        CARD_FOCUS_BORDER: ColorPalette.CARDFOCUSYELLOW,
+        CARD_FOCUS_HALO: ColorPalette.WHITEHALO,
+
+        BACKGROUND_OVERLAY: ColorPalette.BACKGROUND_OVERLAY,
+        BACKGROUND_OPACITY: 1.0
+    }
 end function
 
 ' Returns the color for a given setting name, falling back to the theme color if not set in user settings

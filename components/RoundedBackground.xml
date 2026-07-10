@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component name="RoundedBackground" extends="Poster">
+<component name="RoundedBackground" extends="Group">
     <interface>
-        <field id="color" type="color" value="0xFFFFFFFF" />
+        <field id="color" type="color" value="0xFFFFFFFF" onchange="onColorChanged" />
+        <field id="radius" type="integer" value="10" onchange="onRadiusChanged" />
+        <field id="width" type="integer" onchange="onSizeChanged" />
+        <field id="height" type="integer" onchange="onSizeChanged" />
+        <field id="outlineWidth" type="integer" value="0" onchange="onOutlineChanged" />
+        <field id="outlineColor" type="color" value="0xFFFFFFFF" onchange="onOutlineChanged" />
     </interface>
+    <children>
+        <Poster id="outlinePoster" visible="false" />
+        <Poster id="fillPoster" />
+    </children>
 </component>

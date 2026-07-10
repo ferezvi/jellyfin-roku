@@ -16,8 +16,8 @@
       <Text id="errorMessage" text="" wrap="true" width="600" font="font:MediumSystemFont" horizAlign="center" translation="[10, 15]" />
     </Rectangle>
 
-    <RoundedBackground id="signInFormContainer" width="870" height="280" translation="[525, 466]">
-      <FormList id="configOptions" translation="[60, 40]" itemSpacing="[0, 75]" />
+    <RoundedBackground id="signInFormContainer" width="870" height="280" radius="12" translation="[525, 466]">
+      <FormList id="configOptions" translation="[50, 40]" itemSpacing="[0, 50]" />
     </RoundedBackground>
 
     <CheckList

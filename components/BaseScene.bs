@@ -3,6 +3,7 @@ import "pkg:/source/enums/KeyCode.bs"
 import "pkg:/source/utils/misc.bs"
 
 sub init()
+    m.imageBackground = m.top.findNode("imageBackground")
     m.top.backgroundURI = ""
     m.spinner = m.top.findNode("spinner")
 end sub
@@ -13,10 +14,12 @@ sub isLoadingChanged()
 end sub
 
 sub setBackgroundImage(backgroundURI as string)
-    imageBackground = m.top.findNode("imageBackground")
-    if not isValid(imageBackground) then return
+    if not isValid(m.imageBackground) then return
 
-    imageBackground.uri = backgroundURI
+    m.imageBackground.uri = backgroundURI
+    ' Use theme colors
+    m.imageBackground.blendColor = m.global.theme.BACKGROUND_OVERLAY
+    m.imageBackground.opacity = m.global.theme.BACKGROUND_OPACITY
 end sub
 
 sub onJumpToChange()

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="BaseScene" extends="Scene">
   <children>
-    <Poster id="imageBackground" uri="" opacity=".2" width="1920" height="1080" />
+    <Poster id="imageBackground" uri="pkg:/images/white.png" blendColor="0x0A0A0CFF" opacity="1" width="1920" height="1080" />
     <Group id="content" />
     <JFOverhang id="overhang" />
     <AudioMiniPlayer id="audioMiniPlayer" translation="[0, 935]" />

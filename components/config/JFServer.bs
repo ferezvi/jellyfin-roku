@@ -10,46 +10,44 @@ end sub
 sub findNodes()
     m.poster = m.top.findNode("poster")
     m.background = m.top.findNode("background")
-    m.nameLabel = m.top.findNode("nameLabel")
-    m.urlLabel = m.top.findNode("urlLabel")
     m.name = m.top.findNode("name")
-    m.trashContainer = m.top.findNode("trashContainer")
     m.baseUrl = m.top.findNode("baseUrl")
     m.labels = m.top.findNode("labels")
+    m.trashWrapper = m.top.findNode("trashWrapper")
+    m.trash = m.top.findNode("trash")
 end sub
 
 sub applyTheme()
-    m.background.color = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
+    setTextColors()
+    setTrashIconVisibility()
+    setBackground()
+end sub
 
-    setTextColor()
+sub setTextColors()
+    m.name.color = m.global.theme.TEXT_PRIMARY
+    m.baseUrl.color = m.global.theme.TEXT_PRIMARY
 end sub
 
 sub itemContentChanged()
     server = m.top.itemContent
-    m.poster.uri = server.iconUrl
     m.name.text = server.name
     m.baseUrl.text = server.baseUrl
 
-    setTrashIconVisibility()
-
-    setBackground()
-    setDeleteFocus()
+    applyTheme()
 end sub
 
 sub setTrashIconVisibility()
     if not isValid(m.top.itemContent) then return
     if not isValid(m.top.itemContent.isSavedServer) then return
 
-    m.trashContainer.visible = m.top.itemContent.isSavedServer
+    m.trashWrapper.visible = m.top.itemContent.isSavedServer
 end sub
 
 sub onItemHasFocusChange()
-    if not m.top.itemHasFocus
-        m.top.itemContent.itemHasDeleteFocus = false
-    end if
+    if not isValid(m.top.itemContent) then return
+    if not isValid(m.top.itemContent.itemHasDeleteFocus) then return
 
-    setBackground()
-    setDeleteFocus()
+    applyTheme()
 end sub
 
 sub setBackground()
@@ -57,34 +55,12 @@ sub setBackground()
     if not isValid(m.top.itemContent.itemHasDeleteFocus) then return
 
     if m.top.itemContent.itemHasDeleteFocus
-        m.background.blendColor = m.global.theme.DELETE_FOCUS
+        m.name.color = m.global.theme.TEXT_MUTED
+        m.baseUrl.color = m.global.theme.TEXT_MUTED
+        m.trash.blendColor = m.global.theme.DELETE_FOCUS
         return
     end if
 
-    m.background.blendColor = m.top.itemHasFocus ? themeColor("colorCursor", "HIGHLIGHT") : m.global.theme.ELEMENTBACKGROUND
-end sub
-
-sub setDeleteFocus()
-    if not isValid(m.top.itemContent) then return
-    if not isValid(m.top.itemContent.itemHasDeleteFocus) then return
-
-    if m.top.itemHasFocus
-        if m.top.itemContent.itemHasDeleteFocus
-            trashContainerColor = themeColor("colorCursor", "HIGHLIGHT")
-        else
-            trashContainerColor = ColorPalette.TRANSPARENT
-        end if
-    else
-        trashContainerColor = ColorPalette.TRANSPARENT
-    end if
-
-    m.trashContainer.color = trashContainerColor
-end sub
-
-sub setTextColor()
-    m.nameLabel.color = m.global.theme.TEXT_SECONDARY
-    m.urlLabel.color = m.global.theme.TEXT_SECONDARY
-
-    m.name.color = m.global.theme.TEXT_PRIMARY
-    m.baseUrl.color = m.global.theme.TEXT_PRIMARY
+    m.trash.blendColor = m.global.theme.ICON_DEFAULT
+    setTextColors()
 end sub

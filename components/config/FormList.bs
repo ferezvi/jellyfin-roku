@@ -1,3 +1,4 @@
+import "pkg:/source/enums/Assets.bs"
 import "pkg:/source/utils/config.bs"
 
 sub init()
@@ -5,11 +6,11 @@ sub init()
 
     m.top.drawFocusFeedback = True
     m.top.vertFocusAnimationStyle = "floatingFocus"
-    m.top.focusBitmapUri = "pkg:/images/ui/panel.9.png"
-
+    m.top.focusBitmapUri = "pkg:/images/ui/outline.9.png"
     m.top.observeField("itemSelected", "onItemSelected")
 
-    m.top.itemSize = [750, 45]
+    m.top.itemSize = [760, 75]
+    m.top.itemSpacing = [0, 25]
 
     m.top.setfocus(true)
 end sub

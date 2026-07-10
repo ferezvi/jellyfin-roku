@@ -39,15 +39,17 @@ sub applyTheme()
 
     ' Text
     m.errorMessage.color = m.global.theme.ERROR
+    m.serverUrlTextbox.hintTextColor = m.global.theme.TEXT_MUTED
 
     ' Focus
     m.serverUrlOutline.blendColor = themeColor("colorCursor", "HIGHLIGHT")
+    m.serverPicker.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
 
     ' Buttons
     m.submit.background = m.global.theme.CONFIG_BUTTON_BACKGROUND
-    m.submit.color = m.global.theme.TEXT_TERTIARY
+    m.submit.color = m.global.theme.BUTTON_TEXT
     m.submit.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
-    m.submit.focusColor = m.global.theme.TEXT_PRIMARY
+    m.submit.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
 end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean
@@ -81,7 +83,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
                 m.top.forgetServer = selectedServer.baseUrl
                 return true
             end if
-
+            m.serverPicker.drawFocusFeedback = false
             m.top.serverUrl = selectedServer.baseUrl
             m.submit.setFocus(true)
             m.submit.focus = true
@@ -103,6 +105,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.DOWN
         if m.serverPicker.hasFocus() and m.serverPicker.content.getChildCount() > 0 and m.serverPicker.itemFocused = m.serverPicker.content.getChildCount() - 1
+            m.serverPicker.drawFocusFeedback = false
             m.serverUrlContainer.setFocus(true)
             m.serverUrlOutline.visible = true
             return true
@@ -120,6 +123,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.UP
         if m.serverUrlContainer.hasFocus() and isValidAndNotEmpty(m.servers)
+            m.serverPicker.drawFocusFeedback = true
             m.serverPicker.setFocus(true)
             m.serverUrlOutline.visible = false
             return true
@@ -143,6 +147,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = KeyCode.BACK
         if m.serverUrlContainer.hasFocus() and isValidAndNotEmpty(m.servers)
+            m.serverPicker.drawFocusFeedback = true
             m.serverUrlOutline.visible = false
             m.serverPicker.setFocus(true)
             return true
@@ -251,6 +256,13 @@ function onDialogButton()
     if button_text = tr("OK")
         m.serverUrlTextbox.text = d.text
         m.dialog.close = true
+
+        if isValidAndNotEmpty(d.text)
+            m.serverUrlOutline.visible = false
+            m.submit.setFocus(true)
+            m.submit.focus = true
+        end if
+
         return true
     else if button_text = tr("Cancel")
         m.dialog.close = true
