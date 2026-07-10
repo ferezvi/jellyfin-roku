@@ -71,50 +71,50 @@ end function
 function getDarkTheme() as object
     return {
 
-        TEXT_PRIMARY: ColorPalette.WHITE,
-        TEXT_SECONDARY: ColorPalette.PALEGREY,
-        TEXT_TERTIARY: ColorPalette.WARMGREY,
-        TEXT_MUTED: ColorPalette.MUTEDGREY,
+        TEXT_PRIMARY: "#FFFFFFFF",
+        TEXT_SECONDARY: "#B8C0CCFF",
+        TEXT_TERTIARY: "#8B94A3FF",
+        TEXT_MUTED: "#6A7482FF",
 
-        FOCUS_TEXT_PRIMARY: ColorPalette.BLACK,
-        FOCUS_TEXT_SECONDARY: ColorPalette.CHARCOAL,
+        FOCUS_TEXT_PRIMARY: "#FFFFFFFF",
+        FOCUS_TEXT_SECONDARY: "#E8EEF8FF",
 
-        VIEWBACKGROUND: ColorPalette.NEARBLACK,
-        ELEMENTBACKGROUND: ColorPalette.RAISEDBLACK,
+        VIEWBACKGROUND: "#0C0E13FF",
+        ELEMENTBACKGROUND: "#171B22FF",
 
-        HIGHLIGHT: ColorPalette.WHITE,
-        LIGHTHIGHLIGHT: ColorPalette.NEARWHITE,
+        HIGHLIGHT: "#2F7BF6FF",
+        LIGHTHIGHLIGHT: "#63A2FFFF",
 
-        ERROR: ColorPalette.ALERTRED,
+        ERROR: "#E74C3CFF",
 
-        CONFIG_BUTTON_BACKGROUND: ColorPalette.DARKPANEL,
+        CONFIG_BUTTON_BACKGROUND: "#171B22FF",
 
-        BUTTON_BACKGROUND: ColorPalette.BUTTONDARK,
-        BUTTON_FOCUS_BACKGROUND: ColorPalette.WHITE,
+        BUTTON_BACKGROUND: "#1E232CFF",
+        BUTTON_FOCUS_BACKGROUND: "#2F7BF6FF",
 
-        BUTTON_TEXT: ColorPalette.WHITE,
-        BUTTON_FOCUS_TEXT: ColorPalette.BLACK,
+        BUTTON_TEXT: "#FFFFFFFF",
+        BUTTON_FOCUS_TEXT: "#FFFFFFFF",
 
-        PROGRESS: ColorPalette.WHITE,
-        PROGRESS_BACKGROUND: ColorPalette.PROGRESSTRACK,
+        PROGRESS: "#2F7BF6FF",
+        PROGRESS_BACKGROUND: "#2A313CFF",
 
-        OVERLAY: ColorPalette.BLACKB8,
+        OVERLAY: "#000000B8",
 
-        DELETE_FOCUS: ColorPalette.ALERTRED,
+        DELETE_FOCUS: "#E74C3CFF",
 
-        SCROLLBAR_THUMB: ColorPalette.SCROLLGREY,
+        SCROLLBAR_THUMB: "#4A5565FF",
 
-        ICON_DEFAULT: ColorPalette.WHITE,
-        ICON_ACTIVE: ColorPalette.WHITE,
+        ICON_DEFAULT: "#B8C0CCFF",
+        ICON_ACTIVE: "#FFFFFFFF",
 
-        OUTLINE_DEFAULT: ColorPalette.OUTLINEDEFAULT,
+        OUTLINE_DEFAULT: "#2A313CFF",
 
-        CARD_WASH: ColorPalette.SMOKE,
-        CARD_ITEM_BACKGROUND: ColorPalette.CARDBACKGROUND,
-        CARD_FOCUS_BORDER: ColorPalette.CARDFOCUSYELLOW,
-        CARD_FOCUS_HALO: ColorPalette.WHITEHALO,
+        CARD_WASH: "#0F1218CC",
+        CARD_ITEM_BACKGROUND: "#171B22FF",
+        CARD_FOCUS_BORDER: "#2F7BF6FF",
+        CARD_FOCUS_HALO: "#63A2FF33",
 
-        BACKGROUND_OVERLAY: ColorPalette.BACKGROUND_OVERLAY,
+        BACKGROUND_OVERLAY: "#00000099",
         BACKGROUND_OPACITY: 1.0
     }
 end function
