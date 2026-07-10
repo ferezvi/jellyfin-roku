@@ -16,7 +16,7 @@
       <Text id="errorMessage" text="" wrap="true" width="600" font="font:MediumSystemFont" horizAlign="center" translation="[10, 15]" />
     </Rectangle>
 
-    <RoundedBackground id="signInFormContainer" width="870" height="280" radius="12" translation="[525, 466]">
+    <RoundedBackground id="signInFormContainer" width="870" height="282" radius="12" translation="[525, 466]">
       <FormList id="configOptions" translation="[50, 40]" itemSpacing="[0, 50]" />
     </RoundedBackground>
 
@@ -34,16 +34,18 @@
     <StandardButton
       id="submit"
       text="Submit"
-      height="85"
+      height="75"
       width="350"
-      translation="[595,900]" />
+      translation="[595,900]"
+      radius="6" />
 
     <StandardButton
       id="quickConnect"
       text="Quick Connect"
-      height="85"
+      height="75"
       width="350"
-      translation="[975,900]" />
+      translation="[975,900]"
+      radius="6" />
 
     <Timer id="quickConnectTimer" duration="3" repeat="true" />
   </children>

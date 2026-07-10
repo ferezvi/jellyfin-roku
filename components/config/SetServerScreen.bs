@@ -32,10 +32,16 @@ end sub
 
 
 sub applyTheme()
+
     ' Containers
     m.serverPickerContainer.color = m.global.theme.ELEMENTBACKGROUND
     m.serverUrlContainer.color = m.global.theme.ELEMENTBACKGROUND
     m.submitSizer.color = ColorPalette.TRANSPARENT
+    m.serverPickerContainer.outlineWidth = 2
+    m.serverPickerContainer.outlineColor = m.global.theme.OUTLINE_DEFAULT
+    m.serverUrlContainer.radius = 10
+    m.serverUrlContainer.outlineWidth = 2
+    m.serverUrlContainer.outlineColor = m.global.theme.OUTLINE_DEFAULT
 
     ' Text
     m.errorMessage.color = m.global.theme.ERROR

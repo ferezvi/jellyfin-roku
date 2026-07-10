@@ -13,11 +13,11 @@
       </LayoutGroup>
 
 
-      <RoundedBackground id="serverPickerContainer" width="1620" height="400" radius="12" outlineColor="#404040FF" outlineWidth="2" />
+      <RoundedBackground id="serverPickerContainer" width="1620" height="400" radius="12" />
 
       <Text text="...or enter server URL manually:" translation="[0, 690]" />
 
-      <RoundedBackground id="serverUrlContainer" radius="10" outlineColor="#404040FF" outlineWidth="2">
+      <RoundedBackground id="serverUrlContainer" radius="10">
         <TextEditBox id="serverUrlTextbox" translation="[12, 0]" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" backgroundUri="pkg:/images/transparent.png" />
         <Poster id="serverUrlOutline" visible="false" uri="pkg:/images/hd_focus.9.png" />
       </RoundedBackground>

@@ -63,24 +63,29 @@ sub findNodes()
 
     m.config = m.top.findNode("configOptions")
     m.saveCredentials = m.top.findNode("saveCredentials")
+
+    m.signInFormContainer = m.top.findNode("signInFormContainer")
 end sub
 
 
 sub applyTheme()
+
+    m.signInFormContainer.outlineWidth = 2
+    m.signInFormContainer.outlineColor = m.global.theme.OUTLINE_DEFAULT
 
     ' Title
     m.title.color = m.global.theme.TEXT_PRIMARY
 
     ' Buttons
     m.submit.background = m.global.theme.CONFIG_BUTTON_BACKGROUND
-    m.submit.color = m.global.theme.TEXT_TERTIARY
-    m.submit.focusBackground = m.global.theme.BUTTON_FOCUS_BACKGROUND
-    m.submit.focusColor = m.global.theme.TEXT_PRIMARY
+    m.submit.color = m.global.theme.BUTTON_TEXT
+    m.submit.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
+    m.submit.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
 
     m.quickConnect.background = m.global.theme.CONFIG_BUTTON_BACKGROUND
-    m.quickConnect.color = m.global.theme.TEXT_TERTIARY
-    m.quickConnect.focusBackground = m.global.theme.BUTTON_FOCUS_BACKGROUND
-    m.quickConnect.focusColor = m.global.theme.TEXT_PRIMARY
+    m.quickConnect.color = m.global.theme.BUTTON_TEXT
+    m.quickConnect.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
+    m.quickConnect.focusColor = m.global.theme.BUTTON_FOCUS_TEXT
 
     ' Containers
     m.errorContainer.color = m.global.theme.ERROR

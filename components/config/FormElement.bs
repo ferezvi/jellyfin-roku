@@ -23,7 +23,7 @@ end sub
 sub applyTheme()
     m.name.color = m.global.theme.TEXT_PRIMARY
     m.value.textColor = m.global.theme.TEXT_TERTIARY
-    m.value.hintTextColor = m.global.theme.TEXT_SECONDARY
+    m.value.hintTextColor = m.global.theme.TEXT_MUTED
 end sub
 
 sub itemContentChanged()
