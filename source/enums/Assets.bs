@@ -1,9 +1,12 @@
-' Assets.bs
 ' Centralized references to shared graphical assets (9-patches, icons, etc.)
+
 namespace Assets
     const NINE_PATCH_ROUNDED_6 = "pkg:/images/ui/rounded_6.9.png"
     const NINE_PATCH_ROUNDED_8 = "pkg:/images/ui/rounded_8.9.png"
     const NINE_PATCH_ROUNDED_10 = "pkg:/images/ui/rounded_10.9.png"
     const NINE_PATCH_ROUNDED_12 = "pkg:/images/ui/rounded_12.9.png"
     const NINE_PATCH_ROUNDED_14 = "pkg:/images/ui/rounded_14.9.png"
+    ' Assets.bs
+    const FOCUS_OUTLINE_BRAND = "pkg:/images/ui/outline_gradient_8.9.png"
+    const FOCUS_OUTLINE_NEUTRAL = "pkg:/images/ui/outline_8.9.png"
 end namespace

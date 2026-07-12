@@ -1,3 +1,4 @@
+import "pkg:/source/enums/Assets.bs"
 import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/utils/config.bs"
 
@@ -62,6 +63,8 @@ function getLightTheme() as object
         CARD_FOCUS_BORDER: ColorPalette.TRIADBLUE,
         CARD_FOCUS_HALO: ColorPalette.WHITEHALO,
 
+        FOCUS_OUTLINE_ASSET: Assets.FOCUS_OUTLINE_BRAND,
+
         ' Add these for BaseScene
         BACKGROUND_OVERLAY: "#F5F5F5FF",
         BACKGROUND_OPACITY: 1.0
@@ -113,6 +116,8 @@ function getDarkTheme() as object
         CARD_ITEM_BACKGROUND: "#171B22FF",
         CARD_FOCUS_BORDER: "#2F7BF6FF",
         CARD_FOCUS_HALO: "#63A2FF33",
+
+        FOCUS_OUTLINE_ASSET: Assets.FOCUS_OUTLINE_BRAND,
 
         BACKGROUND_OVERLAY: "#00000099",
         BACKGROUND_OPACITY: 1.0

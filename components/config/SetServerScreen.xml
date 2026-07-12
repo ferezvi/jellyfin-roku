@@ -17,9 +17,9 @@
 
       <Text text="...or enter server URL manually:" translation="[0, 690]" />
 
-      <RoundedBackground id="serverUrlContainer" radius="10">
+      <RoundedBackground id="serverUrlContainer" radius="8">
         <TextEditBox id="serverUrlTextbox" translation="[12, 0]" hintText="e.g. 192.168.1.100:8096 or https://example.com/jellyfin" backgroundUri="pkg:/images/transparent.png" />
-        <Poster id="serverUrlOutline" visible="false" uri="pkg:/images/hd_focus.9.png" />
+        <Poster id="serverUrlOutline" visible="false" />
       </RoundedBackground>
 
       <Text id="errorMessage" text="" font="font:MediumSystemFont" />
@@ -43,7 +43,6 @@
       translation="[170,300]"
       drawFocusFeedback="true"
       itemComponentName="JFServer"
-      focusBitmapUri="pkg:/images/ui/outline.9.png"
       itemSpacing="[0, 24]"
       itemSize="[1580, 120]"
       numRows="3"

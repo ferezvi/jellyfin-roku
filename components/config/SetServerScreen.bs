@@ -48,8 +48,9 @@ sub applyTheme()
     m.serverUrlTextbox.hintTextColor = m.global.theme.TEXT_MUTED
 
     ' Focus
-    m.serverUrlOutline.blendColor = themeColor("colorCursor", "HIGHLIGHT")
-    m.serverPicker.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
+    ' Brand outline (Jellyfin gradient), no blendColor — see theme.bs
+    m.serverUrlOutline.uri = m.global.theme.FOCUS_OUTLINE_ASSET
+    m.serverPicker.focusBitmapUri = m.global.theme.FOCUS_OUTLINE_ASSET
 
     ' Buttons
     m.submit.background = m.global.theme.CONFIG_BUTTON_BACKGROUND

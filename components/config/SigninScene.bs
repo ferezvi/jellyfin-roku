@@ -5,7 +5,7 @@ import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
 import "pkg:/source/utils/theme.bs"
 
-const blankUserAvatarUri = "pkg:/images/baseline_person_white_48dp.png"
+const blankUserAvatarUri = "pkg:/images/baseline_person_gradient_48dp.png"
 
 sub init()
     m.top.setFocus(true)
@@ -64,7 +64,6 @@ sub findNodes()
     m.config = m.top.findNode("configOptions")
     m.saveCredentials = m.top.findNode("saveCredentials")
 
-    m.signInFormContainer = m.top.findNode("signInFormContainer")
 end sub
 
 
@@ -92,7 +91,8 @@ sub applyTheme()
     m.signInFormContainer.color = m.global.theme.ELEMENTBACKGROUND
 
     ' Form
-    m.config.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
+    ' Brand outline (Jellyfin gradient), no blendColor — see theme.bs
+    m.config.focusBitmapUri = m.global.theme.FOCUS_OUTLINE_ASSET
     m.config.focusFootprintBlendColor = ColorPalette.TRANSPARENT
 
     ' Checkbox
@@ -148,8 +148,8 @@ function onKeyEvent(key as string, press as boolean) as boolean
     ' Returns true if user navigates to a new focusable element
     if not press then return false
 
-    list = m.top.findNode("configOptions")
-    saveCredentials = m.top.findNode("saveCredentials")
+    list = m.config
+    saveCredentials = m.saveCredentials
 
     if key = KeyCode.BACK
         m.top.backPressed = true

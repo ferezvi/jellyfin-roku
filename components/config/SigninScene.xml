@@ -12,7 +12,7 @@
 
     <Group translation="[832, 190]">
       <Poster
-        uri="pkg:/images/baseline_person_white_48dp.png"
+        uri="pkg:/images/baseline_person_gradient_48dp.png"
         id="overlayCurrentUserProfileImage"
         width="256"
         height="256"
