@@ -19,7 +19,7 @@
             <Text id="runtime" font="font:SmallestSystemFont" />
 
             <LayoutGroup id="rating" layoutDirection="horiz" itemSpacings="[-5]">
-              <Poster id="star" uri="pkg:/images/sharp_star_white_18dp.png" height="20" width="20" />
+              <Poster id="star" uri="pkg:/images/ratings/sharp_star_white_18dp.png" height="20" width="20" />
               <Text id="communityRating" font="font:SmallestSystemFont" />
             </LayoutGroup>
 

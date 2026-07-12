@@ -15,7 +15,7 @@
       <LayoutGroup id="buttons" translation="[240, 80]" layoutDirection="horiz" horizAlignment="left" itemSpacings="[25]">
         <Poster id="previous" width="32" height="32" uri="pkg:/images/icons/itemPrevious.png" opacity=".85" />
         <Poster id="play" width="32" height="32" uri="pkg:/images/icons/pause.png" opacity=".85" />
-        <Poster id="stop" width="32" height="32" uri="pkg:/images/white.png" opacity=".85" />
+        <Poster id="stop" width="32" height="32" uri="pkg:/images/ui/white.png" opacity=".85" />
         <Poster id="next" width="32" height="32" uri="pkg:/images/icons/itemNext.png" opacity=".85" />
         <Poster id="nowPlaying" width="32" height="32" uri="pkg:/images/icons/musicNote.png" opacity=".85" />
       </LayoutGroup>

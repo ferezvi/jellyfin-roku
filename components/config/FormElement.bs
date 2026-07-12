@@ -5,7 +5,7 @@ sub init()
     m.name = m.top.findNode("label")
 
     m.value = m.top.findNode("value")
-    m.value.backgroundUri = "pkg:/images/transparent.png"
+    m.value.backgroundUri = "pkg:/images/ui/transparent.png"
     m.value.width = 440
 
     applyTheme()

@@ -17,7 +17,7 @@
       showRowLabel="false" />
     <Group id="personDetails" visible="false">
       <Rectangle color="0x101420FF" width="1714" height="875" translation="[103, 145]" />
-      <Poster id="personImage" width="250" height="375" translation="[145, 190]" failedBitmapUri="pkg:/images/baseline_person_white_48dp.png" />
+      <Poster id="personImage" width="250" height="375" translation="[145, 190]" failedBitmapUri="pkg:/images/avatars/baseline_person_white_48dp.png" />
       <Text id="personName" width="1310" translation="[450, 190]" font="font:LargeBoldSystemFont" />
       <Text id="personRole" width="1310" translation="[450, 265]" font="font:MediumSystemFont" color="#aaaaaa" />
       <Text id="personOverview" width="1310" height="210" translation="[450, 335]" wrap="true" maxLines="6" ellipsisText="..." font="font:SmallestSystemFont" />

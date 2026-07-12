@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="TVSeasonGridItem" extends="Group">
   <children>
-    <Poster id="backdrop" translation="[0,0]" loadDisplayMode="scaleToZoom" uri="pkg:/images/white.9.png" />
+    <Poster id="backdrop" translation="[0,0]" loadDisplayMode="scaleToZoom" uri="pkg:/images/ui/white.9.png" />
     <Poster id="itemPoster" translation="[0,0]" loadDisplayMode="scaleToZoom" />
 
     <ScrollingText id="title" horizAlign="left" vertAlign="bottom" font="font:SmallBoldSystemFont" height="34" maxWidth="384" translation="[8,275]" repeatCount="0" />

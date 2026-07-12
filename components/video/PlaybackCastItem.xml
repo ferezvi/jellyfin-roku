@@ -3,7 +3,7 @@
   <script type="text/brightscript" uri="pkg:/components/extras/ExtrasItem.bs" />
   <children>
     <LayoutGroup layoutDirection="vert" itemSpacings="[10, 0]">
-      <Poster id="posterImg" width="234" height="300" translation="[8,243]" failedBitmapUri="pkg:/images/baseline_person_white_48dp.png" />
+      <Poster id="posterImg" width="234" height="300" translation="[8,243]" failedBitmapUri="pkg:/images/avatars/baseline_person_white_48dp.png" />
       <ScrollingText
         id="pLabel"
         horizAlign="left"

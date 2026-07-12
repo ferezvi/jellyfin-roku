@@ -5,7 +5,7 @@ import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
 import "pkg:/source/utils/theme.bs"
 
-const blankUserAvatarUri = "pkg:/images/baseline_person_gradient_48dp.png"
+const blankUserAvatarUri = "pkg:/images/avatars/baseline_person_gradient_48dp.png"
 
 sub init()
     m.top.setFocus(true)

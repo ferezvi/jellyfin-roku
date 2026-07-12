@@ -35,7 +35,7 @@ sub loadProgramDetails()
         ' This is needed here because the callee (onProgramDetailsLoaded) replaces the grid item with
         ' this newly created item from the server, without this, the red icon
         ' disappears when the user focuses on the program in question
-        program.hdSmallIconUrl = "pkg:/images/red.png"
+        program.hdSmallIconUrl = "pkg:/images/ui/red.png"
     else
         program.hdSmallIconUrl = invalid
     end if

@@ -26,7 +26,7 @@
             </LayoutGroup>
 
             <LayoutGroup id="communityReviewContainer" layoutDirection="horiz" itemSpacings="[15]">
-              <Poster id="communityReviewIcon" height="35" width="35" uri="pkg:/images/sharp_star_white_18dp.png" />
+              <Poster id="communityReviewIcon" height="35" width="35" uri="pkg:/images/ratings/sharp_star_white_18dp.png" />
               <Text id="communityReview" vertAlign="center" font="font:MediumSystemFont" height="35" />
             </LayoutGroup>
 

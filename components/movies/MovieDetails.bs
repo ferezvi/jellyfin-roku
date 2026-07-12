@@ -80,7 +80,7 @@ end sub
 sub applyTheme()
     m.scrollBar.color = themeColor("colorMovieDetailsScrollbar", "OVERLAY")
     m.thumb.color = themeColor("colorMovieDetailsScrollbarThumb", "SCROLLBAR_THUMB")
-    m.buttonGrp.focusBitmapUri = "pkg:/images/white.9.png"
+    m.buttonGrp.focusBitmapUri = "pkg:/images/ui/white.9.png"
     m.buttonGrp.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
 end sub
 
@@ -446,9 +446,9 @@ sub itemContentChanged()
         if isValid(itemData.CriticRating)
             setFieldText("criticRatingLabel", itemData.criticRating)
             if itemData.CriticRating > 60
-                tomato = "pkg:/images/fresh.png"
+                tomato = "pkg:/images/ratings/fresh.png"
             else
-                tomato = "pkg:/images/rotten.png"
+                tomato = "pkg:/images/ratings/rotten.png"
             end if
             if isValid(criticRatingIcon) then criticRatingIcon.uri = tomato
         else

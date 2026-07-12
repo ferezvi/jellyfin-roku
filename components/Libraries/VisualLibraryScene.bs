@@ -1164,7 +1164,7 @@ sub onItemFocused()
 
     itemData = focusedItem.json
 
-    m.star.uri = "pkg:/images/sharp_star_white_18dp.png"
+    m.star.uri = "pkg:/images/ratings/sharp_star_white_18dp.png"
 
     if m.global.session.user.settings["ui.itemdetail.showRatings"]
         if isValid(itemData.communityRating)
@@ -1175,10 +1175,10 @@ sub onItemFocused()
         if isValid(itemData.CriticRating)
             setFieldText("criticRatingLabel", itemData.criticRating)
 
-            tomato = "pkg:/images/rotten.png"
+            tomato = "pkg:/images/ratings/rotten.png"
 
             if itemData.CriticRating > 60
-                tomato = "pkg:/images/fresh.png"
+                tomato = "pkg:/images/ratings/fresh.png"
             end if
 
             m.criticRatingIcon.uri = tomato

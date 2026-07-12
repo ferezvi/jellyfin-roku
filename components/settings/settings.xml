@@ -14,7 +14,7 @@
       numRows="11"
       vertFocusAnimationStyle="floatingFocus" />
 
-    <Poster translation="[710, 230]" id="testRectangle" width="1110" height="800" uri="pkg:/images/white.9.png" />
+    <Poster translation="[710, 230]" id="testRectangle" width="1110" height="800" uri="pkg:/images/ui/white.9.png" />
 
     <Text id="settingDesc" translation="[730, 270]" width="1065" wrap="true" horizAlign="left" />
 

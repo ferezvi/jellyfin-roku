@@ -58,7 +58,7 @@ sub init()
         m.voiceBox.observeField("text", "onvoiceFilter")
     else
         m.voiceBox.visible = false
-        m.voiceBox.backgroundUri = "pkg:/images/transparent.png"
+        m.voiceBox.backgroundUri = "pkg:/images/ui/transparent.png"
     end if
 
     'backdrop

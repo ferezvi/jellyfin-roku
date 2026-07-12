@@ -12,7 +12,7 @@
       translation="[0,600]"
       automaticLoadingDataFeedback="false"
       showLoadingDataFeedback="true"
-      focusBitmapUri="pkg:/images/white.9.png"
+      focusBitmapUri="pkg:/images/ui/white.9.png"
       showPastTimeScreen="true"
     />
     <Animation id="gridMoveAnimation" duration="1" repeat="false" easeFunction="outQuad">

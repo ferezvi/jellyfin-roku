@@ -4,7 +4,7 @@
         <Rectangle id="backdrop" height="1080" width="1920" />
 
         <!-- Selected Item Details -->
-        <maskGroup id="backgroundMask" maskUri="pkg:/images/backgroundmask.png" translation="[1320, 150]" maskSize="[500,375]">
+        <maskGroup id="backgroundMask" maskUri="pkg:/images/ui/backgroundmask.png" translation="[1320, 150]" maskSize="[500,375]">
             <Poster id="image" height="375" width="500" loadDisplayMode="scaleToFit" />
         </maskGroup>
 
@@ -18,11 +18,11 @@
 
                     <LayoutGroup id="episodeDetailsGroup" layoutDirection="horiz" itemSpacings="[10]">
                         <Group id="isLive">
-                            <Poster id="isLiveBackground" uri="pkg:/images/white.9.png" blendColor="#FF0000" />
+                            <Poster id="isLiveBackground" uri="pkg:/images/ui/white.9.png" blendColor="#FF0000" />
                             <Text id="isLiveText" text="Live" font="font:SmallestBoldSystemFont" translation="[8,4]" />
                         </Group>
                         <Group id="isRepeat">
-                            <Poster id="isRepeatBackground" uri="pkg:/images/white.9.png" blendColor="#009688" />
+                            <Poster id="isRepeatBackground" uri="pkg:/images/ui/white.9.png" blendColor="#009688" />
                             <Text id="isRepeatText" text="Repeat" font="font:SmallestBoldSystemFont" translation="[8,4]" />
                         </Group>
                         <Text id="episodeNumber" font="font:SmallSystemFont" />
@@ -40,22 +40,22 @@
                     <LayoutGroup layoutDirection="horiz" itemSpacings="[30]">
                         <!-- View Channel button -->
                         <Group id="viewChannelButton" opacity="0">
-                            <Poster id="viewChannelButtonBackground" uri="pkg:/images/white.9.png" blendColor="#000000" />
-                            <Poster id="viewChannelOutline" visible="false" uri="pkg:/images/hd_focus.9.png" />
+                            <Poster id="viewChannelButtonBackground" uri="pkg:/images/ui/white.9.png" blendColor="#000000" />
+                            <Poster id="viewChannelOutline" visible="false" uri="pkg:/images/ui/hd_focus.9.png" />
                             <Text id="viewChannelButtonLabel" text="View Channel" translation="[20,20]" />
                         </Group>
 
                         <!-- Record button -->
                         <Group id="recordButton" opacity="0">
-                            <Poster id="recordButtonBackground" uri="pkg:/images/white.9.png" blendColor="#000000" />
-                            <Poster id="recordOutline" visible="false" uri="pkg:/images/hd_focus.9.png" />
+                            <Poster id="recordButtonBackground" uri="pkg:/images/ui/white.9.png" blendColor="#000000" />
+                            <Poster id="recordOutline" visible="false" uri="pkg:/images/ui/hd_focus.9.png" />
                             <Text id="recordButtonLabel" text="Record" translation="[20,20]" />
                         </Group>
 
                         <!-- Record Series button-->
                         <Group id="recordSeriesButton" opacity="0">
-                            <Poster id="recordSeriesButtonBackground" uri="pkg:/images/white.9.png" blendColor="#000000" />
-                            <Poster id="recordSeriesOutline" visible="false" uri="pkg:/images/hd_focus.9.png" />
+                            <Poster id="recordSeriesButtonBackground" uri="pkg:/images/ui/white.9.png" blendColor="#000000" />
+                            <Poster id="recordSeriesOutline" visible="false" uri="pkg:/images/ui/hd_focus.9.png" />
                             <Text id="recordSeriesButtonLabel" text="Record Series" translation="[20,20]" />
                         </Group>
                     </LayoutGroup>
