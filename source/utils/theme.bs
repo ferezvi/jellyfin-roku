@@ -118,6 +118,7 @@ function getDarkTheme() as object
         CARD_FOCUS_HALO: "#63A2FF33",
 
         FOCUS_OUTLINE_ASSET: Assets.FOCUS_OUTLINE_BRAND,
+        BACKGROUND_IMAGE: Assets.BACKGROUND_GLOW,
 
         BACKGROUND_OVERLAY: "#00000099",
         BACKGROUND_OPACITY: 1.0

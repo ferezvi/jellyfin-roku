@@ -16,10 +16,16 @@ end sub
 sub setBackgroundImage(backgroundURI as string)
     if not isValid(m.imageBackground) then return
 
-    m.imageBackground.uri = backgroundURI
-    ' Use theme colors
-    m.imageBackground.blendColor = m.global.theme.BACKGROUND_OVERLAY
-    m.imageBackground.opacity = m.global.theme.BACKGROUND_OPACITY
+    if isStringEqual(backgroundURI, string.EMPTY)
+        ' No backdrop selected by the user — fall back to the themed glow.
+        m.imageBackground.uri = m.global.theme.BACKGROUND_IMAGE
+        m.imageBackground.blendColor = ColorPalette.WHITE
+        m.imageBackground.opacity = 1.0
+    else
+        m.imageBackground.uri = backgroundURI
+        m.imageBackground.blendColor = m.global.theme.BACKGROUND_OVERLAY
+        m.imageBackground.opacity = m.global.theme.BACKGROUND_OPACITY
+    end if
 end sub
 
 sub onJumpToChange()
