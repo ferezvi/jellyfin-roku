@@ -1,22 +1,33 @@
+import "pkg:/source/enums/Assets.bs"
 import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/enums/KeyCode.bs"
+import "pkg:/source/enums/String.bs"
 import "pkg:/source/utils/misc.bs"
+import "pkg:/source/utils/theme.bs"
 
 sub init()
+    findNodes()
+
+    m.top.observeField("appBackgroundURI", "onBackgroundChanged")
+
+    applyTheme()
+    setBackgroundImage(m.top.appBackgroundURI)
+end sub
+
+sub findNodes()
     m.imageBackground = m.top.findNode("imageBackground")
+    m.backgroundVignette = m.top.findNode("backgroundVignette")
+    m.backgroundVignette.uri = Assets.VIGNETTE_RADIAL
 
     m.spinner = m.top.findNode("spinner")
-    m.top.observeField("appBackgroundURI", "onBackgroundChanged")
-    setBackgroundImage(m.top.appBackgroundURI)
+end sub
+
+sub applyTheme()
+    m.backgroundVignette.blendColor = themeColor("colorBackgroundVignette", "VIGNETTE_COLOR")
 end sub
 
 sub onBackgroundChanged()
     setBackgroundImage(m.top.appBackgroundURI)
-end sub
-
-' Triggered when the isLoading boolean component field is changed
-sub isLoadingChanged()
-    m.spinner.visible = m.top.isLoading
 end sub
 
 sub setBackgroundImage(backgroundURI as string)
@@ -32,6 +43,11 @@ sub setBackgroundImage(backgroundURI as string)
         m.imageBackground.blendColor = m.global.theme.BACKGROUND_OVERLAY
         m.imageBackground.opacity = m.global.theme.BACKGROUND_OPACITY
     end if
+end sub
+
+' Triggered when the isLoading boolean component field is changed
+sub isLoadingChanged()
+    m.spinner.visible = m.top.isLoading
 end sub
 
 sub onJumpToChange()

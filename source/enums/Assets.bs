@@ -10,5 +10,6 @@ namespace Assets
     const FOCUS_OUTLINE_BRAND = "pkg:/images/ui/outline_gradient_8.9.png"
     const FOCUS_OUTLINE_NEUTRAL = "pkg:/images/ui/outline_8.9.png"
     const BACKGROUND_GLOW = "pkg:/images/ui/background_glow_fhd.png"
+    const VIGNETTE_RADIAL = "pkg:/images/overlays/vignette-radial.png"
 
 end namespace

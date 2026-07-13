@@ -2,6 +2,7 @@ import "pkg:/source/api/baserequest.bs"
 import "pkg:/source/api/Image.bs"
 import "pkg:/source/enums/AnimationControl.bs"
 import "pkg:/source/enums/AnimationState.bs"
+import "pkg:/source/enums/Assets.bs"
 import "pkg:/source/enums/ColorPalette.bs"
 import "pkg:/source/enums/ImageType.bs"
 import "pkg:/source/enums/ItemType.bs"
@@ -34,10 +35,22 @@ end sub
 sub findNodes()
     m.homeRows = m.top.findNode("homeRows")
 
-    m.backdrop = m.top.findNode("backdrop")
-    m.backdrop.observeField("loadStatus", "onBackdropLoaded")
-    m.backdropFadeAnimation = m.top.findNode("backdropFadeAnimation")
-    m.pendingBackdropFade = false
+    m.backdropA = m.top.findNode("backdropA")
+    m.backdropB = m.top.findNode("backdropB")
+    m.backdropA.observeField("loadStatus", "onBackdropLoaded")
+    m.backdropB.observeField("loadStatus", "onBackdropLoaded")
+
+    ' The poster currently shown vs. the one used to preload the next image
+    m.activeBackdrop = m.backdropA
+    m.inactiveBackdrop = m.backdropB
+
+    m.backdropCrossfadeAnimation = m.top.findNode("backdropCrossfadeAnimation")
+    m.backdropAFade = m.top.findNode("backdropAFade")
+    m.backdropBFade = m.top.findNode("backdropBFade")
+
+    ' Tracks which node's load event we're currently waiting on, to ignore stale events
+    ' from rapid navigation (e.g. user moves past an item before its image finishes loading)
+    m.pendingBackdropTarget = invalid
 
     m.buttons = m.top.findNode("buttons")
     m.toggleButtonsAnimation = m.top.findNode("toggleButtonsAnimation")
@@ -47,29 +60,82 @@ sub findNodes()
     m.searchButton = m.top.findNode("searchButton")
     m.settingsButton = m.top.findNode("settingsButton")
 
+    m.backdropVignette = m.top.findNode("backdropVignette")
+    m.backdropVignette.uri = Assets.VIGNETTE_RADIAL
+
 end sub
 
 sub setBackdropImage(backdropUri as string)
 
     if backdropUri = ""
-        m.backdrop.uri = ""
-        m.backdrop.opacity = 0
+        startBackdropFade(m.activeBackdrop, invalid)
         return
     end if
 
-    m.pendingBackdropFade = true
-    m.backdrop.uri = backdropUri
+    ' Already showing this backdrop at full visibility - nothing to do
+    if backdropUri = m.activeBackdrop.uri and m.activeBackdrop.opacity = 0.25
+        return
+    end if
+
+    ' Same image as the active poster, but currently faded out (we cleared it
+    ' when focus moved to an item without a backdrop, and now we're back) -
+    ' just fade it back in, no need to reload from the network
+    if backdropUri = m.activeBackdrop.uri
+        startBackdropFade(m.inactiveBackdrop, m.activeBackdrop)
+        return
+    end if
+
+    ' Already preloaded in the inactive poster (e.g. navigating back a step)
+    if backdropUri = m.inactiveBackdrop.uri and m.inactiveBackdrop.loadStatus = "ready"
+        startBackdropFade(m.activeBackdrop, m.inactiveBackdrop)
+        return
+    end if
+
+    m.inactiveBackdrop.uri = backdropUri
+    m.pendingBackdropTarget = m.inactiveBackdrop
 
 end sub
 
+sub onBackdropLoaded(event as object)
+    node = event.GetRoSGNode()
 
-sub onBackdropLoaded()
+    ' Ignore load events from a backdrop that's no longer the pending target
+    if not isValid(m.pendingBackdropTarget) then return
+    if not node.isSameNode(m.pendingBackdropTarget) then return
+    if node.loadStatus <> "ready" then return
 
-    if m.backdrop.loadStatus = "ready" and m.pendingBackdropFade
-        m.pendingBackdropFade = false
-        m.backdropFadeAnimation.control = AnimationControl.START
+    startBackdropFade(m.activeBackdrop, node)
+end sub
+
+' Crossfades between the two backdrop posters. If incoming is invalid,
+' this just fades the outgoing poster to black (used to clear the backdrop).
+sub startBackdropFade(outgoing as object, incoming = invalid as dynamic)
+
+    ' Stop mid-flight so a fast focus change redirects smoothly instead of
+    ' snapping back to a keyframe
+    if isStringEqual(m.backdropCrossfadeAnimation.state, AnimationState.RUNNING)
+        m.backdropCrossfadeAnimation.control = AnimationControl.STOP
     end if
 
+    ' Default both interpolators to hold their current value (no-op) so that
+    ' starting the animation doesn't replay a stale keyValue on the poster
+    ' that isn't part of this transition
+    m.backdropAFade.keyValue = [m.backdropA.opacity, m.backdropA.opacity]
+    m.backdropBFade.keyValue = [m.backdropB.opacity, m.backdropB.opacity]
+
+    outgoingInterpolator = outgoing.isSameNode(m.backdropA) ? m.backdropAFade : m.backdropBFade
+    outgoingInterpolator.keyValue = [outgoing.opacity, 0.0]
+
+    if isValid(incoming)
+        incomingInterpolator = incoming.isSameNode(m.backdropA) ? m.backdropAFade : m.backdropBFade
+        incomingInterpolator.keyValue = [incoming.opacity, 0.25]
+
+        m.activeBackdrop = incoming
+        m.inactiveBackdrop = outgoing
+    end if
+
+    m.pendingBackdropTarget = invalid
+    m.backdropCrossfadeAnimation.control = AnimationControl.START
 end sub
 
 sub applyTheme()
@@ -85,6 +151,9 @@ sub applyTheme()
     m.settingsButton.background = themeColor("colorHomeButtonBackground", "BUTTON_BACKGROUND")
     m.settingsButton.focusTextColor = themeColor("colorHomeButtonFocusText", "TEXT_PRIMARY")
     m.settingsButton.focusBackground = themeColor("colorCursor", "HIGHLIGHT")
+
+    m.backdropVignette.blendColor = themeColor("colorBackgroundVignette", "VIGNETTE_COLOR")
+
 end sub
 
 sub refresh()

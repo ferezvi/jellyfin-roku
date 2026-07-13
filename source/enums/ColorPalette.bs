@@ -48,6 +48,7 @@ enum ColorPalette
     BLACKB8 = "#000000B8"
     BLACKDD = "#000000DD"
     TRANSPARENT = "#00000000"
+    VIGNETTE = "#000000"
 
     ' Buttons
     CONFIG_BUTTON_BACKGROUND = "#C8FAFAFF"

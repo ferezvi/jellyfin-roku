@@ -67,7 +67,9 @@ function getLightTheme() as object
 
         ' Add these for BaseScene
         BACKGROUND_OVERLAY: "#F5F5F5FF",
-        BACKGROUND_OPACITY: 1.0
+        BACKGROUND_OPACITY: 1.0,
+
+        VIGNETTE_COLOR: ColorPalette.VIGNETTE
     }
 end function
 
@@ -121,7 +123,9 @@ function getDarkTheme() as object
         BACKGROUND_IMAGE: Assets.BACKGROUND_GLOW,
 
         BACKGROUND_OVERLAY: "#00000099",
-        BACKGROUND_OPACITY: 1.0
+        BACKGROUND_OPACITY: 1.0,
+
+        VIGNETTE_COLOR: ColorPalette.VIGNETTE
     }
 end function
 

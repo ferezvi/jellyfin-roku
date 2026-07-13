@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="Home" extends="JFScreen">
   <children>
-    <Poster id="backdrop" loadDisplayMode="scaleToZoom" width="1920" height="1080" opacity="0" />
-
+    <Poster id="backdropA" loadDisplayMode="scaleToZoom" width="1920" height="1080" opacity="0" />
+    <Poster id="backdropB" loadDisplayMode="scaleToZoom" width="1920" height="1080" opacity="0" />
+    <Poster id="backdropVignette" width="1920" height="1080" />
     <LayoutGroup id="buttons" translation="[100, 100]" layoutDirection="horiz" horizAlignment="left" itemSpacings="[25]">
       <TextButton
         id="searchButton"
@@ -40,8 +41,9 @@
       <FloatFieldInterpolator id="buttonsFade" key="[0.0, .6]" keyValue="[1.00, 0.00]" fieldToInterp="buttons.opacity" />
       <Vector2DFieldInterpolator id="buttonsMove" key="[0.1, .9]" keyValue="[[100, 100], [100, 0]]" fieldToInterp="buttons.translation" />
     </Animation>
-    <Animation id="backdropFadeAnimation" duration=".5" repeat="false" easeFunction="linear">
-      <FloatFieldInterpolator id="backdropFade" key="[0.0, 1.0]" keyValue="[0.00, 0.25]" fieldToInterp="backdrop.opacity" />
+    <Animation id="backdropCrossfadeAnimation" duration=".5" repeat="false" easeFunction="linear">
+      <FloatFieldInterpolator id="backdropAFade" key="[0.0, 1.0]" keyValue="[0.00, 0.25]" fieldToInterp="backdropA.opacity" />
+      <FloatFieldInterpolator id="backdropBFade" key="[0.0, 1.0]" keyValue="[0.00, 0.25]" fieldToInterp="backdropB.opacity" />
     </Animation>
 
   </children>
