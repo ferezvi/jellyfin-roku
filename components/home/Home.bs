@@ -140,6 +140,12 @@ end sub
 
 sub applyTheme()
     m.homeRows.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
+    if isHDDevice()
+        outline = Assets.FOCUS_OUTLINE_HD
+    else
+        outline = Assets.FOCUS_OUTLINE_FHD
+    end if
+    m.homeRows.focusBitmapUri = outline
     m.homeRows.rowLabelColor = themeColor("colorHomeRowHeaders", "TEXT_PRIMARY")
 
     m.searchButton.textColor = themeColor("colorHomeButtonText", "TEXT_SECONDARY")

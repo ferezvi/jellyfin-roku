@@ -8,7 +8,9 @@ namespace Assets
     const NINE_PATCH_ROUNDED_14 = "pkg:/images/ui/rounded_14.9.png"
 
     const FOCUS_OUTLINE_BRAND = "pkg:/images/ui/outline_gradient_8.9.png"
-    const FOCUS_OUTLINE_NEUTRAL = "pkg:/images/ui/outline_8.9.png"
+    const FOCUS_OUTLINE_NEUTRAL = "pkg:/images/ui/outline.9.png"
+    const FOCUS_OUTLINE_HD = "pkg:/images/ui/outline_hd.9.png"
+    const FOCUS_OUTLINE_FHD = "pkg:/images/ui/outline_fhd.9.png"
 
     const BACKGROUND_GLOW = "pkg:/images/background/bg3.png"
     const BACKGROUND_BG1 = "pkg:/images/background/bg1.jpg"
