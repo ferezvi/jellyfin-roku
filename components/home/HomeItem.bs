@@ -19,6 +19,7 @@ sub findNodes()
     m.backdrop = m.top.findNode("backdrop")
     m.itemIcon = m.top.findNode("itemIcon")
     m.itemPoster = m.top.findNode("itemPoster")
+    m.backgroundMask = m.top.findNode("backgroundMask")
     m.playedIndicator = m.top.findNode("playedIndicator")
     m.progressBackground = m.top.findNode("progressBackground")
     m.progress = m.top.findNode("progress")
@@ -78,6 +79,7 @@ sub itemContentChanged()
     end if
 
     m.itemPoster.width = itemData.imageWidth
+    adjustMaskForWidth(itemData.imageWidth)
     m.itemPoster.loadDisplayMode = "scaleToZoom"
 
     m.showProgressBar.control = AnimationControl.STOP
@@ -486,5 +488,21 @@ sub onPosterLoadStatusChanged()
     else
         m.backdrop.visible = true
         m.itemIcon.visible = true
+    end if
+end sub
+
+sub adjustMaskForWidth(width as integer)
+    if not isValid(m.backgroundMask) then return
+
+    posterHeight = 261
+
+    m.backgroundMask.maskSize = [scaleMaskSize(width), scaleMaskSize(posterHeight)]
+
+    if width = 180
+        m.backgroundMask.maskUri = Assets.MOVIE_MASK
+    else if width = 261
+        m.backgroundMask.maskUri = Assets.MUSIC_MASK
+    else
+        m.backgroundMask.maskUri = Assets.WIDE_MASK
     end if
 end sub

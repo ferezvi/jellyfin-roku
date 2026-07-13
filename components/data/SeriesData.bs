@@ -71,7 +71,7 @@ sub setPoster()
         end if
 
         if isChainValid(m.top.json, "ImageTags.Thumb")
-            imgParams = { "maxHeight": 331, "maxWidth": 464, "Tag": chainLookup(m.top.json, "ImageTags.Thumb") }
+            imgParams = { "maxHeight": 331, "maxWidth": 465, "Tag": chainLookup(m.top.json, "ImageTags.Thumb") }
             m.top.landscapePosterURL = ImageURL(m.top.json.id, "Thumb", imgParams)
         end if
 

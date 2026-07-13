@@ -10,20 +10,12 @@ sub init()
 
     m.top.observeField("appBackgroundURI", "onBackgroundChanged")
 
-    applyTheme()
     setBackgroundImage(m.top.appBackgroundURI)
 end sub
 
 sub findNodes()
     m.imageBackground = m.top.findNode("imageBackground")
-    m.backgroundVignette = m.top.findNode("backgroundVignette")
-    m.backgroundVignette.uri = Assets.VIGNETTE_RADIAL
-
     m.spinner = m.top.findNode("spinner")
-end sub
-
-sub applyTheme()
-    m.backgroundVignette.blendColor = themeColor("colorBackgroundVignette", "VIGNETTE_COLOR")
 end sub
 
 sub onBackgroundChanged()

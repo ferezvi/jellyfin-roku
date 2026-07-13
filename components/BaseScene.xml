@@ -2,7 +2,6 @@
 <component name="BaseScene" extends="Scene">
   <children>
     <Poster id="imageBackground" loadDisplayMode="scaleToZoom" opacity="1" width="1920" height="1080" />
-    <Poster id="backgroundVignette" width="1920" height="1080" />
     <Group id="content" />
     <JFOverhang id="overhang" />
     <AudioMiniPlayer id="audioMiniPlayer" translation="[0, 935]" />

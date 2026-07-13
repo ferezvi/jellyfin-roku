@@ -248,8 +248,8 @@ sub onHomeItemFocusedChange()
         ' Movies / Series with their own backdrop
         if isValidAndNotEmpty(focusedItem.json.BackdropImageTags)
             backdrop = ImageURL(focusedItem.id, ImageType.BACKDROP, {
-                maxHeight: "1080",
-                maxWidth: "1920",
+                maxHeight: "720",
+                maxWidth: "1280",
                 quality: "90"
             })
 
@@ -262,8 +262,8 @@ sub onHomeItemFocusedChange()
         ' Episodes use the series backdrop
         if focusedItem.type = "Episode" and isValidAndNotEmpty(focusedItem.json.seriesid)
             backdrop = ImageURL(focusedItem.json.seriesid, ImageType.BACKDROP, {
-                maxHeight: "1080",
-                maxWidth: "1920",
+                maxHeight: "720",
+                maxWidth: "1280",
                 quality: "90"
             })
 

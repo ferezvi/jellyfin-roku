@@ -9,7 +9,15 @@ namespace Assets
 
     const FOCUS_OUTLINE_BRAND = "pkg:/images/ui/outline_gradient_8.9.png"
     const FOCUS_OUTLINE_NEUTRAL = "pkg:/images/ui/outline_8.9.png"
-    const BACKGROUND_GLOW = "pkg:/images/ui/background_glow_fhd.png"
+
+    const BACKGROUND_GLOW = "pkg:/images/background/bg3.png"
+    const BACKGROUND_BG1 = "pkg:/images/background/bg1.jpg"
+    const BACKGROUND_BG2 = "pkg:/images/background/bg2.jpg"
+
     const VIGNETTE_RADIAL = "pkg:/images/overlays/vignette-radial.png"
+
+    const MOVIE_MASK = "pkg:/images/ui/movieMask.png"
+    const MUSIC_MASK = "pkg:/images/ui/musicMask.png"
+    const WIDE_MASK = "pkg:/images/ui/wideMask.png"
 
 end namespace

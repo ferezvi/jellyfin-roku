@@ -130,7 +130,7 @@ function getPosterURL(itemData) as string
     posterURL = posterURL.replace("maxHeight=331", `maxHeight=${m.itemPoster.height}`)
 
     posterURL = posterURL.replace("maxWidth=1280", `maxWidth=${m.itemPoster.width}`)
-    posterURL = posterURL.replace("maxWidth=464", `maxWidth=${m.itemPoster.width}`)
+    posterURL = posterURL.replace("maxWidth=465", `maxWidth=${m.itemPoster.width}`)
 
     return posterURL
 end function

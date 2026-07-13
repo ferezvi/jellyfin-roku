@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="HomeItem" extends="Group">
   <children>
-    <Rectangle id="backdrop" width="464" height="261" />
+    <Rectangle id="backdrop" width="465" height="261" color="0x00000000" />
     <Poster id="itemIcon" width="100" height="100" translation="[190,85]" loadDisplayMode="scaleToFit" />
-    <Poster id="itemPoster" width="464" height="261" loadDisplayMode="scaleToZoom">
-      <PlayedCheckmark id="playedIndicator" translation="[375, 0]" />
-    </Poster>
+    <MaskGroup id="backgroundMask">
+      <Poster id="itemPoster" width="465" height="261" loadDisplayMode="scaleToZoom">
+        <PlayedCheckmark id="playedIndicator" translation="[375, 0]" />
+      </Poster>
+    </MaskGroup>
 
-    <Rectangle id="progressBackground" visible="false" width="464" height="8" translation="[0,253]">
+    <Rectangle id="progressBackground" visible="false" width="465" height="8" translation="[0,253]">
       <Rectangle id="progress" width="0" height="8" />
     </Rectangle>
 
