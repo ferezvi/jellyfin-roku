@@ -3,6 +3,7 @@ import "pkg:/source/api/Image.bs"
 import "pkg:/source/enums/AnimationControl.bs"
 import "pkg:/source/enums/AnimationState.bs"
 import "pkg:/source/enums/ColorPalette.bs"
+import "pkg:/source/enums/ImageType.bs"
 import "pkg:/source/enums/ItemType.bs"
 import "pkg:/source/enums/KeyCode.bs"
 import "pkg:/source/enums/TaskControl.bs"
@@ -32,12 +33,43 @@ end sub
 
 sub findNodes()
     m.homeRows = m.top.findNode("homeRows")
+
+    m.backdrop = m.top.findNode("backdrop")
+    m.backdrop.observeField("loadStatus", "onBackdropLoaded")
+    m.backdropFadeAnimation = m.top.findNode("backdropFadeAnimation")
+    m.pendingBackdropFade = false
+
     m.buttons = m.top.findNode("buttons")
     m.toggleButtonsAnimation = m.top.findNode("toggleButtonsAnimation")
     m.buttonsFade = m.top.findNode("buttonsFade")
     m.buttonsMove = m.top.findNode("buttonsMove")
+
     m.searchButton = m.top.findNode("searchButton")
     m.settingsButton = m.top.findNode("settingsButton")
+
+end sub
+
+sub setBackdropImage(backdropUri as string)
+
+    if backdropUri = ""
+        m.backdrop.uri = ""
+        m.backdrop.opacity = 0
+        return
+    end if
+
+    m.pendingBackdropFade = true
+    m.backdrop.uri = backdropUri
+
+end sub
+
+
+sub onBackdropLoaded()
+
+    if m.backdrop.loadStatus = "ready" and m.pendingBackdropFade
+        m.pendingBackdropFade = false
+        m.backdropFadeAnimation.control = AnimationControl.START
+    end if
+
 end sub
 
 sub applyTheme()
@@ -130,6 +162,52 @@ sub onRowFocusedChange()
     if m.buttons.opacity < 1
         toggleButtonsVisibility(true)
     end if
+end sub
+
+sub onHomeItemFocusedChange()
+    if not isValid(m.homeRows.rowItemFocused) then return
+
+    row = m.homeRows.rowItemFocused[0]
+    col = m.homeRows.rowItemFocused[1]
+
+    focusedItem = m.homeRows.content.getChild(row).getChild(col)
+
+    if not isValid(focusedItem) then return
+
+    if isValid(focusedItem.json)
+
+        ' Movies / Series with their own backdrop
+        if isValidAndNotEmpty(focusedItem.json.BackdropImageTags)
+            backdrop = ImageURL(focusedItem.id, ImageType.BACKDROP, {
+                maxHeight: "1080",
+                maxWidth: "1920",
+                quality: "90"
+            })
+
+            if backdrop <> ""
+                setBackdropImage(backdrop)
+                return
+            end if
+        end if
+
+        ' Episodes use the series backdrop
+        if focusedItem.type = "Episode" and isValidAndNotEmpty(focusedItem.json.seriesid)
+            backdrop = ImageURL(focusedItem.json.seriesid, ImageType.BACKDROP, {
+                maxHeight: "1080",
+                maxWidth: "1920",
+                quality: "90"
+            })
+
+            if backdrop <> ""
+                setBackdropImage(backdrop)
+                return
+            end if
+        end if
+
+    end if
+
+    ' No backdrop: clear previous image
+    setBackdropImage("")
 end sub
 
 sub toggleButtonsVisibility(runInReverse = false as boolean)

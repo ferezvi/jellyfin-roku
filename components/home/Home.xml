@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="Home" extends="JFScreen">
   <children>
-    <Poster id="backdrop" loadDisplayMode="scaleToZoom" width="1920" height="1200" />
+    <Poster id="backdrop" loadDisplayMode="scaleToZoom" width="1920" height="1080" opacity="0" />
 
     <LayoutGroup id="buttons" translation="[100, 100]" layoutDirection="horiz" horizAlignment="left" itemSpacings="[25]">
       <TextButton
@@ -40,12 +40,16 @@
       <FloatFieldInterpolator id="buttonsFade" key="[0.0, .6]" keyValue="[1.00, 0.00]" fieldToInterp="buttons.opacity" />
       <Vector2DFieldInterpolator id="buttonsMove" key="[0.1, .9]" keyValue="[[100, 100], [100, 0]]" fieldToInterp="buttons.translation" />
     </Animation>
+    <Animation id="backdropFadeAnimation" duration=".5" repeat="false" easeFunction="linear">
+      <FloatFieldInterpolator id="backdropFade" key="[0.0, 1.0]" keyValue="[0.00, 0.25]" fieldToInterp="backdrop.opacity" />
+    </Animation>
 
   </children>
   <interface>
-    <field id="playlistData" type="array" />
     <field id="selectedItem" alias="homeRows.selectedItem" />
+    <field id="playlistData" type="array" />
     <field id="rowFocused" alias="homeRows.itemFocused" onchange="onRowFocusedChange" />
+    <field id="homeItemFocused" alias="homeRows.rowItemFocused" onchange="onHomeItemFocusedChange" />
     <field id="quickPlayNode" alias="homeRows.quickPlayNode" />
     <function name="refresh" />
     <function name="loadLibraries" />

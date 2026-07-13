@@ -9,6 +9,7 @@
   </children>
   <interface>
     <function name="setBackgroundImage" />
+    <field id="appBackgroundURI" type="string" />
     <field id="disableRemote" type="boolean" value="false" onchange="disableRemoteChanged" />
     <field id="isLoading" type="boolean" value="false" onchange="isLoadingChanged" />
     <field id="exit" type="boolean" alwaysNotify="true" />

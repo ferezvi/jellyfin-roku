@@ -4,8 +4,14 @@ import "pkg:/source/utils/misc.bs"
 
 sub init()
     m.imageBackground = m.top.findNode("imageBackground")
-    m.top.backgroundURI = ""
+
     m.spinner = m.top.findNode("spinner")
+    m.top.observeField("appBackgroundURI", "onBackgroundChanged")
+    setBackgroundImage(m.top.appBackgroundURI)
+end sub
+
+sub onBackgroundChanged()
+    setBackgroundImage(m.top.appBackgroundURI)
 end sub
 
 ' Triggered when the isLoading boolean component field is changed
