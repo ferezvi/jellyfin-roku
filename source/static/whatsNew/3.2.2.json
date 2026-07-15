@@ -90,5 +90,9 @@
   {
     "description": "Fix top-positioned subtitles rendering with too much vertical margin",
     "author": "ferezvi"
+  },
+  {
+    "description": "Add automatic wrapping for long caption lines",
+    "author": "ferezvi"
   }
 ]
