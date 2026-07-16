@@ -133,20 +133,56 @@ sub createCueBackgroundBox(rect as object, lg as object, styledText as string, d
     fontSize = drawingStyles["default"].fontSize
     bgPadding = Int(fontSize * OUTLINE_STEP_RATIO) + 1
 
-    ' Create background boxes - same height for all lines
+    ' Precompute cumulative Y positions so adjacent boxes share the exact same
+    ' edge value. Equal design-space values aren't enough on their own: the
+    ' SceneGraph compositor scales and rounds translation.y and height
+    ' independently per node when downscaling the 1080p layout to 720p
+    ' (2/3 scale) on HD devices, so round(a) + round(b) can differ from
+    ' round(a + b). Snapping each position to a multiple of 3 makes the
+    ' 2/3 scale land on an exact integer, removing the rounding entirely
+    ' instead of just relying on equal inputs.
+    isHD = isHDDeviceLocal()
+    yPositions = []
+    for i = 0 to lineFragments.count()
+        y = i * lineHeight + BASE_OFFSET
+        if isHD
+            y = snapToMultipleOf3(y)
+        end if
+        yPositions.push(y)
+    end for
+
+    ' Create background boxes - height derived from position delta, not a fixed value
     for i = 0 to lineFragments.count() - 1
         bg = CreateObject("roSGNode", "Rectangle")
-        bg.height = lineHeight
+        bg.height = yPositions[i + 1] - yPositions[i]
         bg.color = bgColor
         ' Padding matches outline step so background fully covers shadow labels
         bg.width = lineWidths[i] + (bgPadding * 2)
         bg.translation = [
             (maxWidth - lineWidths[i]) / 2 + BASE_OFFSET - bgPadding,
-            i * lineHeight + BASE_OFFSET
+            yPositions[i]
         ]
         rect.insertChild(bg, 0)
     end for
 end sub
+
+' Rounds down to the nearest multiple of 3. On HD devices the 1080p layout
+' is scaled by 2/3 to 720p; a multiple of 3 always scales to an exact
+' integer, so nodes snapped to this grid never leave a rounding gap
+' between them, regardless of bgColor opacity.
+function snapToMultipleOf3(value as integer) as integer
+    return (value \ 3) * 3
+end function
+
+' TEMPORARY: local HD detection, used only until m.global.device.isHDDevice
+' lands upstream. Replace the call in createCueBackgroundBox with the cached
+' global field once that PR merges — creating roDeviceInfo per-caption-update
+' is wasteful compared to the cached value.
+function isHDDeviceLocal() as boolean
+    deviceInfo = CreateObject("roDeviceInfo")
+    uiResolution = deviceInfo.GetUIResolution()
+    return isStringEqual(uiResolution.name, "HD")
+end function
 
 function createWindowBackground(id as string, styledText as string, textY as integer, bgColor as string, lineHeights as object) as object
     if not isValid(bgColor) then return invalid
