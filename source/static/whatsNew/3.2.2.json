@@ -84,6 +84,10 @@
     "author": "1hitsong"
   },
   {
+    "description": "Fix 1px gap between stacked subtitle background boxes on HD devices",
+    "author": "ferezvi"
+  },
+  {
     "description": "Fix top-positioned subtitles rendering with too much vertical margin",
     "author": "ferezvi"
   }

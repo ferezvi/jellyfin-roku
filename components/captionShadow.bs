@@ -133,16 +133,29 @@ sub createCueBackgroundBox(rect as object, lg as object, styledText as string, d
     fontSize = drawingStyles["default"].fontSize
     bgPadding = Int(fontSize * OUTLINE_STEP_RATIO) + 1
 
-    ' Create background boxes - same height for all lines
+    ' Snap Y positions to multiples of 3 on HD devices so the compositor's
+    ' 2/3 downscale to 720p lands on exact integers per box, instead of
+    ' rounding translation.y and height independently and leaving a gap.
+    isHD = isHDDeviceLocal()
+    yPositions = []
+    for i = 0 to lineFragments.count()
+        y = i * lineHeight + BASE_OFFSET
+        if isHD
+            y = snapToMultipleOf3(y)
+        end if
+        yPositions.push(y)
+    end for
+
+    ' Create background boxes - height derived from position delta, not a fixed value
     for i = 0 to lineFragments.count() - 1
         bg = CreateObject("roSGNode", "Rectangle")
-        bg.height = lineHeight
+        bg.height = yPositions[i + 1] - yPositions[i]
         bg.color = bgColor
         ' Padding matches outline step so background fully covers shadow labels
         bg.width = lineWidths[i] + (bgPadding * 2)
         bg.translation = [
             (maxWidth - lineWidths[i]) / 2 + BASE_OFFSET - bgPadding,
-            i * lineHeight + BASE_OFFSET
+            yPositions[i]
         ]
         rect.insertChild(bg, 0)
     end for
@@ -204,4 +217,14 @@ function reconstructFragments(styledText as string) as object
     end for
 
     return result
+end function
+
+' Snaps to the nearest multiple of 3 so HD devices' 2/3 downscale to 720p
+' lands on a whole pixel.
+function snapToMultipleOf3(value as integer) as integer
+    return Int((value + 1) / 3) * 3
+end function
+
+function isHDDeviceLocal() as boolean
+    return chainLookupReturn(m.global.device, "isHDDevice", false)
 end function
