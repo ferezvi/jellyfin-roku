@@ -140,7 +140,7 @@ end sub
 
 sub applyTheme()
     m.homeRows.focusBitmapBlendColor = themeColor("colorCursor", "HIGHLIGHT")
-    if isHDDevice()
+    if chainLookupReturn(m.global.device, "isHDDevice", false)
         outline = Assets.FOCUS_OUTLINE_HD
     else
         outline = Assets.FOCUS_OUTLINE_FHD
