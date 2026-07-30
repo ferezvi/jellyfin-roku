@@ -85,6 +85,15 @@ sub createShadowLabels(rect as object, styledText as string, drawingStyles as ob
 
 end sub
 
+' Rounds up to the next multiple of 3, handling negative values correctly
+' (BrightScript's mod can return a negative remainder for negative dividends)
+function roundUpToMultipleOf3(value as integer) as integer
+    remainder = value mod 3
+    if remainder < 0 then remainder = remainder + 3
+    if remainder = 0 then return value
+    return value + (3 - remainder)
+end function
+
 sub createCueBackgroundBox(rect as object, lg as object, styledText as string, drawingStyles as object, bgColor as string, lineHeights as object)
     ' Skip if background is fully transparent
     if bgColor.right(2) = "00" then return
@@ -137,6 +146,9 @@ sub createCueBackgroundBox(rect as object, lg as object, styledText as string, d
     ' bgPadding applied vertically too (top of first line, bottom of last) so it covers shadow spillover on all sides, not just left/right
     lastLineIndex = lineFragments.count() - 1
 
+    isHD = chainLookupReturn(m.global.device, "isHDDevice", false)
+    prevRoundedBottom = invalid ' shared boundary between adjacent boxes on HD
+
     for i = 0 to lastLineIndex
         isFirstLine = (i = 0)
         isLastLine = (i = lastLineIndex)
@@ -156,13 +168,42 @@ sub createCueBackgroundBox(rect as object, lg as object, styledText as string, d
             extraBottom = bgPadding
         end if
 
+        rawTop = i * lineHeight + BASE_OFFSET - extraTop
+        rawBottom = rawTop + boxHeight + extraTop + extraBottom
+
+        boxTop = rawTop
+        boxHeightFinal = boxHeight + extraTop + extraBottom
+
+        if isHD
+            ' Reuse the previous box's rounded bottom as this box's top -
+            ' guarantees both boxes agree on the exact same edge, so there's
+            ' no independent rounding that could create a gap or overlap
+            if isValid(prevRoundedBottom)
+                boxTop = prevRoundedBottom
+            else
+                boxTop = roundUpToMultipleOf3(rawTop)
+            end if
+
+            roundedBottom = roundUpToMultipleOf3(rawBottom)
+            boxHeightFinal = roundedBottom - boxTop
+            prevRoundedBottom = roundedBottom
+        end if
+
+        boxWidth = lineWidths[i] + (bgPadding * 2)
+        widthOffset = 0
+        if isHD
+            roundedWidth = roundUpToMultipleOf3(boxWidth)
+            widthOffset = Int((roundedWidth - boxWidth) / 2)
+            boxWidth = roundedWidth
+        end if
+
         bg = CreateObject("roSGNode", "Rectangle")
-        bg.height = boxHeight + extraTop + extraBottom
+        bg.height = boxHeightFinal
         bg.color = bgColor
-        bg.width = lineWidths[i] + (bgPadding * 2)
+        bg.width = boxWidth
         bg.translation = [
-            (maxWidth - lineWidths[i]) / 2 + BASE_OFFSET - bgPadding,
-            i * lineHeight + BASE_OFFSET - extraTop
+            (maxWidth - lineWidths[i]) / 2 + BASE_OFFSET - bgPadding - widthOffset,
+            boxTop
         ]
         rect.insertChild(bg, 0)
     end for
