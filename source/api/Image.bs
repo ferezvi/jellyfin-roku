@@ -1,5 +1,6 @@
 import "pkg:/source/api/sdk.bs"
 import "pkg:/source/enums/ImageType.bs"
+import "pkg:/source/utils/misc.bs"
 
 function ItemImages(id = "" as string, params = {} as object)
     if not isValidAndNotEmpty(id) then return []
@@ -57,6 +58,19 @@ function ImageURL(id, version = "Primary", params = {})
         param = { "quality": "90" }
         params.append(param)
     end if
+
+    ' Only request the image size actually needed, saving memory and bandwidth.
+    if isStringEqual(version, ImageType.BACKDROP) and m.global.device.isHDDevice
+        maxHeight = params.maxHeight
+        maxWidth = params.maxWidth
+
+        if isString(maxHeight) then maxHeight = maxHeight.toInt()
+        if isString(maxWidth) then maxWidth = maxWidth.toInt()
+
+        params.maxHeight = int(maxHeight * HD_SCALE_FACTOR)
+        params.maxWidth = int(maxWidth * HD_SCALE_FACTOR)
+    end if
+
     url = Substitute("Items/{0}/Images/{1}", id, version)
     return buildURL(url, params)
 end function

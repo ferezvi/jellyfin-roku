@@ -173,6 +173,14 @@ sub init()
     'set inital counts for overhang before content is loaded.
     m.loadItemsTask.observeField("content", "ItemDataLoaded")
     m.loadItemsTask.totalRecordCount = 0
+
+    ' These values must match the maskSize defined in the BackdropImage XML node.
+    if isValid(m.backdropImage)
+        width = scaleMaskSize(1220)
+        height = scaleMaskSize(700)
+        m.backdropImage.maskSize = [width, height]
+    end if
+
 end sub
 
 sub OnScreenHidden()
